@@ -13,16 +13,11 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.naming.CommunicationException;
-
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserDOMapper userDOMapper;
-
-
-
+    private UserDOMapper userDOMapper;
 
     @Override
     public UserModel getUserByUsername(String username) {
