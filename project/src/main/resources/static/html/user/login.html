@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<title>抱团旅游网站登陆</title>
+</head>
+<body class="bg-info">
+	<div style="text-align: center; font-family: Verdana; font-size: 50px">抱团旅游网站登陆</div>	
+	<form name="form1">
+		<div style="left:1000px; top:200px; position: absolute">
+			<br> <input type="text" class="form-control" id="username"
+				placeholder="管理员编号" style="font-size: 20px; width: 250px">
+			<br> <input type="password" class="form-control" id="password"
+				placeholder="密码" style="font-size: 20px; width: 250px"> <br>
+			<!-- 单选按钮 -->
+			<!-- <input type="radio" id="student" name="identity" value="student"
+				style="font-size: 50px" onclick="studentLogin()"> <label
+				for="student" style="vertical-align: middle;">学生</label> <input
+				type="radio" id="teacher" name="identity" value="teacher"
+				style="font-size: 50px; margin-left: 45px"> <label
+				for="teacher" style="vertical-align: middle;" onclick="teacherLogin()">老师</label> <input
+				type="radio" id="admin" name="identity" value="manager" checked="checked"
+				style="font-size: 50px; margin-left: 45px"> <label
+				for="manager" style="vertical-align: middle;">管理员</label> -->
+				<a style="font-size: 15px" href="<%=basePath %>/login.action">学生登录</a>
+				<a style="font-size: 15px; margin-left: 120px" href="<%=basePath %>/teacherLogin.action">教师登录</a>
+				<br> <br>
+			<input type="button" value="登陆" style="font-size: 20px; width: 250px"
+				class="btn btn-info" onclick="check()"> <input type="submit"
+				id="submit" style="visibility: hidden"> <br>
+		</div>
+	</form>
+</body>
+</html>
