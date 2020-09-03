@@ -3,16 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0b3cb586-15d3-4b2c-bbe1-7377b3a533e4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/trav/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trav/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trav/dao/UserDO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trav/dao/UserDO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trav/mapper/UserDOMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trav/mapper/UserDOMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/trav/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trav/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/UserDOMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/UserDOMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/html/user/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/html/user/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/trav/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/trav/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis-generator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-generator.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +113,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599114630930</updated>
-      <workItem from="1599114633816" duration="7944000" />
+      <workItem from="1599114633816" duration="9203000" />
     </task>
     <servers />
   </component>

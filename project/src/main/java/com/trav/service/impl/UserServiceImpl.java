@@ -78,6 +78,4 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(userModel, userDO);
         return userDO;
     }
-
-
 }
