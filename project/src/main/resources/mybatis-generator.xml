@@ -30,8 +30,43 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-
-        <table schema="DB2ADMIN" tableName="ordermanagement" domainObjectName="OrderManagementDO"
+        <table schema="DB2ADMIN" tableName="agency_info" domainObjectName="AgencyDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="DB2ADMIN" tableName="user_info" domainObjectName="UserDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="DB2ADMIN" tableName="city_info" domainObjectName="CityDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="DB2ADMIN" tableName="group_info" domainObjectName="GroupDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="DB2ADMIN" tableName="order_info" domainObjectName="OrderDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="DB2ADMIN" tableName="price_detail" domainObjectName="PriceDetailDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="DB2ADMIN" tableName="route_info" domainObjectName="RouteDO"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableSelectByExample="false"
