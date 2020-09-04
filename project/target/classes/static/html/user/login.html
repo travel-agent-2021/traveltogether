@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
 <script src="../../js/jquery-3.4.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
 <title>抱团旅游网站登陆</title>
 </head>
 <body class="bg-info">
@@ -29,8 +29,7 @@
 				<a style="font-size: 15px; margin-left: 120px" href="<%=basePath %>/teacherLogin.action">教师登录</a>
 				<br> <br>
 			<input type="button" value="登录" style="font-size: 20px; width: 250px"
-				class="btn btn-info"> <input type="submit"
-				id="login" name="login" style="visibility: hidden"> <br>
+				class="btn btn-info" id="login" name="login">
 		</div>
 	</form>
 </body>
@@ -67,12 +66,8 @@
 					alert("注册失败, " + data.responseText);
 				}
 			});
-
-
 		});
-
 	});
-
 </script>
 
 </html>

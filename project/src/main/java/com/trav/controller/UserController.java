@@ -63,6 +63,39 @@ public class UserController extends BaseController {
         return CommonReturnType.create(null);
     }
 
+    @RequestMapping(value="/registerByTelephone", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType registerByTelephone(@RequestParam(name="username") String username,
+                                     @RequestParam(name="password") String password,
+                                     @RequestParam(name="telephone") String telephone)
+            throws UnsupportedEncodingException, NoSuchAlgorithmException, BusinessException {
+
+        UserModel userModel = new UserModel();
+        userModel.setUsername(username);
+        userModel.setTelephone(telephone);
+        userModel.setEncryptPassword(encodeByMD5(password));
+
+        userService.insertUser(userModel);
+        return CommonReturnType.create(null);
+    }
+
+    @RequestMapping(value="/registerByEmail", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType registerByEmail(@RequestParam(name="username") String username,
+                                                @RequestParam(name="password") String password,
+                                                @RequestParam(name="email") String email)
+            throws UnsupportedEncodingException, NoSuchAlgorithmException, BusinessException {
+
+        UserModel userModel = new UserModel();
+        userModel.setUsername(username);
+        userModel.setEmail(email);
+        userModel.setEncryptPassword(encodeByMD5(password));
+
+        userService.insertUser(userModel);
+        return CommonReturnType.create(null);
+    }
+
+
 
     public String encodeByMD5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest md5 = MessageDigest.getInstance("MD5");
