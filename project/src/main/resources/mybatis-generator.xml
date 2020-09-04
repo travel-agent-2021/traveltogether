@@ -30,12 +30,12 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table schema="DB2ADMIN" tableName="user_info" domainObjectName="UserDO"
+
+        <table schema="DB2ADMIN" tableName="ordermanagement" domainObjectName="OrderManagementDO"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableSelectByExample="false"
                enableDeleteByExample="false"
                selectByExampleQueryId="false"></table>
-
     </context>
 </generatorConfiguration>
