@@ -1,5 +1,7 @@
 package com.trav.service.model;
 
+import java.math.BigDecimal;
+
 public class OrderManagementModel {
 
     private Integer id;//订单号
@@ -10,7 +12,7 @@ public class OrderManagementModel {
 
     private String review;//评论情况
 
-    private  Float totalCost;//订单金额
+    private BigDecimal totalCost;//订单金额
 
     private String telephone;//客户电话
 
@@ -49,11 +51,11 @@ public class OrderManagementModel {
         this.review = review;
     }
 
-    public java.lang.Float getTotalCost() {
+    public BigDecimal getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(java.lang.Float totalCost) {
+    public void setTotalCost(BigDecimal totalCost) {
         this.totalCost = totalCost;
     }
 
