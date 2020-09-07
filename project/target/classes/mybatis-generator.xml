@@ -31,7 +31,7 @@
         </javaClientGenerator>
 
 
-        <table schema="DB2ADMIN" tableName="ordermanagement" domainObjectName="OrderManagementDO"
+        <table schema="DB2ADMIN" tableName="route_info" domainObjectName="RouteDO"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableSelectByExample="false"
