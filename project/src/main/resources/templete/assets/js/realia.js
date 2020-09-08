@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    InitData();
     InitCarousel();
     InitPropertyCarousel();
     InitOffCanvasNavigation();
@@ -428,7 +429,7 @@ function InitData() {
 
         },
         error: function(data) {
-            alert(data.status);
+            //alert(data.status);
             alert("获取信息失败, " + data.responseText);
         }
     })
@@ -445,23 +446,31 @@ function loadInfo(routeList) {
             route.imageSrc = "assets/img/tmp/property-small-1.png";
         }
 
-        var dom = "<li>\n" +
-            "            <div class=\"image\">\n" +
-            "                <a href=\"detail.html\"></a>\n" +
-            "                <img src=\"" + route.imageSrc + "\" alt=\"\">\n" +
-            "            </div>\n" +
-            "            <div class=\"title\">\n" +
-            "                <h3><a href=\"detail.html\">" + route.routeTitle + "</a></h3>\n" +
-            "            </div>\n" +
-            "            <div class=\"location\"> " + route.cityName + "</div>\n" +
-            "            <div class=\"price\">￥" + route.price + "</div>\n" +
-            "            <div class=\"area\">\n" +
-            "                <span class=\"key\">天数</span>\n" +
-            "                <span class=\"value\">" + route.duration + "</span>\n" +
-            "            </div>\n" +
-            "            <div class=\"bathrooms\"><div class=\"inner\">" + route.touristMax + "</div></div>\n" +
-            "            <div class=\"bedrooms\"><div class=\"inner\">" + route.touristMin + "</div></div>\n" +
-            "        </li>";
+        var dom = '<div class="property span3">\n' +
+            '                                <div class="image">\n' +
+            '                                    <div class="content">\n' +
+            '                                        <a href="detail.html"></a>\n' +
+            '                                        <img src="' + route.imageSrc + '" alt="">\n' +
+            '                                    </div>\n' +
+            '                                    <div class="price">￥' + route.price + '</div>\n' +
+            '                                </div>\n' +
+            '                                <div class="title">\n' +
+            '                                    <h2><a href="detail.html">' + route.routeTitle + '</a></h2>\n' +
+            '                                </div>\n' +
+            '                                <div class="location">' + route.cityName + '</div>\n' +
+            '                                <div class="area">\n' +
+            '                                    <span class="key">天数:</span>\n' +
+            '                                    <span class="value">' + route.duration + '</span>\n' +
+            '                                    <span class="key">最少人数:</span>\n' +
+            '                                    <span class="value">' + route.touristMin + '</span>\n' +
+            '                                    <span class="key">最多人数:</span>\n' +
+            '                                    <span class="value">' + route.touristMax + '</span>\n' +
+            '                                </div>\n' +
+            //'                                <div class="bedrooms"><div class="content">min:' + route.touristMin + '</div></div>\n' +
+            //'                                <div class="bathrooms"><div class="content">max:' + route.touristMax + '</div></div>\n' +
+            '                            </div>';
+
+
         $("#all_route").append($(dom));
     }
 }
