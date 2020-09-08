@@ -33,12 +33,12 @@ public class OrderModel {
     private Integer orderStatus;
 
     /**
-     * 订单用户ID
+     * 订单用户名称
      */
     private String orderUserName;
 
     /**
-     * 订单所属旅行社ID
+     * 订单所属旅行社名称
      */
     private Integer orderAgencyTitle;
 

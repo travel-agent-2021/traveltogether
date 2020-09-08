@@ -11,7 +11,7 @@ public class ItemModel {
     /**
      * 商品ID
      */
-    private Integer ItemId;
+    private Integer itemId;
 
     /**
      * 商品名
@@ -83,11 +83,11 @@ public class ItemModel {
      * getters and setters
      */
     public Integer getItemId() {
-        return ItemId;
+        return itemId;
     }
 
     public void setItemId(Integer itemId) {
-        ItemId = itemId;
+        this.itemId = itemId;
     }
 
     public String getItemName() {

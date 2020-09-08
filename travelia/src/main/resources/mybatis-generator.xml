@@ -38,63 +38,7 @@
                enableDeleteByExample="false"
                selectByExampleQueryId="false"></table>
 
-        <table schema="DB2ADMIN" tableName="agency_info" domainObjectName="AgencyDO"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableSelectByExample="false"
-               enableDeleteByExample="false"
-               selectByExampleQueryId="false"></table>
-
-        <table schema="DB2ADMIN" tableName="admin_info" domainObjectName="AdminDO"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableSelectByExample="false"
-               enableDeleteByExample="false"
-               selectByExampleQueryId="false"></table>
-
-        <table schema="DB2ADMIN" tableName="city_info" domainObjectName="CityDO"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableSelectByExample="false"
-               enableDeleteByExample="false"
-               selectByExampleQueryId="false"></table>
-
-        <table schema="DB2ADMIN" tableName="group_info" domainObjectName="GroupDO"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableSelectByExample="false"
-               enableDeleteByExample="false"
-               selectByExampleQueryId="false"></table>
-
-        <table schema="DB2ADMIN" tableName="group_order" domainObjectName="GroupOrderDO"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableSelectByExample="false"
-               enableDeleteByExample="false"
-               selectByExampleQueryId="false"></table>
-
-        <table schema="DB2ADMIN" tableName="item_info" domainObjectName="ItemDO"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableSelectByExample="false"
-               enableDeleteByExample="false"
-               selectByExampleQueryId="false"></table>
-
-        <table schema="DB2ADMIN" tableName="item_city" domainObjectName="ItemCityDO"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableSelectByExample="false"
-               enableDeleteByExample="false"
-               selectByExampleQueryId="false"></table>
-
-        <table schema="DB2ADMIN" tableName="item_image" domainObjectName="ItemImageDO"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableSelectByExample="false"
-               enableDeleteByExample="false"
-               selectByExampleQueryId="false"></table>
-
-        <table schema="DB2ADMIN" tableName="order_info" domainObjectName="OrderInfo"
+        <table schema="DB2ADMIN" tableName="order_info" domainObjectName="OrderDO"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableSelectByExample="false"

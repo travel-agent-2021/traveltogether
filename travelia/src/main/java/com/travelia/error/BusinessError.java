@@ -9,7 +9,12 @@ public enum  BusinessError implements CommonError {
     /*200XX 用户类型错误码 */
     USER_NOT_EXIST(20001, "用户不存在"),
     USER_LOGIN_FAIL(20002, "用户名或密码错误"),
-    USER_DONT_LOGIN(20003, "用户名未登录");
+    USER_NOT_LOGIN(20003, "用户未登录"),
+
+    /*400XX 管理员类型错误码 */
+    ADMIN_NOT_EXIST(40001, "管理员账号不存在"),
+    ADMIN_LOGIN_FAIL(40002, "账号或密码错误"),
+    ADMIN_NOT_LOGIN(40003, "管理员未登录");
 
     private int errCode;
     private String errMsg;

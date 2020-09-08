@@ -37,5 +37,14 @@
                enableSelectByExample="false"
                enableDeleteByExample="false"
                selectByExampleQueryId="false"></table>
+
+        <table schema="DB2ADMIN" tableName="order_info" domainObjectName="OrderDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByExample="false"
+               selectByExampleQueryId="false"></table>
+
+
     </context>
 </generatorConfiguration>
