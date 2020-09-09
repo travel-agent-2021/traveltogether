@@ -30,12 +30,21 @@ function loadInfo(userList) {
     for (var i = 0; i < userList.length; i++) {
         var user = userList[i];
         var userId = user.userId;
+        var gender = "";
+        //alert(user.gender);
+        if (user.gender == 0) {
+            gender = "女";
+        }else if(user.gender == 1 ){
+            gender = "男";
+        }else{
+            gender = "未设置";
+        }
         var dom = '<tr>\n' +
             '                  <td>' + user.userId + '</td>\n' +
             '                  <td>' + user.username + '</td>\n' +
             '                  <td>' + user.encryptPassword + '</td>\n' +
             '                  <td>' + user.age + '</td>\n' +
-            '                  <td>' + (user.gender == 0? '女' : '男') + '</td>\n' +
+            '                  <td>' + gender + '</td>\n' +
             '                  <td>' + user.userTelephone + '</td>\n' +
             '                  <td>' + user.userEmail + '</td>\n' +
             '                  <td>' + user.birthday + '</td>\n' +
