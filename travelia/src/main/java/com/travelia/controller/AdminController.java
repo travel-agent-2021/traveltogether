@@ -50,7 +50,7 @@ public class AdminController extends BaseController {
      * @return 返回管理员信息
      * @throws BusinessException
      */
-    @RequestMapping(value = "/index", method = {RequestMethod.GET})
+    @RequestMapping(value = "/validateLogin", method = {RequestMethod.GET})
     @ResponseBody
     public CommonReturnType index() throws BusinessException {
         Boolean isLogin = (Boolean) httpServletRequest.getSession().getAttribute("LOGIN");

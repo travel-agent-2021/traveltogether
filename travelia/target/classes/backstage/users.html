@@ -21,7 +21,7 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">TRAVELIA(管理员)</a>
+    <a class="navbar-brand" href="#" id="user-name">TRAVELIA(管理员)</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -196,7 +196,7 @@
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i> 用户列表</div>
+                <i class="fa fa-table"></i> 用户列表<a class="btn btn-info pull-right"   href="newUser.html">添加用户</a></div>
             <div class="card-body">
 
                 <div class="table-responsive">
@@ -204,7 +204,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th>用户ID(点此列查看详情)</th>
+                            <th>用户ID</th>
                             <th>用户名</th>
                             <th>用户密码</th>
                             <th>年龄</th>
@@ -216,7 +216,7 @@
                         </thead>
                         <tfoot>
                         <tr>
-                            <th>用户ID(点此列查看详情)</th>
+                            <th>用户ID</th>
                             <th>用户名</th>
                             <th>用户密码</th>
                             <th>年龄</th>
@@ -227,8 +227,8 @@
                         </tr>
                         </tfoot>
                         <tbody>
-                        <tr>
-                            <td><a href="usersDetail.html">1008611</a></td>
+                        <!--<tr>
+                            <td>1008611</td>
                             <td>帆宝的快乐time</td>
                             <td>1008611fan</td>
                             <td>21</td>
@@ -236,49 +236,9 @@
                             <td>1008612</td>
                             <td>18618619@qq.com</td>
                             <td>1999-1-1</td>
-
-                        </tr>
-                        <tr>
-                            <td><a href="usersDetail.html">1008611</a></td>
-                            <td>帆宝的快乐time</td>
-                            <td>1008611fan</td>
-                            <td>21</td>
-                            <td>男</td>
-                            <td>1008612</td>
-                            <td>18618619@qq.com</td>
-                            <td>1999-1-1</td>
-
-                        </tr>
-                        <tr>
-                            <td><a href="usersDetail.html">1008611</a></td>
-                            <td>帆宝的快乐time</td>
-                            <td>1008611fan</td>
-                            <td>21</td>
-                            <td>男</td>
-                            <td>1008612</td>
-                            <td>18618619@qq.com</td>
-                            <td>1999-1-1</td>
-                        </tr>
-                        <tr>
-                            <td><a href="usersDetail.html">1008611</a></td>
-                            <td>帆宝的快乐time</td>
-                            <td>1008611fan</td>
-                            <td>21</td>
-                            <td>男</td>
-                            <td>1008612</td>
-                            <td>18618619@qq.com</td>
-                            <td>1999-1-1</td>
-                        </tr>
-                        <tr>
-                            <td><a href="usersDetail.html">1008611</a></td>
-                            <td>帆宝的快乐time</td>
-                            <td>1008611fan</td>
-                            <td>21</td>
-                            <td>男</td>
-                            <td>1008612</td>
-                            <td>18618619@qq.com</td>
-                            <td>1999-1-1</td>
-                        </tr>
+                            <td><a class="btn btn-primary"   href="usersDetail.html">修改</a>
+                                <a class="btn btn-warning"   href="users.html">删除</a></td>
+                        </tr>-->
                         </tbody>
                     </table>
                 </div>
@@ -287,7 +247,7 @@
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 
         </div>
-        <a class="btn btn-info btn-block"   href="newUser.html">添加用户</a>
+
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
@@ -315,7 +275,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" id="logout">Logout</a>
                 </div>
             </div>
         </div>
@@ -330,8 +290,10 @@
     <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
+    <script src="js/validLogin.js"></script>
     <!-- Custom scripts for this page-->
-    <script src="js/sb-admin-datatables.min.js"></script>
+    <!--<script src="js/sb-admin-datatables.min.js"></script>-->
+    <script src="js/users.js"></script>
 </div>
 </body>
 
