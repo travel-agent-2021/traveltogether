@@ -237,7 +237,7 @@
         </div>
         <!-- /.row -->
     </div>
-    <button type="button" class="btn btn-primary btn-lg btn-block" style="background-color: rgb(250, 35, 35);color: black;">取消抱团</button>
+    <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-lg btn-block" style="background-color: rgb(250, 35, 35);color: black;">取消抱团</button>
 </div><!-- /.our-agents -->
 <div class="widget properties last">
     <div class="title">
@@ -358,7 +358,21 @@
 </div><!-- /#wrapper-inner -->
 </div><!-- /#wrapper -->
 </div><!-- /#wrapper-outer -->
-
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 200px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">警告⚠</h4>
+            </div>
+            <div class="modal-body">确定要取消订单吗？</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" style="left: 0px;">确定</button>
+                <button type="button" class="btn btn-default" style="right: 0px;" data-dismiss="modal">取消</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 <div class="palette">
     <div class="toggle">
         <a href="#">Toggle</a>

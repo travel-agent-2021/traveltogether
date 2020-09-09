@@ -38,6 +38,17 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * 按ID查找用户
+     * @param userId
+     * @return UserModel
+     */
+    @Override
+    public UserModel getUserByUserId(Integer userId) {
+        UserDO userDO = userDOMapper.selectByPrimaryKey(userId);
+        return convertFromDO2Model(userDO);
+    }
+
+    /**
      * 删除用户
      * @param userId
      * @return
@@ -60,10 +71,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateUser(UserModel userModel) throws BusinessException {
         if (userModel == null) {
-            throw new BusinessException(BusinessError.USER_UPDATE_FAIL);
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "更新失败");
         }
         int flag = userDOMapper.updateByPrimaryKeySelective(convertFromModel2DO(userModel));
-        return 0;
+        return flag;
     }
 
     /**
@@ -114,7 +125,7 @@ public class UserServiceImpl implements UserService {
      * @throws BusinessException
      */
     public UserModel getUserByTelephone(String telephone) throws BusinessException {
-        UserDO userDO =  userDOMapper.selectByUserTelephone(telephone);
+        UserDO userDO = userDOMapper.selectByUserTelephone(telephone);
         if (userDO == null) {
             throw new BusinessException(BusinessError.USER_NOT_FOUND);
         }
@@ -141,6 +152,8 @@ public class UserServiceImpl implements UserService {
         }
         return 0;
     }
+
+
 
     /**
      * 用户model转化为dataObject

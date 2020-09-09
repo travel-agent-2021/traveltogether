@@ -35,6 +35,18 @@ public class UserController extends BaseController {
     }
 
     /**
+     * 根据用户ID获取用户
+     * @return 所有用户model
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getUserById", method = {RequestMethod.GET})
+    @ResponseBody
+    public CommonReturnType getUserById(@RequestParam(name = "userId") Integer userId) throws BusinessException {
+        UserModel userModel = userService.getUserByUserId(userId);
+        return CommonReturnType.create(userModel, "success");
+    }
+
+    /**
      * 用户注册
      * @param telephone
      * @param password
@@ -70,7 +82,20 @@ public class UserController extends BaseController {
     }
 
 
-
+    /**
+     * 添加用户信息
+     * @param username
+     * @param password
+     * @param telephone
+     * @param gender
+     * @param age
+     * @param birthday
+     * @param email
+     * @return
+     * @throws BusinessException
+     * @throws UnsupportedEncodingException
+     * @throws NoSuchAlgorithmException
+     */
     @RequestMapping(value = "/addUser", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType addUser(@RequestParam(name = "username") String username,
@@ -135,7 +160,7 @@ public class UserController extends BaseController {
         return CommonReturnType.create();
     }
 
-    @RequestMapping(value = "/deleteUser", method = {RequestMethod.POST})
+    @RequestMapping(value = "/deleteUser", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType deleteUser(@RequestParam(name = "userId") Integer userId) {
         userService.deleteUser(userId);

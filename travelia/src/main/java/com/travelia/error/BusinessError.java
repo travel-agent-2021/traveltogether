@@ -12,7 +12,6 @@ public enum  BusinessError implements CommonError {
     USER_NOT_LOGIN(20003, "用户未登录"),
     USER_TELEPHONE_NOT_EMPTY(20004, "手机号不能为空"),
     USER_NOT_FOUND(20005, "用户不存在"),
-    USER_UPDATE_FAIL(20005, "用户更新失败"),
 
     /* 300XX商品错误码 */
     ITEM_DELETE_FAIL(30001, "商品不存在！"),

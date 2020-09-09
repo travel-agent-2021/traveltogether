@@ -13,6 +13,8 @@ public interface UserService {
 
     int addUser(UserModel userModel) throws BusinessException;
 
+    UserModel getUserByUserId(Integer userId);
+
     UserModel getUserByTelephone(String telephone) throws BusinessException;
 
     int deleteUser(Integer userId);

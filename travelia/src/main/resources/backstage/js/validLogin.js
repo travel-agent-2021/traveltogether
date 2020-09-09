@@ -31,9 +31,10 @@ function validateLogin () {
                 var admin = data.data;
                 $("#user-name").text("管理员：" + data.data.adminAccount)
             }else {
-                alert("获取信息失败，" + data.data.errMsg);
                 if (data.data.errCode === 40003) {
                     window.location.href = "login.html";
+                } else {
+                     alert("获取信息失败，" + data.data.errMsg);
                 }
             }
         },

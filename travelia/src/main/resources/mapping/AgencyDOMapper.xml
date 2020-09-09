@@ -40,7 +40,7 @@
     delete from agency_info
     where agency_id = #{agencyId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.travelia.entity.AgencyDO" keyProperty="agency_id" useGeneratedKeys="true">
+  <insert id="insert" parameterType="com.travelia.entity.AgencyDO" keyProperty="agencyId" useGeneratedKeys="true">
     insert into agency_info (agency_id, agency_account, encrypt_password, 
       agency_title, agency_image_source, agency_telephone, 
       agency_address, agency_email)
@@ -48,7 +48,7 @@
       #{agencyTitle,jdbcType=VARCHAR}, #{agencyImageSource,jdbcType=VARCHAR}, #{agencyTelephone,jdbcType=VARCHAR}, 
       #{agencyAddress,jdbcType=VARCHAR}, #{agencyEmail,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.travelia.entity.AgencyDO" keyProperty="agency_id" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.travelia.entity.AgencyDO" keyProperty="agencyId" useGeneratedKeys="true">
 
     insert into agency_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
