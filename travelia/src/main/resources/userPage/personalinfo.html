@@ -91,9 +91,11 @@
     <div class="navbar-inner">
         <ul class="nav navbar-nav">
             <li><a href="#"><img class="img-circle" style="width: 50px;height: 50px;" src="assets/img/tmp/头像.jpg" alt=""></a></li>
-            <li><a href="#" style="font-size: 20px;">安小雨</a></li>
-            <li><a href="#" style="font-size: 20px;">男</a></li>
-            <li><a href="#" style="font-size: 20px;">2513077685@qq.com</a></li>
+            <li><a style="font-size: 20px;">安小雨</a></li>
+            <li><a style="font-size: 20px;">男</a></li>
+            <li><a style="font-size: 20px;">2513077685@qq.com</a></li>
+            <li> <button type="button" data-toggle="modal" data-target="#myModal" 
+            class="btn btn-primary btn-lg btn-block" style="background-color: rgb(122, 98, 255);color: black;">修改个人资料</button></li>
         </ul>
     </div>
     </div>
@@ -166,7 +168,58 @@
 </div><!-- /#wrapper-inner -->
 </div><!-- /#wrapper -->
 </div><!-- /#wrapper-outer -->
-
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 300px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">修改个人资料</h4>
+            </div>
+                <form class="modal-body" name="addForm" id="form_add" action="<%=basePath%>/teacher/addProblem.action" method="post">
+                 昵称<input type="text" name="proDif" class="form-control" value="安小雨"style="font-size: 15px">
+                 <br> 
+                 性别<input type="text" name="chaNo" class="form-control" value="男" style="font-size: 15px"> 
+                 <br> 
+                 邮箱<input type="text" name="chaTitle" class="form-control" value="2513077685@qq.com" style="font-size: 15px"> 
+                 <br> 
+                 手机号<input type="text" name="chaMpoint" class="form-control" value="13035152271">
+                 </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" style="left: 0px;">确定</button>
+                <button type="button" class="btn btn-default" style="right: 0px;" data-dismiss="modal">取消</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!--
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 500px;">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+                <span>x</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">个人资料</h4>
+        </div>
+        <form class="modal-body" name="addForm" id="form_add"
+            action="<%=basePath%>/teacher/addProblem.action" method="post">
+            关键字<input type="text" name="proKeyw" class="form-control" value=""
+                style="font-size: 15px"> 昵称<input type="text"
+                name="proDif" class="form-control" value="安小雨"
+                style="font-size: 15px"> 性别<input type="text"
+                name="chaNo" class="form-control" value="男"
+                style="font-size: 15px"> 邮箱<input type="text"
+                name="chaTitle" class="form-control" value="2513077685@qq.com"
+                style="font-size: 15px"> 手机号<input type="text"
+                name="chaMpoint" class="form-control" value="13035152271"
+        </form>
+        <div class="modal-footer">
+            <input type="button" value="确定" class="btn btn-primary"
+                onclick="check_add()">
+        </div>
+    </div>
+</div>
+</div>-->
 <div class="palette">
     <div class="toggle">
         <a href="#">Toggle</a>
