@@ -32,13 +32,17 @@ function loadInfo(userList) {
         var dom = '<tr>\n' +
             '                  <td>' + user.userId + '</td>\n' +
             '                  <td>' + user.username + '</td>\n' +
+            '                  <td>' + user.encryptPassword + '</td>\n' +
             '                  <td>' + user.age + '</td>\n' +
             '                  <td>' + (user.gender == 0? '女' : '男') + '</td>\n' +
             '                  <td>' + user.userTelephone + '</td>\n' +
             '                  <td>' + user.userEmail + '</td>\n' +
             '                  <td>' + user.birthday + '</td>\n' +
-            '                </tr>'
+            '                  <td><a class="btn btn-primary"   href="usersDetail.html">修改</a>\n' +
+            '                      <a class="btn btn-warning"   href="#">删除</a></td>\n'+
+            '                </tr>';
         $("#dataTable tbody").append($(dom));
     }
     $("#dataTable").DataTable();
 }
+
