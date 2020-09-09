@@ -55,4 +55,7 @@ public interface AgencyDOMapper {
 
 
     List<AgencyDO> selectAllAgencies();
+
+
+    AgencyDO selectByAgencyAccount(String agencyAccount);
 }

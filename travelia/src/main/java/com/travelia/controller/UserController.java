@@ -37,6 +37,7 @@ public class UserController extends BaseController {
     public CommonReturnType register(@RequestParam(value = "username") String username,
                                     @RequestParam(value = "password") String password) {
 
+        
 
         return CommonReturnType.create();
     }
