@@ -22,6 +22,12 @@ public class BaseController {
 
     public static final String CONTENT_TYPE_FORMED = "application/x-www-form-urlencoded";
 
+    /**
+     * 异常处理
+     * @param request
+     * @param e
+     * @return
+     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -39,6 +45,13 @@ public class BaseController {
         return CommonReturnType.create(responseData, "fail");
     }
 
+    /**
+     * 密码MD5加密
+     * @param str
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws UnsupportedEncodingException
+     */
     public String encodeByMD5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest md5 = MessageDigest.getInstance("MD5");
         BASE64Encoder base64en = new BASE64Encoder();

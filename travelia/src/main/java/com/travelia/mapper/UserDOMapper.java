@@ -53,9 +53,11 @@ public interface UserDOMapper {
      */
     int updateByPrimaryKey(UserDO record);
 
-
-    UserDO selectByUsername(String username);
+    UserDO selectByUserTelephone(String userTelephone);
 
     List<UserDO> selectAllUsers();
 
+    List<UserDO> selectLikeUsername(String username);
+
+    List<UserDO> selectLikeUserTelephone(String userTelephone);
 }

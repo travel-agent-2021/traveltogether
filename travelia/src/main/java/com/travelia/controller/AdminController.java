@@ -5,15 +5,12 @@ import com.travelia.error.BusinessError;
 import com.travelia.error.BusinessException;
 import com.travelia.response.CommonReturnType;
 import com.travelia.service.AdminService;
-import com.travelia.service.UserService;
 import com.travelia.service.model.AdminModel;
-import com.travelia.service.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -24,13 +21,10 @@ public class AdminController extends BaseController {
     private AdminService adminService;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private HttpServletRequest httpServletRequest;
 
     /**
-     * 登录校验，登陆成功后进入主页
+     * 登录校验
      * @param account
      * @param password
      * @return

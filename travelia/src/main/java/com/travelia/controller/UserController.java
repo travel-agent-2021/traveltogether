@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @Controller
@@ -19,7 +21,6 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
-
 
     /**
      * 获取用户列表
@@ -35,21 +36,110 @@ public class UserController extends BaseController {
 
     /**
      * 用户注册
-     * @param username
+     * @param telephone
      * @param password
      * @return
      */
-    @RequestMapping(value = "/register", method = {RequestMethod.GET})
+    @RequestMapping(value = "/register", method = {RequestMethod.GET}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
-    public CommonReturnType register(@RequestParam(value = "username") String username,
-                                    @RequestParam(value = "password") String password) throws BusinessException {
-        if (username == null || username.equals("")) {
-            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR);
+    public CommonReturnType register(@RequestParam(name = "telephone") String telephone,
+                                    @RequestParam(name = "password") String password) throws BusinessException {
+        if (telephone == null || telephone.equals("")) {
+            throw new BusinessException(BusinessError.USER_TELEPHONE_NOT_EMPTY);
         }
         UserModel userModel = new UserModel();
+        userModel.setUserTelephone(telephone);
+        userModel.setEncryptPassword(password);
+        return CommonReturnType.create();
+    }
+
+    /**
+     * 根据用户名查找用户
+     * @param username
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/usernameSearch", method = {RequestMethod.GET})
+    @ResponseBody
+    public CommonReturnType searchUsersByUsername(@RequestParam(name = "username") String username) throws BusinessException {
+        List<UserModel> userModelList = userService.getUsersLikeUsername(username);
+        if (userModelList == null) {
+            throw new BusinessException(BusinessError.USER_NOT_FOUND);
+        }
+        return CommonReturnType.create(userModelList, "success");
+    }
+
+
+
+    @RequestMapping(value = "/addUser", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType addUser(@RequestParam(name = "username") String username,
+                                    @RequestParam(name = "password") String password,
+                                    @RequestParam(name = "telephone") String telephone,
+                                    @RequestParam(name = "gender") Integer gender,
+                                    @RequestParam(name = "age") Integer age,
+                                    @RequestParam(name = "birthday") String birthday,
+                                    @RequestParam(name = "email") String email) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+
+        if (telephone == null || ("").equals(telephone)) {
+            throw new BusinessException(BusinessError.USER_TELEPHONE_NOT_EMPTY);
+        }
+        if (password == null || ("").equals(password)) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "密码不能为空");
+        }
+
+        UserModel user = new UserModel();
+        user.setUsername(username);
+        user.setUserTelephone(telephone);
+        user.setEncryptPassword(encodeByMD5(password));
+        user.setAge(age);
+        user.setGender(gender);
+        user.setBirthday(birthday);
+        user.setUserEmail(email);
+        userService.addUser(user);
 
         return CommonReturnType.create();
     }
 
+    @RequestMapping(value = "/updateUser", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType updateUser(@RequestParam(name = "userId" ) Integer userId,
+                                    @RequestParam(name = "username") String username,
+                                    @RequestParam(name = "password") String password,
+                                    @RequestParam(name = "telephone") String telephone,
+                                    @RequestParam(name = "gender") Integer gender,
+                                    @RequestParam(name = "age") Integer age,
+                                    @RequestParam(name = "birthday") String birthday,
+                                    @RequestParam(name = "email") String email) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+        if (userId == null || userId.equals("")) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "用户ID不能为空");
+        }
+        if (telephone == null || ("").equals(telephone)) {
+            throw new BusinessException(BusinessError.USER_TELEPHONE_NOT_EMPTY);
+        }
+        if (password == null || ("").equals(password)) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "密码不能为空");
+        }
+
+        UserModel user = new UserModel();
+        user.setUserId(userId);
+        user.setUsername(username);
+        user.setUserTelephone(telephone);
+        user.setEncryptPassword(encodeByMD5(password));
+        user.setAge(age);
+        user.setGender(gender);
+        user.setBirthday(birthday);
+        user.setUserEmail(email);
+        userService.updateUser(user);
+
+        return CommonReturnType.create();
+    }
+
+    @RequestMapping(value = "/deleteUser", method = {RequestMethod.POST})
+    @ResponseBody
+    public CommonReturnType deleteUser(@RequestParam(name = "userId") Integer userId) {
+        userService.deleteUser(userId);
+        return CommonReturnType.create();
+    }
 
 }

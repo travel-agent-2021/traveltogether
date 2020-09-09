@@ -13,6 +13,13 @@ public interface UserService {
 
     int addUser(UserModel userModel) throws BusinessException;
 
-    UserModel getUserByUsername(String username);
+    UserModel getUserByTelephone(String telephone) throws BusinessException;
+
+    int deleteUser(Integer userId);
+
+    int updateUser(UserModel userModel) throws BusinessException;
+
+    List<UserModel> getUsersLikeUsername(String username);
+
 
 }

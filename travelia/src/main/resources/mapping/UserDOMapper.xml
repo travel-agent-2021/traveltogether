@@ -180,17 +180,31 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByUserTelephone" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user_info
-    where username = #{username,jdbcType=INTEGER}
+    where user_telephone = #{user_telephone,jdbcType=VARCHAR}
   </select>
 
   <select id="selectAllUsers" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user_info
+  </select>
+
+  <select id="selectLikeUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where username like #{username,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectLikeUserTelephone" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where user_telephone like #{userTelephone,jdbcType=VARCHAR}
   </select>
 
 </mapper>
