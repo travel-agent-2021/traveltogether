@@ -31,20 +31,26 @@
         </javaClientGenerator>
 
 
-        <table schema="DB2ADMIN" tableName="user_info" domainObjectName="UserDO"
+        <table schema="DB2ADMIN" tableName="agency_info" domainObjectName="AgencyDO"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableSelectByExample="false"
                enableDeleteByExample="false"
                selectByExampleQueryId="false"></table>
 
-        <table schema="DB2ADMIN" tableName="order_info" domainObjectName="OrderDO"
+        <table schema="DB2ADMIN" tableName="city_info" domainObjectName="CityDO"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableSelectByExample="false"
                enableDeleteByExample="false"
                selectByExampleQueryId="false"></table>
 
+        <table schema="DB2ADMIN" tableName="group_info" domainObjectName="GroupDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByExample="false"
+               selectByExampleQueryId="false"></table>
 
     </context>
 </generatorConfiguration>
