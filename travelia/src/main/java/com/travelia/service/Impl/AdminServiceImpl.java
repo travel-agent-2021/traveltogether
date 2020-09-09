@@ -27,7 +27,7 @@ public class AdminServiceImpl implements AdminService {
     public AdminModel validateLogin(String adminAccount, String encryptPassword) throws BusinessException {
         AdminModel adminModel = getAdminByAccount(adminAccount);
         if (adminModel == null) {
-            return null;
+           throw new BusinessException(BusinessError.ADMIN_LOGIN_FAIL);
         }
         if (adminModel.getAdminAccount().equals(adminAccount)
                 && adminModel.getEncryptPassword().equals(encryptPassword)) {

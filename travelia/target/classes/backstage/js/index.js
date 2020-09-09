@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    getUsers();
     validateLogin();
+    //getUsers();
 });
 
 $("#logout").on("click", function () {
@@ -26,7 +26,7 @@ function getUsers() {
     var userList = [];
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/admin/getAllUsers",
+        url: "http://localhost:8080/user/getAllUsers",
         xhrFields: { withCredentials: true },
         success: function(data) {
             if (data.status === "success") {
@@ -66,7 +66,7 @@ function loadInfo(userList) {
 
 function validateLogin () {
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: "http://localhost:8080/admin/index",
         xhrFields: { withCredentials: true },
         success: function(data) {
