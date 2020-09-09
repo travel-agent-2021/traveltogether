@@ -53,7 +53,7 @@ public class AdminController extends BaseController {
 
     /**
      * 主页
-     * @return 返回管理员用户信息
+     * @return 返回管理员信息
      * @throws BusinessException
      */
     @RequestMapping(value = "/index", method = {RequestMethod.GET})
@@ -82,16 +82,5 @@ public class AdminController extends BaseController {
         return CommonReturnType.create();
     }
 
-    /**
-     * 获取用户列表
-     * @return 所有用户model
-     * @throws BusinessException
-     */
-    @RequestMapping(value = "/getAllUsers", method = {RequestMethod.GET})
-    @ResponseBody
-    public CommonReturnType getAllUsers() throws BusinessException {
-        List<UserModel> users =  userService.getAllUsers();
-        return CommonReturnType.create(users, "success");
-    }
 
 }
