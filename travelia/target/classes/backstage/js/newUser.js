@@ -23,7 +23,7 @@ $("#addUser").on("click", function () {
         success: function(data) {
             if (data.status === "success") {
                 alert("添加成功！");
-                window.location.href = "login.html";
+                window.location.href = "users.html";
             }else {
                 alert("添加失败，" + data.data.errMsg);
             }
