@@ -1,6 +1,6 @@
 $(document).ready(function () {
     validateLogin();
-    getUsers();
+    //getUsers();
 });
 
 $("#logout").on("click", function () {

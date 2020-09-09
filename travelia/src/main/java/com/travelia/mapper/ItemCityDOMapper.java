@@ -30,7 +30,7 @@ public interface ItemCityDOMapper {
     int insertSelective(ItemCityDOKey record);
 
 
-    List<Integer> selectByItemId(Integer id);
+    List<Integer> selectByItemId(Integer itemId);
 
     int deleteByItemId(Integer itemId);
 }

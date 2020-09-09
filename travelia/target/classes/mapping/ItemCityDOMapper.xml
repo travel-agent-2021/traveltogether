@@ -34,7 +34,7 @@
     </trim>
   </insert>
 
-  <select id="selectByItemId" parameterType="java.lang.Integer" resultMap="java.lang.Integer">
+  <select id="selectByItemId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select city_id
     from item_city
     where item_id = #{itemId,jdbcType=INTEGER}

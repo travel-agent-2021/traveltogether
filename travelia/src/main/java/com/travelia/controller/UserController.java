@@ -1,6 +1,7 @@
 package com.travelia.controller;
 
 
+import com.travelia.error.BusinessError;
 import com.travelia.error.BusinessException;
 import com.travelia.response.CommonReturnType;
 import com.travelia.service.UserService;
@@ -32,12 +33,20 @@ public class UserController extends BaseController {
         return CommonReturnType.create(users, "success");
     }
 
+    /**
+     * 用户注册
+     * @param username
+     * @param password
+     * @return
+     */
     @RequestMapping(value = "/register", method = {RequestMethod.GET})
     @ResponseBody
     public CommonReturnType register(@RequestParam(value = "username") String username,
-                                    @RequestParam(value = "password") String password) {
-
-        
+                                    @RequestParam(value = "password") String password) throws BusinessException {
+        if (username == null || username.equals("")) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR);
+        }
+        UserModel userModel = new UserModel();
 
         return CommonReturnType.create();
     }
