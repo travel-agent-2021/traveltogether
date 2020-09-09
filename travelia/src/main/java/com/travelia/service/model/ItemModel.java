@@ -54,6 +54,11 @@ public class ItemModel {
     private Integer max_tourists;
 
     /**
+     * 旅行社ID
+     */
+    private Integer agencyId;
+
+    /**
      * 旅行社名称
      */
     private String agencyTitle;
@@ -152,6 +157,14 @@ public class ItemModel {
 
     public void setMax_tourists(Integer max_tourists) {
         this.max_tourists = max_tourists;
+    }
+
+    public Integer getAgencyId() {
+        return agencyId;
+    }
+
+    public void setAgencyId(Integer agencyId) {
+        this.agencyId = agencyId;
     }
 
     public String getAgencyTitle() {

@@ -19,6 +19,11 @@ public class AdminModel {
     private String adminAccount;
 
     /**
+     * 管理员姓名
+     */
+    private String adminName;
+    
+    /**
      * 管理员密码
      */
     private String encryptPassword;
@@ -40,6 +45,14 @@ public class AdminModel {
 
     public void setAdminAccount(String adminAccount) {
         this.adminAccount = adminAccount;
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
     public String getEncryptPassword() {
