@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -21,6 +22,9 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
 
     /**
      * 获取用户列表
@@ -44,6 +48,29 @@ public class UserController extends BaseController {
     public CommonReturnType getUserById(@RequestParam(name = "userId") Integer userId) throws BusinessException {
         UserModel userModel = userService.getUserByUserId(userId);
         return CommonReturnType.create(userModel, "success");
+    }
+
+    /**
+     * 用户登录校验
+     * @param telephone
+     * @param password
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws NoSuchAlgorithmException
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/validateLogin", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType validateLogin(@RequestParam(name = "telephone")String telephone,
+                                          @RequestParam(name = "password") String password) throws UnsupportedEncodingException, NoSuchAlgorithmException, BusinessException {
+        UserModel userModel = userService.validateLogin(telephone, encodeByMD5(password));
+        if (userModel == null) {
+            throw new BusinessException(BusinessError.USER_LOGIN_FAIL);
+        }
+        httpServletRequest.getSession().setAttribute("USER_LOGIN", true);
+        httpServletRequest.getSession().setAttribute("USER", userModel);
+
+        return CommonReturnType.create(userModel);
     }
 
     /**

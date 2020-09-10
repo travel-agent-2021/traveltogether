@@ -39,7 +39,7 @@ public class AdminController extends BaseController {
         if (adminModel == null) {
             throw new BusinessException(BusinessError.USER_LOGIN_FAIL);
         }
-        httpServletRequest.getSession().setAttribute("LOGIN", true);
+        httpServletRequest.getSession().setAttribute("ADMIN_LOGIN", true);
         httpServletRequest.getSession().setAttribute("ADMIN", adminModel);
 
         return CommonReturnType.create();
@@ -53,7 +53,7 @@ public class AdminController extends BaseController {
     @RequestMapping(value = "/validateLogin", method = {RequestMethod.GET})
     @ResponseBody
     public CommonReturnType index() throws BusinessException {
-        Boolean isLogin = (Boolean) httpServletRequest.getSession().getAttribute("LOGIN");
+        Boolean isLogin = (Boolean) httpServletRequest.getSession().getAttribute("ADMIN_LOGIN");
         AdminModel adminModel = (AdminModel) httpServletRequest.getSession().getAttribute("ADMIN");
         if (isLogin == null || !isLogin || adminModel == null) {
             throw new BusinessException(BusinessError.ADMIN_NOT_LOGIN);

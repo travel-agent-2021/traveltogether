@@ -9,7 +9,7 @@ public interface UserService {
 
     List<UserModel> getAllUsers();
 
-    UserModel validLogin(String username, String encryptPassword) throws BusinessException;
+    UserModel validateLogin(String username, String encryptPassword) throws BusinessException;
 
     int addUser(UserModel userModel) throws BusinessException;
 

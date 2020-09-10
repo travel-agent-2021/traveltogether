@@ -107,10 +107,10 @@ public class UserServiceImpl implements UserService {
      * @throws BusinessException
      */
     @Override
-    public UserModel validLogin(String telephone, String encryptPassword) throws BusinessException {
+    public UserModel validateLogin(String telephone, String encryptPassword) throws BusinessException {
         UserModel userModel = getUserByTelephone(telephone);
         if (userModel == null) {
-            throw new BusinessException(BusinessError.ADMIN_LOGIN_FAIL);
+            throw new BusinessException(BusinessError.USER_LOGIN_FAIL);
         }
         if (userModel.getEncryptPassword().equals(encryptPassword)) {
             return userModel;
