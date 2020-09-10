@@ -61,8 +61,8 @@ public class BaseController {
         return encryptStr;
     }
 
-    public String getNowDate() {
-        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    public String getNowDate(String pattern) {
+        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern));
         return now;
     }
 

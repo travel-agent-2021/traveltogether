@@ -94,7 +94,7 @@ public class ItemController extends BaseController {
         itemModel.setItemDetail(itemDetail);
         itemModel.setAgencyId(agencyId);
         itemModel.setTotalOrderTimes(0);
-        itemModel.setItemCreateDate(getNowDate());
+        itemModel.setItemCreateDate(getNowDate("yyyy-MM-dd"));
         // 待修改
         itemModel.setItemImageSources(null);
         itemModel.setCityModels(null);
@@ -149,8 +149,7 @@ public class ItemController extends BaseController {
         itemModel.setAgencyId(agencyId);
         itemModel.setItemPrice(itemPrice);
         itemModel.setItemDetail(itemDetail);
-        //itemModel.setItemCreateDate(getNowDate());
-        System.out.println(getNowDate());
+        System.out.println(getNowDate("yyyy-MM-dd"));
         itemService.updateItemById(itemModel);
         return CommonReturnType.create();
     }
