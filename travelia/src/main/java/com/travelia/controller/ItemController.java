@@ -149,7 +149,6 @@ public class ItemController extends BaseController {
         itemModel.setAgencyId(agencyId);
         itemModel.setItemPrice(itemPrice);
         itemModel.setItemDetail(itemDetail);
-        System.out.println(getNowDate("yyyy-MM-dd"));
         itemService.updateItemById(itemModel);
         return CommonReturnType.create();
     }
