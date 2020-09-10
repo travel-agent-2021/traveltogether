@@ -30,7 +30,7 @@ function loadInfo(agencyList) {
     for (var i = 0; i < agencyList.length; i++) {
         var agency = agencyList[i];
         var agencyId = agency.agencyId;
-        alert(agencyId);
+        //alert(agencyId);
 
         var dom = '<tr>\n' +
             '                  <td>' + agency.agencyId + '</td>\n' +

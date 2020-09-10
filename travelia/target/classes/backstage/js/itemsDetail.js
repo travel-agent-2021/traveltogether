@@ -25,7 +25,7 @@ $(document).ready(function () {
 function loadData(data) {
     $("#itemId").val(data.itemId);
     $("#itemName").val(data.itemName);
-    $("#price").val(data.itemPrice);
+    $("#itemPrice").val(data.itemPrice);
     $("#duration").val(data.duration);
     $("#minTourists").val(data.minTourists);
     $("#maxTourists").val(data.maxTourists);
@@ -44,7 +44,6 @@ function updateItem() {
     var agencyId =  $("#agencyId").val();
     var detail = $("#detail").val();
 
-    alert("SAfd");
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/item/updateItem",
@@ -54,8 +53,8 @@ function updateItem() {
             "itemName": itemName,
             "itemPrice": itemPrice,
             "duration": duration,
-            "minTourist": minTourists,
-            "maxTourist": maxTourists,
+            "minTourists": minTourists,
+            "maxTourists": maxTourists,
             "agencyId": agencyId,
             "itemDetail": detail
         },

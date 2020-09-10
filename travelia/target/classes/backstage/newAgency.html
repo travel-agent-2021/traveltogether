@@ -21,7 +21,7 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">TRAVELIA(管理员)</a>
+    <a class="navbar-brand" href="#" id="user-name">TRAVELIA(管理员)</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -193,36 +193,36 @@
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="itemName">经销商账户</label>
-                                <input class="form-control" id="itemName" type="text" aria-describedby="nameHelp" placeholder="输入账户">
+                                <label for="agencyAccount">经销商账户</label>
+                                <input class="form-control" id="agencyAccount" type="text" aria-describedby="nameHelp" placeholder="输入账户">
                             </div>
                             <div class="col-md-6">
-                                <label for="itemPrice">经销商密码</label>
-                                <input class="form-control" id="itemPrice" type="text" aria-describedby="nameHelp" placeholder="输入密码">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="duration">经销商名称</label>
-                                <input class="form-control" id="duration" type="text" placeholder="输入名称">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="city">经销商电话</label>
-                                <input class="form-control" id="city" type="text" placeholder="输入电话">
+                                <label for="password">经销商密码</label>
+                                <input class="form-control" id="password" type="text" aria-describedby="nameHelp" placeholder="输入密码">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="minTourist">经销商地址</label>
-                                <input class="form-control" id="minTourist" type="text" placeholder="输入地址">
+                                <label for="agencyTitle">经销商名称</label>
+                                <input class="form-control" id="agencyTitle" type="text" placeholder="输入名称">
                             </div>
                             <div class="col-md-6">
-                                <label for="maxTourist">经销商邮箱</label>
-                                <input class="form-control" id="maxTourist" type="text" placeholder="输入邮箱">
+                                <label for="agencyTelephone">经销商电话</label>
+                                <input class="form-control" id="agencyTelephone" type="text" placeholder="输入电话">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="agencyAddress">经销商地址</label>
+                                <input class="form-control" id="agencyAddress" type="text" placeholder="输入地址">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="agencyEmail">经销商邮箱</label>
+                                <input class="form-control" id="agencyEmail" type="text" placeholder="输入邮箱">
                             </div>
                         </div>
                     </div>
@@ -230,13 +230,13 @@
                         <div class="form-row">
 
                             <div class="col-md-6">
-                                <label for="location">图片资源</label>
-                                <input class="form-control" id="location" type="text" placeholder="输入图片src">
+                                <label for="agencyImageSource">图片资源</label>
+                                <input class="form-control" id="agencyImageSource" type="text" placeholder="输入图片src">
                             </div>
                         </div>
                     </div>
 
-                    <a class="btn btn-primary " href="agencies.html">提交商品</a>
+                    <a class="btn btn-primary " href="#" id="addAgency">提交商品</a>
                     <a class="btn btn-danger " href="agencies.html">取消添加</a>
                 </form>
             </div>
@@ -268,7 +268,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" id="logout">Logout</a>
                 </div>
             </div>
         </div>
@@ -283,8 +283,10 @@
     <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
+    <script src="js/validLogin.js"></script>
     <!-- Custom scripts for this page-->
     <script src="js/sb-admin-datatables.min.js"></script>
+    <script src="js/newAgency.js"></script>
 </div>
 </body>
 
