@@ -46,12 +46,12 @@ public class ItemModel {
     /**
      * 最少游客数
      */
-    private Integer min_tourists;
+    private Integer minTourists;
 
     /**
      * 最多游客数
      */
-    private Integer max_tourists;
+    private Integer maxTourists;
 
     /**
      * 旅行社ID
@@ -143,20 +143,20 @@ public class ItemModel {
         this.cityModels = cityModels;
     }
 
-    public Integer getMin_tourists() {
-        return min_tourists;
+    public Integer getMinTourists() {
+        return minTourists;
     }
 
-    public void setMin_tourists(Integer min_tourists) {
-        this.min_tourists = min_tourists;
+    public void setMinTourists(Integer minTourists) {
+        this.minTourists = minTourists;
     }
 
-    public Integer getMax_tourists() {
-        return max_tourists;
+    public Integer getMaxTourists() {
+        return maxTourists;
     }
 
-    public void setMax_tourists(Integer max_tourists) {
-        this.max_tourists = max_tourists;
+    public void setMaxTourists(Integer maxTourists) {
+        this.maxTourists = maxTourists;
     }
 
     public Integer getAgencyId() {

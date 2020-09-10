@@ -21,7 +21,7 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">TRAVELIA(管理员)</a>
+    <a class="navbar-brand" href="#" id="user-name">TRAVELIA(管理员)</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -217,20 +217,20 @@
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="minTourist">最少游客数</label>
-                                <input class="form-control" id="minTourist" type="text" placeholder="输入最少游客数">
+                                <label for="minTourists">最少游客数</label>
+                                <input class="form-control" id="minTourists" type="text" placeholder="输入最少游客数">
                             </div>
                             <div class="col-md-6">
-                                <label for="maxTourist">最多游客数</label>
-                                <input class="form-control" id="maxTourist" type="text" placeholder="输入最多游客数">
+                                <label for="maxTourists">最多游客数</label>
+                                <input class="form-control" id="maxTourists" type="text" placeholder="输入最多游客数">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="agency">旅行社名称</label>
-                                <input class="form-control" id="agency" type="text" placeholder="输入旅行社名称">
+                                <label for="agencyId">旅行社ID</label>
+                                <input class="form-control" id="agencyId" type="text" placeholder="输入旅行社ID">
                             </div>
                             <div class="col-md-6">
                                 <label for="location">旅行社地址</label>
@@ -245,8 +245,8 @@
                                 <input class="form-control" id="telephone" type="text" placeholder="输入旅行社电话">
                             </div>
                             <div class="col-md-6">
-                                <label for="description">商品描述信息</label>
-                                <input class="form-control" id="description" type="text" placeholder="输入商品描述信息">
+                                <label for="itemDetail">商品描述信息</label>
+                                <input class="form-control" id="itemDetail" type="text" placeholder="输入商品描述信息">
                             </div>
                         </div>
                     </div>
@@ -254,7 +254,7 @@
                         <label for="itemImage">商品图片</label>
                         <input class="form-control" id="itemImage" type="text" aria-describedby="emailHelp" placeholder="image_src">
                     </div>
-                    <a class="btn btn-primary " href="items.html">提交商品</a>
+                    <a class="btn btn-primary " href="#" onclick="addItem()">添加商品</a>
                     <a class="btn btn-danger " href="items.html">取消添加</a>
                 </form>
             </div>
@@ -301,8 +301,10 @@
     <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
+    <script src="js/validLogin.js"></script>
     <!-- Custom scripts for this page-->
     <script src="js/sb-admin-datatables.min.js"></script>
+    <script src="js/newItem.js"></script>
 </div>
 </body>
 

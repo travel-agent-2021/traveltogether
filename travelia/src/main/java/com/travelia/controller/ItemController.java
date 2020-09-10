@@ -28,7 +28,7 @@ public class ItemController extends BaseController {
      * @return
      * @throws BusinessException
      */
-    @RequestMapping(value = "/getItemById", method = {RequestMethod.GET}, consumes = {CONTENT_TYPE_FORMED})
+    @RequestMapping(value = "/getItemById", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType getItemById(@RequestParam(name = "itemId") Integer itemId) throws BusinessException {
         ItemModel itemModel = itemService.getItemByItemId(itemId);
@@ -56,7 +56,7 @@ public class ItemController extends BaseController {
     /**
      * 添加商品信息
      * @param itemName
-     * @param item_price
+     * @param itemPrice
      * @param agencyId
      * @param duration
      * @param minTourists
@@ -68,7 +68,7 @@ public class ItemController extends BaseController {
     @RequestMapping(value = "/addItem", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType addItem(@RequestParam(name = "itemName") String itemName,
-                                    @RequestParam(name = "item_price") BigDecimal item_price,
+                                    @RequestParam(name = "itemPrice") BigDecimal itemPrice,
                                     @RequestParam(name = "agencyId") Integer agencyId,
                                     @RequestParam(name = "duration") Integer duration,
                                     @RequestParam(name = "minTourists") Integer minTourists,
@@ -78,7 +78,7 @@ public class ItemController extends BaseController {
         if (itemName == null || itemName.equals("")) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品名称");
         }
-        if (item_price == null) {
+        if (itemPrice == null) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品价格");
         }
         if (agencyId == null) {
@@ -88,10 +88,11 @@ public class ItemController extends BaseController {
         ItemModel itemModel = new ItemModel();
         itemModel.setItemName(itemName);
         itemModel.setDuration(duration);
-        itemModel.setMax_tourists(maxTourists);
-        itemModel.setMin_tourists(minTourists);
-        itemModel.setItemPrice(item_price);
+        itemModel.setMaxTourists(maxTourists);
+        itemModel.setMinTourists(minTourists);
+        itemModel.setItemPrice(itemPrice);
         itemModel.setItemDetail(itemDetail);
+        itemModel.setAgencyId(agencyId);
         itemModel.setTotalOrderTimes(0);
         itemModel.setItemCreateDate(getNowDate());
         // 待修改
@@ -119,7 +120,7 @@ public class ItemController extends BaseController {
     @ResponseBody
     public CommonReturnType updateItem(@RequestParam(name = "itemId") Integer itemId,
                                        @RequestParam(name = "itemName") String itemName,
-                                       @RequestParam(name = "price") BigDecimal price,
+                                       @RequestParam(name = "itemPrice") BigDecimal itemPrice,
                                        @RequestParam(name = "agencyId") Integer agencyId,
                                        @RequestParam(name = "duration") Integer duration,
                                        @RequestParam(name = "minTourists") Integer minTourists,
@@ -132,7 +133,7 @@ public class ItemController extends BaseController {
         if (itemName == null || itemName.equals("")) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品名称");
         }
-        if (price == null) {
+        if (itemPrice == null) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品价格");
         }
         if (agencyId == null) {
@@ -143,14 +144,11 @@ public class ItemController extends BaseController {
         itemModel.setItemId(itemId);
         itemModel.setItemName(itemName);
         itemModel.setDuration(duration);
-        itemModel.setMax_tourists(maxTourists);
-        itemModel.setMin_tourists(minTourists);
-        itemModel.setItemPrice(price);
+        itemModel.setMaxTourists(maxTourists);
+        itemModel.setMinTourists(minTourists);
+        itemModel.setItemPrice(itemPrice);
         itemModel.setItemDetail(itemDetail);
         itemModel.setItemCreateDate(getNowDate());
-        // 待修改
-        itemModel.setItemImageSources(null);
-        itemModel.setCityModels(null);
 
         itemService.updateItemById(itemModel);
         return CommonReturnType.create();

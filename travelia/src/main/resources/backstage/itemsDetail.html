@@ -201,8 +201,8 @@
                                 <input class="form-control" id="itemName" type="text" aria-describedby="nameHelp" value="北京-天津2日游">
                             </div>
                             <div class="col-md-6">
-                                <label for="price">商品价格</label>
-                                <input class="form-control" id="price" type="text" aria-describedby="nameHelp" value="1000">
+                                <label for="itemPrice">商品价格</label>
+                                <input class="form-control" id="itemPrice" type="text" aria-describedby="nameHelp" value="1000">
                             </div>
                         </div>
                     </div>
@@ -210,23 +210,23 @@
                         <div class="form-row">
                             <div class="col-md-6">
                                 <label for="duration">旅游时长</label>
-                                <input class="form-control" id="duration" type="text" value="2">
+                                <input class="form-control" id="duration" type="text" value="">
                             </div>
                             <div class="col-md-6">
                                 <label for="city">包含城市</label>
-                                <input class="form-control" id="city" type="text" value="北京-天津">
+                                <input class="form-control" id="city" type="text" value="">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="minTourist">最少游客数</label>
-                                <input class="form-control" id="minTourist" type="text" value="10">
+                                <label for="minTourists">最少游客数</label>
+                                <input class="form-control" id="minTourists" type="text" value="">
                             </div>
                             <div class="col-md-6">
-                                <label for="maxTourist">最多游客数</label>
-                                <input class="form-control" id="maxTourist" type="text" value="20">
+                                <label for="maxTourists">最多游客数</label>
+                                <input class="form-control" id="maxTourists" type="text" value="">
                             </div>
                         </div>
                     </div>
@@ -234,11 +234,11 @@
                         <div class="form-row">
                             <div class="col-md-6">
                                 <label for="agencyId">旅行社ID</label>
-                                <input class="form-control" id="agencyId" type="text" value="霖宝旅行社">
+                                <input class="form-control" id="agencyId" type="text" value="">
                             </div>
                             <div class="col-md-6">
                                 <label for="agencyTitle">旅行社名称</label>
-                                <input class="form-control" id="agencyTitle" type="text" value="武汉市某区某街道1002号">
+                                <input class="form-control" id="agencyTitle" type="text" value="">
                             </div>
                         </div>
                     </div>
@@ -246,11 +246,11 @@
                         <div class="form-row">
                             <div class="col-md-6">
                                 <label for="telephone">旅行社电话</label>
-                                <input class="form-control" id="telephone" type="text" value="40088008801">
+                                <input class="form-control" id="telephone" type="text" value="">
                             </div>
                             <div class="col-md-6">
                                 <label for="detail">商品描述信息</label>
-                                <input class="form-control" id="detail" type="text" value="enjoy this in travelia!">
+                                <input class="form-control" id="detail" type="text" value="">
                             </div>
                         </div>
                     </div>
@@ -258,9 +258,9 @@
                         <label for="imageSource">商品图片</label>
                         <input class="form-control" id="imageSource" type="text" aria-describedby="emailHelp" value="图片上传功能">
                     </div>
-                    <a class="btn btn-primary " href="items.html">提交修改</a>
+                    <a class="btn btn-primary " href="#" onclick="updateItem()">提交修改</a>
                     <a class="btn btn-info " href="items.html">取消修改</a>
-                    <a class="btn btn-danger " href="items.html">删除商品</a>
+                    <a class="btn btn-danger " href="#">删除商品</a>
                 </form>
             </div>
         </div>
@@ -291,7 +291,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" id="logout">Logout</a>
                 </div>
             </div>
         </div>
@@ -306,8 +306,10 @@
     <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
+    <script src="js/validLogin.js"></script>
     <!-- Custom scripts for this page-->
-    <script src="js/sb-admin-datatables.min.js"></script>
+    <!--<script src="js/sb-admin-datatables.min.js"></script>-->
+    <script src="js/itemsDetail.js"></script>
 </div>
 </body>
 

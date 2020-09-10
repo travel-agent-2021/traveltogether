@@ -27,8 +27,8 @@ function loadData(data) {
     $("#itemName").val(data.itemName);
     $("#price").val(data.itemPrice);
     $("#duration").val(data.duration);
-    $("#minTourist").val(data.min_tourists);
-    $("#maxTourist").val(data.max_tourists);
+    $("#minTourists").val(data.minTourists);
+    $("#maxTourists").val(data.maxTourists);
     $("#agencyId").val(data.agencyId);
     $("#agencyTitle").val(data.agencyTitle);
     $("#detail").val(data.itemDetail);
@@ -37,31 +37,32 @@ function loadData(data) {
 function updateItem() {
     var itemId =  $("#itemId").val();
     var itemName = $("#itemName").val();
-    var price = $("#price").val();
+    var itemPrice = $("#itemPrice").val();
     var duration = $("#duration").val();
-    var minTourist = $("#minTourist").val();
-    var maxTourist = $("#maxTourist").val();
+    var minTourists = $("#minTourists").val();
+    var maxTourists = $("#maxTourists").val();
     var agencyId =  $("#agencyId").val();
-    var detail = $("#detail").val(data.itemDetail);
+    var detail = $("#detail").val();
 
+    alert("SAfd");
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/user/updateUser",
+        url: "http://localhost:8080/item/updateItem",
         xhrFields: { withCredentials: true },
         data: {
             "itemId": itemId,
             "itemName": itemName,
-            "item_price": price,
+            "itemPrice": itemPrice,
             "duration": duration,
-            "minTourist": minTourist,
-            "maxTourist": maxTourist,
+            "minTourist": minTourists,
+            "maxTourist": maxTourists,
             "agencyId": agencyId,
             "itemDetail": detail
         },
         success: function(data) {
             if (data.status === "success") {
                 alert("修改成功！");
-                window.location.href = "users.html";
+                window.location.href = "items.html";
             }else {
                 alert("修改失败，" + data.data.errMsg);
             }

@@ -28,9 +28,8 @@ public interface ItemCityDOMapper {
      * @mbg.generated Tue Sep 08 10:22:17 CST 2020
      */
     int insertSelective(ItemCityDOKey record);
-
-
-    List<Integer> selectByItemId(Integer itemId);
+    
+    List<ItemCityDOKey> selectByItemId(Integer itemId);
 
     int deleteByItemId(Integer itemId);
 }

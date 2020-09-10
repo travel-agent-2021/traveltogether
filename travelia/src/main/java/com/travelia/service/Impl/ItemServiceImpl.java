@@ -188,11 +188,11 @@ public class ItemServiceImpl implements ItemService {
         }
 
         // 城市信息
-        List<Integer> cityIds = itemCityDOMapper.selectByItemId(itemModel.getItemId());
+        List<ItemCityDOKey> itemCityDOKeyList = itemCityDOMapper.selectByItemId(itemModel.getItemId());
         List<CityModel> cities = new ArrayList<>();
-        if (cityIds != null) {
-            for (Integer cityId : cityIds) {
-                CityDO cityDO = cityDOMapper.selectByPrimaryKey(cityId);
+        if (itemCityDOKeyList != null) {
+            for (ItemCityDOKey itemCityDOKey : itemCityDOKeyList) {
+                CityDO cityDO = cityDOMapper.selectByPrimaryKey(itemCityDOKey.getCityId());
                 cities.add(convertFromCityDO2Model(cityDO));
             }
         }
