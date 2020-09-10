@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    InitData();
     InitCarousel();
     InitPropertyCarousel();
     InitOffCanvasNavigation();
@@ -413,16 +412,16 @@ function InitMap() {
 }
 
 function InitData() {
-    var routeList = [];
+    var itemList = [];
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/route/index",
+        url: "http://localhost:8080/item/getAllItems",
         xhrFields: { withCredentials: true },
         success: function(data) {
             if (data.status == "success") {
-                routeList = data.data;
+                itemList = data.data;
                 //alert("获取信息成功" + routeList[0]);
-                loadInfo(routeList);
+                loadInfo(itemList);
             }else {
                 alert("获取信息失败，" + data.data.errMsg);
             }
@@ -436,41 +435,12 @@ function InitData() {
 }
 
 
-function loadInfo(routeList) {
-    if (routeList == null || routeList === "") {
+function loadInfo(itemList) {
+    if (itemList == null || itemList === "") {
         return;
     }
-    for (var i = 0; i < routeList.length; i++) {
-        var route = routeList[i];
-        if (route.imageSrc === "" || route.imageSrc == null) {
-            route.imageSrc = "assets/img/tmp/property-small-1.png";
-        }
+    for (var i = 0; i < itemList.length; i++) {
+        var item = itemList[i];
 
-        var dom = '<div class="property span3">\n' +
-            '                                <div class="image">\n' +
-            '                                    <div class="content">\n' +
-            '                                        <a href="itemsDetail.html"></a>\n' +
-            '                                        <img src="' + route.imageSrc + '" alt="">\n' +
-            '                                    </div>\n' +
-            '                                    <div class="price">￥' + route.price + '</div>\n' +
-            '                                </div>\n' +
-            '                                <div class="title">\n' +
-            '                                    <h2><a href="itemsDetail.html">' + route.routeTitle + '</a></h2>\n' +
-            '                                </div>\n' +
-            '                                <div class="location">' + route.cityName + '</div>\n' +
-            '                                <div class="area">\n' +
-            '                                    <span class="key">天数:</span>\n' +
-            '                                    <span class="value">' + route.duration + '</span>\n' +
-            '                                    <span class="key">最少人数:</span>\n' +
-            '                                    <span class="value">' + route.touristMin + '</span>\n' +
-            '                                    <span class="key">最多人数:</span>\n' +
-            '                                    <span class="value">' + route.touristMax + '</span>\n' +
-            '                                </div>\n' +
-            //'                                <div class="bedrooms"><div class="content">min:' + route.touristMin + '</div></div>\n' +
-            //'                                <div class="bathrooms"><div class="content">max:' + route.touristMax + '</div></div>\n' +
-            '                            </div>';
-
-
-        $("#all_route").append($(dom));
     }
 }

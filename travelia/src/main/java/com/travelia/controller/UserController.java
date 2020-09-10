@@ -43,10 +43,13 @@ public class UserController extends BaseController {
      * @return 所有用户model
      * @throws BusinessException
      */
-    @RequestMapping(value = "/getUserById", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/getUserById", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType getUserById(@RequestParam(name = "userId") Integer userId) throws BusinessException {
         UserModel userModel = userService.getUserByUserId(userId);
+        if (userModel == null) {
+            throw new BusinessException(BusinessError.USER_NOT_FOUND);
+        }
         return CommonReturnType.create(userModel, "success");
     }
 
@@ -63,6 +66,12 @@ public class UserController extends BaseController {
     @ResponseBody
     public CommonReturnType login(@RequestParam(name = "telephone")String telephone,
                                           @RequestParam(name = "password") String password) throws UnsupportedEncodingException, NoSuchAlgorithmException, BusinessException {
+        if (telephone == null || telephone.equals("")) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入手机号");
+        }
+        if (password == null || password.equals("")) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入密码");
+        }
         UserModel userModel = userService.validateLogin(telephone, encodeByMD5(password));
         if (userModel == null) {
             throw new BusinessException(BusinessError.USER_LOGIN_FAIL);
@@ -94,16 +103,26 @@ public class UserController extends BaseController {
      * @param password
      * @return
      */
-    @RequestMapping(value = "/register", method = {RequestMethod.GET}, consumes = {CONTENT_TYPE_FORMED})
+    @RequestMapping(value = "/register", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType register(@RequestParam(name = "telephone") String telephone,
-                                    @RequestParam(name = "password") String password) throws BusinessException {
+                                     @RequestParam(name = "password") String password,
+                                     @RequestParam(name = "username") String username) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
         if (telephone == null || telephone.equals("")) {
-            throw new BusinessException(BusinessError.USER_TELEPHONE_NOT_EMPTY);
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入手机号");
+        }
+        if (password == null || password.equals("")) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入密码");
         }
         UserModel userModel = new UserModel();
+        if (username == null || username.equals("")) {
+            userModel.setUsername("新用户");
+        } else {
+            userModel.setUsername(username);
+        }
         userModel.setUserTelephone(telephone);
-        userModel.setEncryptPassword(password);
+        userModel.setEncryptPassword(encodeByMD5(password));
+        userService.addUser(userModel);
         return CommonReturnType.create();
     }
 
@@ -113,7 +132,7 @@ public class UserController extends BaseController {
      * @return
      * @throws BusinessException
      */
-    @RequestMapping(value = "/usernameSearch", method = {RequestMethod.GET})
+    @RequestMapping(value = "/usernameSearch", method = {RequestMethod.GET}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType searchUsersByUsername(@RequestParam(name = "username") String username) throws BusinessException {
         List<UserModel> userModelList = userService.getUsersLikeUsername(username);
