@@ -25,7 +25,7 @@ $(document).ready(function () {
 function loadData(data) {
     $("#agencyId").val(data.agencyId);
     $("#agencyAccount").val(data.agencyAccount);
-    // $("#password").val(data.encryptPassword);
+    $("#password").val(data.encryptPassword);
     $("#agencyTitle").val(data.agencyTitle);
     $("#agencyTelephone").val(data.agencyTelephone);
     $("#agencyAddress").val(data.agencyAddress);
@@ -35,6 +35,7 @@ function loadData(data) {
 function updateAgency() {
     var agencyId = $("#agencyId").val();
     var agencyAccount = $("#agencyAccount").val();
+    var password = $("#password").val();
     var agencyTitle = $("#agencyTitle").val();
     var agencyTelephone = $("#agencyTelephone").val();
     var agencyAddress = $("#agencyAddress").val();
@@ -47,6 +48,7 @@ function updateAgency() {
         data: {
             "agencyId": agencyId,
             "agencyAccount": agencyAccount,
+            "password":password,
             "agencyTitle": agencyTitle,
             "agencyTelephone": agencyTelephone,
             "agencyAddress": agencyAddress,

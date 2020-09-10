@@ -107,7 +107,7 @@ public class ItemController extends BaseController {
      * 修改商品信息
      * @param itemId
      * @param itemName
-     * @param price
+     * @param itemPrice
      * @param agencyId
      * @param duration
      * @param minTourists
@@ -146,10 +146,11 @@ public class ItemController extends BaseController {
         itemModel.setDuration(duration);
         itemModel.setMaxTourists(maxTourists);
         itemModel.setMinTourists(minTourists);
+        itemModel.setAgencyId(agencyId);
         itemModel.setItemPrice(itemPrice);
         itemModel.setItemDetail(itemDetail);
-        itemModel.setItemCreateDate(getNowDate());
-
+        //itemModel.setItemCreateDate(getNowDate());
+        System.out.println(getNowDate());
         itemService.updateItemById(itemModel);
         return CommonReturnType.create();
     }
