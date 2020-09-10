@@ -90,6 +90,7 @@ public class AgencyController extends BaseController {
      * @param agencyTitle
      * @param agencyEmail
      * @param agencyAddress
+     * @param agencyImageSource
      * @return
      * @throws BusinessException
      * @throws UnsupportedEncodingException
@@ -102,7 +103,8 @@ public class AgencyController extends BaseController {
                                     @RequestParam(name = "agencyTelephone") String agencyTelephone,
                                     @RequestParam(name = "agencyTitle") String agencyTitle,
                                     @RequestParam(name = "agencyEmail") String agencyEmail,
-                                    @RequestParam(name = "agencyAddress") String agencyAddress) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+                                    @RequestParam(name = "agencyAddress") String agencyAddress,
+                                    @RequestParam(name = "agencyImageSource") String agencyImageSource) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
 
         if (agencyAccount == null || ("").equals(agencyAccount)) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "账户不能为空");
@@ -118,6 +120,7 @@ public class AgencyController extends BaseController {
         agency.setAgencyTitle(agencyTitle);
         agency.setAgencyEmail(agencyEmail);
         agency.setAgencyAddress(agencyAddress);
+        agency.setAgencyImageSource(agencyImageSource);
         agencyService.addAgency(agency);
 
         return CommonReturnType.create();
@@ -131,7 +134,8 @@ public class AgencyController extends BaseController {
                                        @RequestParam(name = "agencyTelephone") String agencyTelephone,
                                        @RequestParam(name = "agencyTitle") String agencyTitle,
                                        @RequestParam(name = "agencyEmail") String agencyEmail,
-                                       @RequestParam(name = "agencyAddress") String agencyAddress) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+                                       @RequestParam(name = "agencyAddress") String agencyAddress,
+                                       @RequestParam(name = "agencyImageSource") String agencyImageSource) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
         if (agencyId == null || agencyId.equals("")) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "经销商ID不能为空");
         }
@@ -155,6 +159,7 @@ public class AgencyController extends BaseController {
         agency.setAgencyTitle(agencyTitle);
         agency.setAgencyEmail(agencyEmail);
         agency.setAgencyAddress(agencyAddress);
+        agency.setAgencyImageSource(agencyImageSource);
         agencyService.updateAgency(agency);
 
         return CommonReturnType.create();
