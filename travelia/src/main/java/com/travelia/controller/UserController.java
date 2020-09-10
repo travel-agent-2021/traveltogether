@@ -51,7 +51,7 @@ public class UserController extends BaseController {
     }
 
     /**
-     * 用户登录校验
+     * 用户登录
      * @param telephone
      * @param password
      * @return
@@ -59,9 +59,9 @@ public class UserController extends BaseController {
      * @throws NoSuchAlgorithmException
      * @throws BusinessException
      */
-    @RequestMapping(value = "/validateLogin", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @RequestMapping(value = "/login", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
-    public CommonReturnType validateLogin(@RequestParam(name = "telephone")String telephone,
+    public CommonReturnType login(@RequestParam(name = "telephone")String telephone,
                                           @RequestParam(name = "password") String password) throws UnsupportedEncodingException, NoSuchAlgorithmException, BusinessException {
         UserModel userModel = userService.validateLogin(telephone, encodeByMD5(password));
         if (userModel == null) {
@@ -71,6 +71,21 @@ public class UserController extends BaseController {
         httpServletRequest.getSession().setAttribute("USER", userModel);
 
         return CommonReturnType.create(userModel);
+    }
+
+    /**
+     * 检查是否有用户登录
+     * @return
+     */
+    @RequestMapping(value = "/validateLogin", method = {RequestMethod.POST})
+    @ResponseBody
+    public CommonReturnType validateLogin() {
+       Boolean isLogin = (Boolean) httpServletRequest.getSession().getAttribute("USER_LOGIN");
+       if (isLogin) {
+          UserModel userModel = (UserModel) httpServletRequest.getSession().getAttribute("USER");
+          return CommonReturnType.create(userModel);
+       }
+        return CommonReturnType.create(null, "fail");
     }
 
     /**

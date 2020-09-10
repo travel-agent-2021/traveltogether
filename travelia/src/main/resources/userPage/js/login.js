@@ -4,7 +4,7 @@ $("#login").on("click", function () {
 
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/user/validateLogin",
+        url: "http://localhost:8080/user/login",
         xhrFields: { withCredentials: true },
         data: {
             "telephone": telephone,
