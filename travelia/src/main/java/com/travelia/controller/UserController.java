@@ -65,7 +65,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/login", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType login(@RequestParam(name = "telephone")String telephone,
-                                          @RequestParam(name = "password") String password) throws UnsupportedEncodingException, NoSuchAlgorithmException, BusinessException {
+                                  @RequestParam(name = "password") String password) throws UnsupportedEncodingException, NoSuchAlgorithmException, BusinessException {
         if (telephone == null || telephone.equals("")) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入手机号");
         }
@@ -90,11 +90,26 @@ public class UserController extends BaseController {
     @ResponseBody
     public CommonReturnType validateLogin() {
        Boolean isLogin = (Boolean) httpServletRequest.getSession().getAttribute("USER_LOGIN");
-       if (isLogin) {
-          UserModel userModel = (UserModel) httpServletRequest.getSession().getAttribute("USER");
-          return CommonReturnType.create(userModel);
+       UserModel userModel = (UserModel) httpServletRequest.getSession().getAttribute("USER");
+       if (isLogin == null || !isLogin || userModel == null) {
+           return CommonReturnType.create(null, "fail");
        }
-        return CommonReturnType.create(null, "fail");
+       return CommonReturnType.create(userModel);
+    }
+
+
+    @RequestMapping(value = "/logout", method = {RequestMethod.POST})
+    @ResponseBody
+    public CommonReturnType logout() {
+        Boolean isLogin = (Boolean) httpServletRequest.getSession().getAttribute("USER_LOGIN");
+        if (isLogin != null) {
+            httpServletRequest.getSession().removeAttribute("USER_LOGIN");
+        }
+        UserModel userModel = (UserModel) httpServletRequest.getSession().getAttribute("USER");
+        if (userModel != null) {
+            httpServletRequest.getSession().removeAttribute("USER");
+        }
+        return CommonReturnType.create();
     }
 
     /**

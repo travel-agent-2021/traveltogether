@@ -1,8 +1,9 @@
 $("#register").on("click", function () {
     var username = $("#username").val();
     var password = $("#password").val();
+    var telephone = $("#telephone").val();
     var confirmPassword = $("#confirmPassword").val();
-    if (password != confirmPassword) {
+    if (password !== confirmPassword) {
         alert("两次输入密码不相同，请重试！");
         return false;
     }
