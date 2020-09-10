@@ -21,6 +21,23 @@ public class ItemController extends BaseController {
     @Autowired
     private ItemService itemService;
 
+
+    /**
+     * 根据ItemId获取商品信息
+     * @param itemId
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getItemById", method = {RequestMethod.GET}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType getItemById(@RequestParam(name = "itemId") Integer itemId) throws BusinessException {
+        ItemModel itemModel = itemService.getItemByItemId(itemId);
+        if (itemModel == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        return CommonReturnType.create(itemModel);
+    }
+
     /**
      * 获取所有商品信息
      * @return
@@ -89,7 +106,7 @@ public class ItemController extends BaseController {
      * 修改商品信息
      * @param itemId
      * @param itemName
-     * @param item_price
+     * @param price
      * @param agencyId
      * @param duration
      * @param minTourists
@@ -102,7 +119,7 @@ public class ItemController extends BaseController {
     @ResponseBody
     public CommonReturnType updateItem(@RequestParam(name = "itemId") Integer itemId,
                                        @RequestParam(name = "itemName") String itemName,
-                                       @RequestParam(name = "item_price") BigDecimal item_price,
+                                       @RequestParam(name = "price") BigDecimal price,
                                        @RequestParam(name = "agencyId") Integer agencyId,
                                        @RequestParam(name = "duration") Integer duration,
                                        @RequestParam(name = "minTourists") Integer minTourists,
@@ -115,7 +132,7 @@ public class ItemController extends BaseController {
         if (itemName == null || itemName.equals("")) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品名称");
         }
-        if (item_price == null) {
+        if (price == null) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品价格");
         }
         if (agencyId == null) {
@@ -128,7 +145,7 @@ public class ItemController extends BaseController {
         itemModel.setDuration(duration);
         itemModel.setMax_tourists(maxTourists);
         itemModel.setMin_tourists(minTourists);
-        itemModel.setItemPrice(item_price);
+        itemModel.setItemPrice(price);
         itemModel.setItemDetail(itemDetail);
         itemModel.setItemCreateDate(getNowDate());
         // 待修改
