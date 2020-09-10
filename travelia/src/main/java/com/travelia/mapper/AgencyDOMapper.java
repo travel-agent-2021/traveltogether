@@ -1,6 +1,7 @@
 package com.travelia.mapper;
 
 import com.travelia.entity.AgencyDO;
+import com.travelia.entity.UserDO;
 
 import java.util.List;
 
@@ -56,6 +57,11 @@ public interface AgencyDOMapper {
 
     List<AgencyDO> selectAllAgencies();
 
-
     AgencyDO selectByAgencyAccount(String agencyAccount);
+
+    AgencyDO selectByAgencyTelephone(String agencyTelephone);
+
+    List<AgencyDO> selectLikeAgencyAccount(String agencyAccount);
+
+    List<AgencyDO> selectLikeAccountTelephone(String agencyTelephone);
 }

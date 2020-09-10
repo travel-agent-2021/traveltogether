@@ -35,7 +35,7 @@
   </insert>
 
   <select id="selectByItemId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select city_id
+    select *
     from item_city
     where item_id = #{itemId,jdbcType=INTEGER}
   </select>

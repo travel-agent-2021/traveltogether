@@ -21,7 +21,7 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">TRAVELIA(管理员)</a>
+    <a class="navbar-brand" href="#" id="user-name">TRAVELIA(管理员)</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -191,49 +191,48 @@
             <div class="card-body">
                 <form>
                     <div class="form-group">
-                        <label for="itemId">经销商id</label>
-                        <input class="form-control" id="itemId" type="text" aria-describedby="emailHelp" value="1008611" readonly="readonly">
+                        <label for="agencyId">经销商id</label>
+                        <input class="form-control" id="agencyId" type="text" aria-describedby="emailHelp" value="1008611" readonly="readonly">
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="itemName">经销商账户</label>
-                                <input class="form-control" id="itemName" type="text" aria-describedby="nameHelp" value="linlin123">
+                                <label for="agencyAccount">经销商账户</label>
+                                <input class="form-control" id="agencyAccount" type="text" aria-describedby="nameHelp" value="">
                             </div>
                             <div class="col-md-6">
-                                <label for="price">经销商密码</label>
-                                <input class="form-control" id="price" type="text" aria-describedby="nameHelp" value="1008611lin">
+                                <label for="password">经销商密码</label>
+                                <input class="form-control" id="password" type="text" aria-describedby="nameHelp" value="">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="duaration">经销商名称</label>
-                                <input class="form-control" id="duaration" type="text" value="霖宝旅行社">
+                                <label for="agencyTitle">经销商名称</label>
+                                <input class="form-control" id="agencyTitle" type="text" value="">
                             </div>
                             <div class="col-md-6">
-                                <label for="city">经销商电话</label>
-                                <input class="form-control" id="city" type="text" value="1008612">
+                                <label for="agencyTelephone">经销商电话</label>
+                                <input class="form-control" id="agencyTelephone" type="text" value="">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="minTourist">经销商地址</label>
-                                <input class="form-control" id="minTourist" type="text" value="武汉市某区某街道1002号
-">
+                                <label for="agencyAddress">经销商地址</label>
+                                <input class="form-control" id="agencyAddress" type="text" value="">
                             </div>
                             <div class="col-md-6">
-                                <label for="maxTourist">经销商邮箱</label>
-                                <input class="form-control" id="maxTourist" type="text" value="linlin123@qq.com">
+                                <label for="agencyEmail">经销商邮箱</label>
+                                <input class="form-control" id="agencyEmail" type="text" value="">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="itemPrice">经销商图片</label>
-                        <input class="form-control" id="itemPrice" type="text" aria-describedby="emailHelp" value="图片上传功能">
+                        <label for="agencyImage">经销商图片</label>
+                        <input class="form-control" id="agencyImage" type="text" aria-describedby="emailHelp" value="">
                     </div>
                     <a class="btn btn-primary " href="agencies.html">提交修改</a>
                     <a class="btn btn-info " href="agencies.html">取消修改</a>
@@ -268,7 +267,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" id="logout">Logout</a>
                 </div>
             </div>
         </div>
@@ -283,8 +282,10 @@
     <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
+    <script src="js/validLogin.js"></script>
     <!-- Custom scripts for this page-->
     <script src="js/sb-admin-datatables.min.js"></script>
+    <script src="js/agenciesDetail.js"></script>
 </div>
 </body>
 
