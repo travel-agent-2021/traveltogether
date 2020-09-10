@@ -12,7 +12,7 @@ public interface ItemService {
 
     List<ItemModel> getAllItems();
 
-    List<ItemModel> getItemsByAgencyId(Integer agencyId);
+    List<ItemModel> getItemsByAgencyId(Integer agencyId) throws BusinessException;
 
     int insertItem(ItemModel itemModel) throws BusinessException;
 

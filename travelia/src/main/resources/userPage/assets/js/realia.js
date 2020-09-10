@@ -273,7 +273,7 @@ function LoadMapProperty() {
         });
 
         var myOptions = {
-            content: '<div class="infobox"><div class="image"><img src="http://html.realia.byaviators.com/assets/img/tmp/property-tiny-1.png" alt=""></div><div class="title"><a href="detail.html">1041 Fife Ave</a></div><div class="area"><span class="key">Area:</span><span class="value">200m<sup>2</sup></span></div><div class="price">€450 000.00</div><div class="link"><a href="detail.html">View more</a></div></div>',
+            content: '<div class="infobox"><div class="image"><img src="http://html.realia.byaviators.com/assets/img/tmp/property-tiny-1.png" alt=""></div><div class="title"><a href="itemsDetail.html">1041 Fife Ave</a></div><div class="area"><span class="key">Area:</span><span class="value">200m<sup>2</sup></span></div><div class="price">€450 000.00</div><div class="link"><a href="itemsDetail.html">View more</a></div></div>',
             disableAutoPan: false,
             maxWidth: 0,
             pixelOffset: new google.maps.Size(-146, -190),
@@ -352,7 +352,7 @@ function LoadMap() {
         });
 
 	    var myOptions = {
-	        content: '<div class="infobox"><div class="image"><img src="http://html.realia.byaviators.com/assets/img/tmp/property-tiny-1.png" alt=""></div><div class="title"><a href="detail.html">1041 Fife Ave</a></div><div class="area"><span class="key">Area:</span><span class="value">200m<sup>2</sup></span></div><div class="price">€450 000.00</div><div class="link"><a href="detail.html">View more</a></div></div>',
+	        content: '<div class="infobox"><div class="image"><img src="http://html.realia.byaviators.com/assets/img/tmp/property-tiny-1.png" alt=""></div><div class="title"><a href="itemsDetail.html">1041 Fife Ave</a></div><div class="area"><span class="key">Area:</span><span class="value">200m<sup>2</sup></span></div><div class="price">€450 000.00</div><div class="link"><a href="itemsDetail.html">View more</a></div></div>',
 	        disableAutoPan: false,
 	        maxWidth: 0,
 	        pixelOffset: new google.maps.Size(-146, -190),
@@ -449,13 +449,13 @@ function loadInfo(routeList) {
         var dom = '<div class="property span3">\n' +
             '                                <div class="image">\n' +
             '                                    <div class="content">\n' +
-            '                                        <a href="detail.html"></a>\n' +
+            '                                        <a href="itemsDetail.html"></a>\n' +
             '                                        <img src="' + route.imageSrc + '" alt="">\n' +
             '                                    </div>\n' +
             '                                    <div class="price">￥' + route.price + '</div>\n' +
             '                                </div>\n' +
             '                                <div class="title">\n' +
-            '                                    <h2><a href="detail.html">' + route.routeTitle + '</a></h2>\n' +
+            '                                    <h2><a href="itemsDetail.html">' + route.routeTitle + '</a></h2>\n' +
             '                                </div>\n' +
             '                                <div class="location">' + route.cityName + '</div>\n' +
             '                                <div class="area">\n' +

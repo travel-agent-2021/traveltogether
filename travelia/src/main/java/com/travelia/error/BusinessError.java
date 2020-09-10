@@ -15,6 +15,8 @@ public enum  BusinessError implements CommonError {
 
     /* 300XX商品错误码 */
     ITEM_DELETE_FAIL(30001, "商品不存在！"),
+    ITEM_NOT_FOUND(30002, "未查询到商品信息！"),
+
 
     /* 400XX 管理员类型错误码 */
     ADMIN_NOT_EXIST(40001, "管理员账号不存在"),

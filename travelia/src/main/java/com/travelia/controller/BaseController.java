@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,5 +61,9 @@ public class BaseController {
         return encryptStr;
     }
 
+    public String getNowDate() {
+        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-mm-dd"));
+        return now;
+    }
 
 }

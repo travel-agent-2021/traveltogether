@@ -34,7 +34,7 @@ public class ItemServiceImpl implements ItemService {
     private ItemImageDOMapper itemImageDOMapper;
 
     /**
-     * 根据Id查询商品
+     * 根据商品Id查询商品
      * @return
      */
     @Override
@@ -69,8 +69,11 @@ public class ItemServiceImpl implements ItemService {
      * @return
      */
     @Override
-    public List<ItemModel> getItemsByAgencyId(Integer agencyId) {
+    public List<ItemModel> getItemsByAgencyId(Integer agencyId) throws BusinessException {
         List<ItemDO> itemDOS = itemDOMapper.selectByAgencyId(agencyId);
+        if (itemDOS == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
         AgencyDO agencyDO =  agencyDOMapper.selectByPrimaryKey(agencyId);
         List<ItemModel> itemModels = new ArrayList<>();
         for (ItemDO itemDO: itemDOS) {
@@ -126,6 +129,12 @@ public class ItemServiceImpl implements ItemService {
         return 0;
     }
 
+    /**
+     * 删除商品信息
+     * @param itemModel
+     * @return
+     * @throws BusinessException
+     */
     @Override
     @Transactional
     public int deleteItem(ItemModel itemModel) throws BusinessException {
@@ -150,10 +159,10 @@ public class ItemServiceImpl implements ItemService {
     @Transactional
     public int updateItemById(ItemModel itemModel) throws BusinessException {
         if (itemModel == null) {
-            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR);
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
         }
         if (itemModel.getItemId() == null || ("").equals(itemModel.getItemId())) {
-            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR);
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
         }
         ItemDO itemDO = convertFormItemModel2DO(itemModel);
         int flag = itemDOMapper.updateByPrimaryKeySelective(itemDO);
@@ -181,7 +190,7 @@ public class ItemServiceImpl implements ItemService {
         // 城市信息
         List<Integer> cityIds = itemCityDOMapper.selectByItemId(itemModel.getItemId());
         List<CityModel> cities = new ArrayList<>();
-        if (cityIds != null && cityIds.size() != 0) {
+        if (cityIds != null) {
             for (Integer cityId : cityIds) {
                 CityDO cityDO = cityDOMapper.selectByPrimaryKey(cityId);
                 cities.add(convertFromCityDO2Model(cityDO));
@@ -192,7 +201,7 @@ public class ItemServiceImpl implements ItemService {
         // 图片信息
         List<ItemImageDO> itemImageDOS = itemImageDOMapper.selectByItemId(itemModel.getItemId());
         List<String> itemImages = new ArrayList<>();
-        if (itemImageDOS != null && itemImageDOS.size() != 0) {
+        if (itemImageDOS != null) {
             for (ItemImageDO itemImageDO: itemImageDOS) {
                 String imageSrc = itemImageDO.getItemImageSource();
                 itemImages.add(imageSrc);
@@ -205,7 +214,7 @@ public class ItemServiceImpl implements ItemService {
     /**
      * CityDO转化为CityModel
      * @param cityDO
-     * @return
+     * @return CityModel
      */
     private CityModel convertFromCityDO2Model(CityDO cityDO) {
         if (cityDO == null) {
