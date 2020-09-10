@@ -83,6 +83,48 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /**
+     * 得到商品列表按下单次数降序排列
+     * @return
+     * @throws BusinessException
+     */
+    @Override
+    public List<ItemModel> getItemsOrderByTotalOrderTimesDESC() throws BusinessException {
+        List<ItemDO> itemDOList = itemDOMapper.selectAllByOrderTimesDESC();
+        if (itemDOList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        List<ItemModel> itemModels = new ArrayList<>();
+        int num = Math.min(itemDOList.size(), 6);
+        for (int i = 0; i < num; i++) {
+            ItemDO itemDO = itemDOList.get(i);
+            AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(itemDO.getAgencyId());
+            itemModels.add(convertFromItemDO2Model(itemDO, agencyDO));
+        }
+        return itemModels;
+    }
+
+    /**
+     * 商品按日期降序排列
+     * @return
+     * @throws BusinessException
+     */
+    @Override
+    public List<ItemModel> getItemsOrderByCreateDateDESC() throws BusinessException {
+        List<ItemDO> itemDOList = itemDOMapper.selectAllByCreateDateDESC();
+        if (itemDOList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        List<ItemModel> itemModels = new ArrayList<>();
+        int num = Math.min(itemDOList.size(), 7);
+        for (int i = 0; i < num; i++) {
+            ItemDO itemDO = itemDOList.get(i);
+            AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(itemDO.getAgencyId());
+            itemModels.add(convertFromItemDO2Model(itemDO, agencyDO));
+        }
+        return itemModels;
+    }
+
+    /**
      * 添加商品信息
      * @param itemModel
      * @return

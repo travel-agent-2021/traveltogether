@@ -59,4 +59,8 @@ public interface ItemDOMapper {
 
     List<ItemDO> selectByAgencyId(Integer agencyId);
 
+    List<ItemDO> selectAllByOrderTimesDESC();
+
+
+    List<ItemDO> selectAllByCreateDateDESC();
 }

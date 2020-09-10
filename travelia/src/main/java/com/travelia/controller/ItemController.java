@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -52,6 +53,38 @@ public class ItemController extends BaseController {
         }
         return CommonReturnType.create(itemModelList);
     }
+
+    /**
+     * 获取热门商品信息
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getHottestItems", method = {RequestMethod.GET})
+    @ResponseBody
+    public CommonReturnType getHottestItems() throws BusinessException {
+        List<ItemModel> itemModelList = itemService.getItemsOrderByTotalOrderTimesDESC();
+        if (itemModelList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        return CommonReturnType.create(itemModelList);
+    }
+
+    /**
+     * 获取最新商品信息
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getLatestItems", method = {RequestMethod.GET})
+    @ResponseBody
+    public CommonReturnType getLatestItems() throws BusinessException {
+        List<ItemModel> itemModelList = itemService.getItemsOrderByCreateDateDESC();
+        if (itemModelList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        return CommonReturnType.create(itemModelList);
+    }
+
+
 
     /**
      * 添加商品信息

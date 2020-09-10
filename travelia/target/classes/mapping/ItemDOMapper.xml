@@ -204,4 +204,18 @@
     where agency_id = #{agencyId,jdbcType=INTEGER}
   </select>
 
+  <select id="selectAllByOrderTimesDESC" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from item_info
+    ORDER BY total_order_times DESC
+  </select>
+
+  <select id="selectAllByCreateDateDESC" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from item_info
+    ORDER BY item_create_date DESC
+  </select>
+
 </mapper>
