@@ -123,6 +123,7 @@ public class AgencyController extends BaseController {
         agency.setAgencyImageSource(agencyImageSource);
         agencyService.addAgency(agency);
 
+
         return CommonReturnType.create();
     }
 

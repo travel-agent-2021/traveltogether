@@ -30,6 +30,7 @@ function loadData(data) {
     $("#agencyTelephone").val(data.agencyTelephone);
     $("#agencyAddress").val(data.agencyAddress);
     $("#agencyEmail").val(data.agencyEmail);
+    $("#agencyImageSource").val(data.agencyImageSource);
 }
 
 function updateAgency() {
@@ -40,6 +41,7 @@ function updateAgency() {
     var agencyTelephone = $("#agencyTelephone").val();
     var agencyAddress = $("#agencyAddress").val();
     var agencyEmail = $("#agencyEmail").val();
+    var agencyImageSource = $("#agencyImageSource").val();
 
     $.ajax({
         type: "POST",
@@ -53,6 +55,7 @@ function updateAgency() {
             "agencyTelephone": agencyTelephone,
             "agencyAddress": agencyAddress,
             "agencyEmail": agencyEmail,
+            "agencyImageSource": agencyImageSource,
         },
         success: function(data) {
             if (data.status === "success") {

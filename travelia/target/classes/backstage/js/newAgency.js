@@ -55,42 +55,73 @@ $("#addAgency").on("click", function () {
                 fileReader.readAsDataURL(file);
             });
 
-            var formDom = document.getElementById("agencyImageSource");
- console.log("before check");
+            var formDom = document.getElementById("form");
+
             function check() {
                 var file = fileDom.files[0];
                 // check if input contains a valid image file
                 if (!file || file.type.indexOf("image/") < 0) {
                     return false;
                 }
-
+console.log(fileReader.readAsDataURL(file));
                 return true;
             }
-console.log("after check");
-            var img = file;
-            img.addEventListener("submit",function(){
-                    var imgCanvas = document.createElement('canvas');
-                    imgContest = imgCanvas.getContext('2d');
-                    //确保canvas元素的大小和图片尺寸一致
-                    imgCanvas.width = this.width;
-                    imgCanvas.height = this.height;
 
-                    //渲染图片到canvas中
-                    imgContest.drawImage(this,0,0,this.width,this.height);
-
-                    //用data url的形式取出
-                    var imgAsDataURL = imgCanvas.toDataURL("image");
-
-                    //保存到本地存储中
-                    try{
-                        localStorage.setItem(key,imgAsDataURL);
-                        console.log("save, " + file.type.indexOf("image/"));
-                    }
-                    catch(e){
-                        console.log("Storage failed" + e);
-                    }
-                },false);
-                img.src = src;
 
 
     }
+
+
+function Download(){
+        //cavas 保存图片到本地  js 实现
+        //------------------------------------------------------------------------
+        //1.确定图片的类型  获取到的图片格式 data:image/Png;base64,......
+        var type ='png';//你想要什么图片格式 就选什么吧
+        //var d=convertImageToCanvas("preview");
+        var d=document.getElementById("preview");
+
+         var canvas = document.createElement("canvas");
+            canvas.width = d.width;
+            canvas.height = d.height;
+            // 坐标(0,0) 表示从此处开始绘制，相当于偏移。
+            canvas.getContext("2d").drawImage(d, 0, 0);
+
+        var imgdata=canvas.toDataURL(type);
+        //console.log(imgdata);
+        //2.0 将mime-type改为image/octet-stream,强制让浏览器下载
+        var fixtype=function(type){
+            type=type.toLocaleLowerCase().replace(/jpg/i,'jpeg');
+            var r=type.match(/png|jpeg|bmp|gif/)[0];
+            return 'image/'+r;
+        };
+        //imgdata=imgdata.replace(fixtype(type),'image/octet-stream');
+        //3.0 将图片保存到本地
+        var savaFile=function(data,filename)
+        {
+            var save_link=document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+            save_link.href=data;
+            save_link.download=filename;
+            var event=document.createEvent('MouseEvents');
+            event.initMouseEvent('click',true,false,window,0,0,0,0,0,false,false,false,false,0,null);
+            save_link.dispatchEvent(event);
+        };
+        var filename=''+new Date().getSeconds()+'.'+type;
+        //我想用当前秒是可以解决重名的问题了 不行你就换成毫秒
+        savaFile(imgdata,filename,"image");
+        };
+
+/**
+function convertImageToCanvas(image) {
+    // 创建canvas DOM元素，并设置其宽高和图片一样
+
+        document.getElementById(image).style.display = "none";
+
+
+    var canvas = document.createElement("canvas");
+    canvas.width = image.width;
+    canvas.height = image.height;
+    // 坐标(0,0) 表示从此处开始绘制，相当于偏移。
+    canvas.getContext("2d").drawImage(image, 0, 0);
+    return canvas;
+}
+**/
