@@ -3,6 +3,9 @@ $(document).ready(function () {
 });
 
 function validateLogin() {
+    alert(
+        "Asfsad"
+    );
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/admin/validateLogin",
