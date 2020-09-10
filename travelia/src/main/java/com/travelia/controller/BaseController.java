@@ -62,7 +62,7 @@ public class BaseController {
     }
 
     public String getNowDate() {
-        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-mm-dd"));
+        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         return now;
     }
 
