@@ -30,16 +30,25 @@ function loadInfo(userList) {
     for (var i = 0; i < userList.length; i++) {
         var user = userList[i];
         var userId = user.userId;
+        var gender = "";
+        //alert(user.gender);
+        if (user.gender == 0) {
+            gender = "女";
+        }else if(user.gender == 1 ){
+            gender = "男";
+        }else{
+            gender = "未设置";
+        }
         var dom = '<tr>\n' +
             '                  <td>' + user.userId + '</td>\n' +
             '                  <td>' + user.username + '</td>\n' +
             '                  <td>' + user.encryptPassword + '</td>\n' +
             '                  <td>' + user.age + '</td>\n' +
-            '                  <td>' + (user.gender == 0? '女' : '男') + '</td>\n' +
+            '                  <td>' + gender + '</td>\n' +
             '                  <td>' + user.userTelephone + '</td>\n' +
             '                  <td>' + user.userEmail + '</td>\n' +
             '                  <td>' + user.birthday + '</td>\n' +
-            '                  <td><a class="btn btn-primary"  href="usersDetail.html?userId='+ user.userId +'">修改</a>\n' +
+            '                  <td><a class="btn btn-primary"  href="#" onclick="setAndEdit(' + userId +')">修改</a>\n' +
             '                      <a class="btn btn-warning"  href="#" onclick="deleteUser(' + userId +')">删除</a></td>\n'+
             '                </tr>';
         $("#dataTable tbody").append($(dom));
@@ -67,4 +76,13 @@ function deleteUser(userId) {
             alert("删除, " + data.responseText);
         }
     });
+}
+
+function setAndEdit(userId) {
+    if (window.localStorage) {
+        localStorage.userId = userId;
+        location.href = './userDetail.html';
+    } else {
+        alert("Your browser do not support this technology.");
+    }
 }

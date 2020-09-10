@@ -39,7 +39,7 @@ public class UserController extends BaseController {
      * @return 所有用户model
      * @throws BusinessException
      */
-    @RequestMapping(value = "/getUserById", method = {RequestMethod.GET})
+    @RequestMapping(value = "/getUserById", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public CommonReturnType getUserById(@RequestParam(name = "userId") Integer userId) throws BusinessException {
         UserModel userModel = userService.getUserByUserId(userId);
