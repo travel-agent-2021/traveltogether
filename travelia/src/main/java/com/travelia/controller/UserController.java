@@ -142,8 +142,13 @@ public class UserController extends BaseController {
         if (telephone == null || ("").equals(telephone)) {
             throw new BusinessException(BusinessError.USER_TELEPHONE_NOT_EMPTY);
         }
+        UserModel userModel = userService.getUserByUserId(userId);
+        if (userModel == null) {
+            throw new BusinessException(BusinessError.USER_NOT_FOUND);
+        }
+
         if (password == null || ("").equals(password)) {
-            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "密码不能为空");
+            userModel.setEncryptPassword(userModel.getEncryptPassword());
         }
 
         UserModel user = new UserModel();

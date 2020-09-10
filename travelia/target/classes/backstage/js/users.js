@@ -34,9 +34,9 @@ function loadInfo(userList) {
         //alert(user.gender);
         if (user.gender == 0) {
             gender = "女";
-        }else if(user.gender == 1 ){
+        } else if(user.gender == 1) {
             gender = "男";
-        }else{
+        } else {
             gender = "未设置";
         }
         var dom = '<tr>\n' +
@@ -81,7 +81,7 @@ function deleteUser(userId) {
 function setAndEdit(userId) {
     if (window.localStorage) {
         localStorage.userId = userId;
-        location.href = './userDetail.html';
+        location.href = 'usersDetail.html';
     } else {
         alert("Your browser do not support this technology.");
     }

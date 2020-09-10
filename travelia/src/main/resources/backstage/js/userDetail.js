@@ -25,7 +25,7 @@ $(document).ready(function () {
 function loadData(data) {
     $("#userId").val(data.userId);
     $("#username").val(data.username);
-    $("#password").val(data.encryptPassword);
+    // $("#password").val(data.encryptPassword);
     $("#age").val(data.age);
     $("#gender").val(data.gender);
     $("#birthday").val(data.birthday);
