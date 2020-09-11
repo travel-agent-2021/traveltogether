@@ -108,6 +108,8 @@ function Download(){
         var filename=''+new Date().getSeconds()+'.'+type;
         //我想用当前秒是可以解决重名的问题了 不行你就换成毫秒
         savaFile(imgdata,filename,"image");
+
+        $("#agencyImageSource").val(filename);
         };
 
 /**
