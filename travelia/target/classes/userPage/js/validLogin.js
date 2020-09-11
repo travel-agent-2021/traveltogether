@@ -11,6 +11,7 @@ function validateLogin() {
             if (data.status === "success") {
                 var user = data.data;
                 $("#user-name-label").text("欢迎您：" + user.username);
+                $("#user_id").text(data.data.userId);
                 $("#loginAndRegister").hide();
                 $("#logoutPanel").show();
             } else {

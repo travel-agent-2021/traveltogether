@@ -33,15 +33,12 @@ function loadData(data) {
     $("#agencyEmail").val(data.agencyEmail);
     $("#agencyImageSource").val(data.agencyImageSource);
 
-
     var previewDom = document.getElementById("preview");
 
    // console.log($("#agencyImageSource").val());
    // console.log($("#agencyImageSource").val().substring(57));
 previewDom.src =$("#agencyImageSource").val().substring(57);
     //previewDom.src = $("#agencyImageSource").val();
-
-
 
 console.log("previewDom.src"+previewDom.src);
 
