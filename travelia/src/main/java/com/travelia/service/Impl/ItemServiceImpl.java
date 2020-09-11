@@ -115,7 +115,7 @@ public class ItemServiceImpl implements ItemService {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
         }
         List<ItemModel> itemModels = new ArrayList<>();
-        int num = Math.min(itemDOList.size(), 7);
+        int num = Math.min(itemDOList.size(), 3);
         for (int i = 0; i < num; i++) {
             ItemDO itemDO = itemDOList.get(i);
             AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(itemDO.getAgencyId());

@@ -105,7 +105,6 @@ function Download(){
         };
         var filename=''+new Date().getSeconds()+'.'+type;
         //我想用当前秒是可以解决重名的问题了 不行你就换成毫秒
-<<<<<<< Updated upstream
         //savaFile(imgdata,filename,"image");
 //console.log(imgdata);
         $("#agencyImageSource").val(filename);
@@ -122,13 +121,8 @@ function Download(){
         {
         //alert("data"+data.data);
         $("#agencyImageSource").val(data.data);
-=======
-        savaFile(imgdata,filename,"image");
-        
-        };
->>>>>>> Stashed changes
 
-            alert('保存成功');
+           // alert('保存成功');
         }
 
         });
