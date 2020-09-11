@@ -4,13 +4,16 @@ package com.travelia.controller;
 import com.travelia.error.BusinessError;
 import com.travelia.error.BusinessException;
 import com.travelia.response.CommonReturnType;
+import com.travelia.service.CityService;
 import com.travelia.service.ItemService;
+import com.travelia.service.model.CityModel;
 import com.travelia.service.model.ItemModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -21,6 +24,9 @@ public class ItemController extends BaseController {
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private CityService cityService;
 
 
     /**
@@ -128,9 +134,11 @@ public class ItemController extends BaseController {
         itemModel.setAgencyId(agencyId);
         itemModel.setTotalOrderTimes(0);
         itemModel.setItemCreateDate(getNowDate("yyyy-MM-dd"));
+        // 根据商品名设置城市信息
+        itemModel.setCityModels(setCityList(itemName));
         // 待修改
         itemModel.setItemImageSources(null);
-        itemModel.setCityModels(null);
+
 
         itemService.insertItem(itemModel);
         return CommonReturnType.create();
@@ -202,5 +210,25 @@ public class ItemController extends BaseController {
         itemService.deleteItem(itemModel);
         return CommonReturnType.create();
     }
+
+    /**
+     * 根据item名称得到城市列表
+     * @param itemName
+     * @return List<CityModel>
+     */
+    private List<CityModel> setCityList(String itemName) throws BusinessException {
+        if (itemName == null || itemName.equals("")) {
+            return null;
+        }
+        List<CityModel> list = new ArrayList<>();
+        List<CityModel> allCities = cityService.getAllCities();
+        for (CityModel cityModel: allCities) {
+            if (itemName.contains(cityModel.getCityName())) {
+                list.add(cityModel);
+            }
+        }
+        return list;
+    }
+
 
 }

@@ -60,6 +60,7 @@ function loadHottest(itemsList) {
         var imageSource = "";
         if (item.itemImageSources == null || item.itemImageSources.length === 0) {
             imageSource = "assets/img/tmp/property-small-1.png";
+
         }
         var dom = '<div class="property span3">\n' +
             '                <div class="image">\n' +
@@ -87,7 +88,27 @@ function loadLatest(itemsList) {
         return;
     }
     for (var i = 0; i < itemsList.length; i++) {
-
+        var item = itemsList[i];
+        var imageSource = "";
+        if (item.itemImageSources == null || item.itemImageSources.length === 0) {
+            imageSource = "assets/img/tmp/property-small-1.png";
+        }
+        var dom = '<div class="property">\n' +
+            '                                                <div class="image">\n' +
+            '                                                    <a href="#" onclick="getDetails(' + item.itemId + ')"></a>\n' +
+            '                                                    <img src="' + imageSource + '" alt="">\n' +
+            '                                                </div>\n' +
+            '                                                <div class="wrapper">\n' +
+            '                                                    <div class="title">\n' +
+            '                                                        <h3>\n' +
+            '                                                            <a href="detail.html">' + item.itemName + '</a>\n' +
+            '                                                        </h3>\n' +
+            '                                                    </div>\n' +
+            '                                                    <div class="location">' + item.agencyTitle + '</div>\n' +
+            '                                                    <div class="price">￥ ' + item.itemPrice + '</div>\n' +
+            '                                                </div>\n' +
+            '                                            </div>';
+        $("#latestItems").append($(dom));
     }
 }
 
@@ -98,4 +119,8 @@ function getDetails(itemId) {
     } else {
         alert("Your browser does not support this technology.");
     }
+}
+
+function personalInfo() {
+
 }

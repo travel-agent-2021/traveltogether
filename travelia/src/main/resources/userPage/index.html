@@ -11,14 +11,16 @@
     <link rel="stylesheet" href="assets/css/bootstrap-responsive.css" type="text/css">
     <link rel="stylesheet" href="assets/libraries/chosen/chosen.css" type="text/css">
     <link rel="stylesheet" href="assets/libraries/bootstrap-fileupload/bootstrap-fileupload.css" type="text/css">
-    <link rel="stylesheet" href="assets/libraries/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css" type="text/css">
+    <link rel="stylesheet"
+          href="assets/libraries/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css"
+          type="text/css">
     <link rel="stylesheet" href="assets/css/realia-blue.css" type="text/css" id="color-variant-default">
     <link rel="stylesheet" href="#" type="text/css" id="color-variant">
 
-    <title>Realia | HTML Template</title>
+    <title>TRAVELIA | EVERY TRIP COUNTS</title>
 </head>
 <body>
-<div id="wrapper-outer" >
+<div id="wrapper-outer">
     <div id="wrapper">
         <div id="wrapper-inner">
             <!-- BREADCRUMB -->
@@ -27,7 +29,7 @@
                     <div class="row">
                         <div class="span12">
                             <ul class="breadcrumb pull-left">
-                                <li><a href="index.html">首页</a></li>
+                            <li><a href="index.html">首页</a></li>
                             </ul><!-- /.breadcrumb -->
 
                             <div class="account pull-right" id="logoutPanel">
@@ -43,15 +45,15 @@
                             </div>
                             <div class="account pull-right">
                                 <ul class="nav nav-pills">
-                                    <li><a id="user-name-label">欢迎您，访客</a></li>
-                                    <li><a href="personalinfo.html">个人中心</a></li>
+                                    <li><a id="user-name-label" href="#" onclick="personalInfo()">欢迎您，访客</a></li>
+                                    <li style="display: none" id="user_id"></li>
                                 </ul>
                             </div>
 
-                        </div><!-- /.span12 -->
-                    </div><!-- /.row -->
-                </div><!-- /.container -->
-            </div><!-- /.breadcrumb-wrapper -->
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- HEADER -->
             <div id="header-wrapper">
@@ -105,8 +107,11 @@
                             </ul><!-- /.nav -->
                             <form method="get" class="site-search" action="?">
                                 <div class="input-append">
-                                    <input title="Enter the terms you wish to search for." class="search-query span2 form-text" placeholder="搜索" type="text" name="">
-                                    <a href="search.html"><button type="button" class="btn"><i class="icon-search"></i></button></a>
+                                    <input title="Enter the terms you wish to search for."
+                                           class="search-query span2 form-text" placeholder="搜索" type="text" name="">
+                                    <a href="search.html">
+                                        <button type="button" class="btn"><i class="icon-search"></i></button>
+                                    </a>
                                 </div><!-- /.input-append -->
                             </form><!-- /.site-search -->
                         </div><!-- /.navigation -->
@@ -115,297 +120,200 @@
             </div><!-- /.navigation -->
 
             <!-- CONTENT -->
-            <div id="content"><div class="map-wrapper">
-    <div class="map">
-        <div id="map" class="map-inner"></div><!-- /.map-inner -->
+            <div id="content">
+                <div class="map-wrapper">
+                    <div class="map">
+                        <div id="map" class="map-inner"></div>
 
-        <div class="container">
-            <div class="row">
-                <div class="span3">
-                    <div class="property-filter pull-right">
+                        <div class="container">
+                            <div class="row">
+                                <div class="span3">
+                                    <div class="property-filter pull-right">
+                                        <div class="content">
+                                            <form method="get" action="?">
+                                                <div class="location control-group">
+                                                    <label class="control-label" for="inputLocation">
+                                                        地区
+                                                    </label>
+                                                    <div class="controls">
+                                                        <select id="inputLocation">
+                                                            <option id="01">国内</option>
+                                                            <option id="02">日本</option>
+                                                            <option id="03">北美</option>
+                                                            <option id="04">南美</option>
+                                                            <option id="05">欧洲</option>
+                                                            <option id="06">俄罗斯</option>
+                                                        </select>
+                                                    </div><!-- /.controls -->
+                                                </div><!-- /.control-group -->
+
+                                                <div class="type control-group">
+                                                    <label class="control-label" for="inputType">
+                                                        预期旅游天数
+                                                    </label>
+                                                    <div class="controls">
+                                                        <select id="inputType">
+                                                            <option id="5">5</option>
+                                                            <option id="6">6</option>
+                                                            <option id="7">7</option>
+                                                            <option id="8">8</option>
+                                                            <option id="9">9</option>
+                                                            <option id="10">10</option>
+                                                        </select>
+                                                    </div><!-- /.controls -->
+                                                </div><!-- /.control-group -->
+
+                                                <!-- <div class="beds control-group">
+                                                     <label class="control-label" for="inputBeds">
+                                                         Beds
+                                                     </label>
+                                                     <div class="controls">
+                                                         <select id="inputBeds">
+                                                             <option id="11">1</option>
+                                                             <option id="21">2</option>
+                                                         </select>-->
+                                                <!-- </div> /.controls -->
+                                                <!--</div> /.control-group -->
+
+                                                <!-- <div class="baths control-group">
+                                                     <label class="control-label" for="inputBaths">
+                                                         Baths
+                                                     </label>
+                                                     <div class="controls">
+                                                         <select id="inputBaths">
+                                                             <option id="1">1</option>
+                                                             <option id="2">2</option>
+                                                         </select>
+                                                     </div> /.controls
+                                                 </div> /.control-group -->
+
+
+                                                <!--<div class="rent control-group">
+                                                    <div class="controls">
+                                                        <label class="checkbox" for="inputRent">
+                                                            <input type="checkbox" id="inputRent"> Rent
+                                                        </label>
+                                                    </div> /.controls
+                                                </div> /.control-group
+
+                                                <div class="sale control-group">
+                                                    <div class="controls">
+                                                        <label class="checkbox" for="inputSale">
+                                                            <input type="checkbox" id="inputSale"> Sale
+                                                        </label>
+                                                    </div>
+                                                </div> /.control-group -->
+
+                                                <div class="form-actions">
+                                                    <a href="search.html">
+                                                        <button type="button" class="btn btn-primary btn-large">立即筛选！
+                                                        </button>
+                                                    </a>
+                                                </div><!-- /.form-actions -->
+                                            </form>
+                                        </div><!-- /.content -->
+                                    </div><!-- /.property-filter -->
+                                </div><!-- /.span3 -->
+                            </div><!-- /.row -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div id="main">
+                        <div class="row">
+                            <div class="span9">
+                                <h1 class="page-header">热门线路</h1>
+                                <div class="properties-grid">
+                                    <div class="row" id="hottestItems">
+
+                                        <!--<div class="property span3" id="exampleItem">
+                                        <div class="image">
+                                            <div class="content">
+                                                <a href="detail.html"></a>
+                                                <img src="assets/img/tmp/property-small-1.png" alt="">
+                                            </div>
+                                            <div class="price">￥5000</div>
+                                        </div>
+
+                                        <div class="title">
+                                            <h2><a href="detail.html">武大华科一日游</a></h2>
+                                        </div>
+                                        <div class="location">出发日期：2020.9.25</div>
+                                        <div class="area">
+                                            <span class="key">热度:</span>
+                                            <span class="value"></span>
+                                        </div>-->
+                                    </div>
+
+                                </div><!-- /.row -->
+                            </div>
+
+                            <div class="sidebar span3">
+                                <div class="hidden-tablet">
+                                    <div class="widget properties last">
+                                        <div class="title">
+                                            <h2>最新线路</h2>
+                                        </div>
+
+                                        <div class="content" id="latestItems">
+                                            <!--<div class="property">
+                                                <div class="image">
+                                                    <a href="detail.html"></a>
+                                                    <img src="assets/img/tmp/property-small-4.png" alt="">
+                                                </div>
+
+                                                <div class="wrapper">
+                                                    <div class="title">
+                                                        <h3>
+                                                            <a href="detail.html">武大华科一日游</a>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="location">小雨旅行社</div>
+                                                    <div class="price">￥500</div>
+                                                </div>
+                                            </div>-->
+                                        </div><!-- /.content -->
+                                    </div><!-- /.properties -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="carousel">
+                        <h2 class="page-header">所有商品</h2>
                         <div class="content">
-                            <form method="get" action="?">
-                                <div class="location control-group">
-                                    <label class="control-label" for="inputLocation">
-                                       地区
-                                    </label>
-                                    <div class="controls">
-                                        <select id="inputLocation">
-                                            <option id="01">国内</option>
-                                            <option id="02">日本</option>
-                                            <option id="03">北美</option>
-                                            <option id="04">南美</option>
-                                            <option id="05">欧洲</option>
-                                            <option id="06">俄罗斯</option>
-                                        </select>
-                                    </div><!-- /.controls -->
-                                </div><!-- /.control-group -->
+                            <a class="carousel-prev" href="detail.html">Previous</a>
+                            <a class="carousel-next" href="detail.html">Next</a>
+                            <ul id="all_route" name="all_route">
+                               &lt;!&ndash;<li>
+                                    <div class="image">
+                                        <a href="itemsDetail.html"></a>
+                                        <img src="assets/img/tmp/property-small-4.png" alt="">
+                                    </div>
+                                    <div class="title">
+                                        <h3><a href="itemsDetail.html">27523 Pacific Coast</a></h3>
+                                    </div>
+                                    <div class="location">Palo Alto CA</div>
+                                    <div class="price">€2 300 000</div>
+                                    <div class="area">
+                                        <span class="key">Area:</span>
+                                        <span class="value">750m<sup>2</sup></span>
+                                    </div>
+                                    <div class="bathrooms"><div class="inner">3</div></div>
+                                    <div class="bedrooms"><div class="inner">3</div></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>-->
 
-                                <div class="type control-group">
-                                    <label class="control-label" for="inputType">
-                                        预期旅游天数
-                                    </label>
-                                    <div class="controls">
-                                        <select id="inputType">
-                                            <option id="5">5</option>
-                                            <option id="6">6</option>
-                                            <option id="7">7</option>
-                                            <option id="8">8</option>
-                                            <option id="9">9</option>
-                                            <option id="10">10</option>
-                                        </select>
-                                    </div><!-- /.controls -->
-                                </div><!-- /.control-group -->
-
-                               <!-- <div class="beds control-group">
-                                    <label class="control-label" for="inputBeds">
-                                        Beds
-                                    </label>
-                                    <div class="controls">
-                                        <select id="inputBeds">
-                                            <option id="11">1</option>
-                                            <option id="21">2</option>
-                                        </select>-->
-                                   <!-- </div> /.controls -->
-                                <!--</div> /.control-group -->
-
-                               <!-- <div class="baths control-group">
-                                    <label class="control-label" for="inputBaths">
-                                        Baths
-                                    </label>
-                                    <div class="controls">
-                                        <select id="inputBaths">
-                                            <option id="1">1</option>
-                                            <option id="2">2</option>
-                                        </select>
-                                    </div> /.controls
-                                </div> /.control-group -->
-
-
-                                <!--<div class="rent control-group">
-                                    <div class="controls">
-                                        <label class="checkbox" for="inputRent">
-                                            <input type="checkbox" id="inputRent"> Rent
-                                        </label>
-                                    </div> /.controls
-                                </div> /.control-group 
-
-                                <div class="sale control-group">
-                                    <div class="controls">
-                                        <label class="checkbox" for="inputSale">
-                                            <input type="checkbox" id="inputSale"> Sale
-                                        </label>
-                                    </div> 
-                                </div> /.control-group -->
-
-                                <div class="form-actions">
-                                   <a href="search.html"> <button type="button" class="btn btn-primary btn-large">立即筛选！</button></a>
-                                </div><!-- /.form-actions -->
-                            </form>
-                        </div><!-- /.content -->
-                    </div><!-- /.property-filter -->
-                </div><!-- /.span3 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </div><!-- /.map -->
-</div><!-- /.map-wrapper -->
-<div class="container">
-    <div id="main">
-<div class="row">
-<div class="span9">
-<h1 class="page-header">热门线路</h1>
-<div class="properties-grid">
-    <div class="row" id="hottestItems">
-
-        <!--<div class="property span3" id="exampleItem">
-        <div class="image">
-            <div class="content">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-1.png" alt="">
+                </div>
             </div>
-            <div class="price">￥5000</div>
         </div>
-
-        <div class="title">
-            <h2><a href="detail.html">武大华科一日游</a></h2>
-        </div>
-        <div class="location">出发日期：2020.9.25</div>
-        <div class="area">
-            <span class="key">热度:</span>
-            <span class="value"></span>
-        </div>-->
     </div>
-
-    </div><!-- /.row -->
-</div><!-- /.properties-grid -->
 </div>
-<div class="sidebar span3">
-    <div class="hidden-tablet">
-    <div class="widget properties last">
-    <div class="title">
-        <h2>最新商品</h2>
-    </div><!-- /.title -->
-
-    <div class="content">
-        <div class="property">
-            <div class="image">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-4.png" alt="">
-            </div><!-- /.image -->
-
-            <div class="wrapper">
-                <div class="title">
-                    <h3>
-                        <a href="detail.html">武大华科一日游</a>
-                    </h3>
-                </div><!-- /.title -->
-                <div class="location">小雨旅行社</div><!-- /.location -->
-                <div class="price">￥500</div><!-- /.price -->
-            </div><!-- /.wrapper -->
-        </div><!-- /.property -->
-
-        <div class="property">
-            <div class="image">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-4.png" alt="">
-            </div><!-- /.image -->
-
-            <div class="wrapper">
-                <div class="title">
-                    <h3>
-                        <a href="detail.html">武大华科一日游</a>
-                    </h3>
-                </div><!-- /.title -->
-                <div class="location">小雨旅行社</div><!-- /.location -->
-                <div class="price">￥500</div><!-- /.price -->
-            </div><!-- /.wrapper -->
-        </div><!-- /.property -->
-
-
-        <div class="property">
-            <div class="image">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-4.png" alt="">
-            </div><!-- /.image -->
-
-            <div class="wrapper">
-                <div class="title">
-                    <h3>
-                        <a href="detail.html">武大华科一日游</a>
-                    </h3>
-                </div><!-- /.title -->
-                <div class="location">小雨旅行社</div><!-- /.location -->
-                <div class="price">￥500</div><!-- /.price -->
-            </div><!-- /.wrapper -->
-        </div><!-- /.property -->
-
-
-        <div class="property">
-            <div class="image">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-4.png" alt="">
-            </div><!-- /.image -->
-
-            <div class="wrapper">
-                <div class="title">
-                    <h3>
-                        <a href="detail.html">武大华科一日游</a>
-                    </h3>
-                </div><!-- /.title -->
-                <div class="location">小雨旅行社</div><!-- /.location -->
-                <div class="price">￥500</div><!-- /.price -->
-            </div><!-- /.wrapper -->
-        </div><!-- /.property -->
-
-        <div class="property">
-            <div class="image">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-4.png" alt="">
-            </div><!-- /.image -->
-
-            <div class="wrapper">
-                <div class="title">
-                    <h3>
-                        <a href="detail.html">武大华科一日游</a>
-                    </h3>
-                </div><!-- /.title -->
-                <div class="location">小雨旅行社</div><!-- /.location -->
-                <div class="price">￥500</div><!-- /.price -->
-            </div><!-- /.wrapper -->
-        </div><!-- /.property -->
-
-        <div class="property">
-            <div class="image">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-4.png" alt="">
-            </div><!-- /.image -->
-
-            <div class="wrapper">
-                <div class="title">
-                    <h3>
-                        <a href="detail.html">武大华科一日游</a>
-                    </h3>
-                </div><!-- /.title -->
-                <div class="location">小雨旅行社</div><!-- /.location -->
-                <div class="price">￥500</div><!-- /.price -->
-            </div><!-- /.wrapper -->
-        </div><!-- /.property -->
-
-        <div class="property">
-            <div class="image">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-4.png" alt="">
-            </div><!-- /.image -->
-
-            <div class="wrapper">
-                <div class="title">
-                    <h3>
-                        <a href="detail.html">武大华科一日游</a>
-                    </h3>
-                </div><!-- /.title -->
-                <div class="location">小雨旅行社</div><!-- /.location -->
-                <div class="price">￥500</div><!-- /.price -->
-            </div><!-- /.wrapper -->
-        </div><!-- /.property -->
-
-    </div><!-- /.content -->
-</div><!-- /.properties -->
-                </div>
-            </div>
 </div>
-<div class="carousel">
-    <h2 class="page-header">所有商品</h2>
-    <div class="content">
-        <a class="carousel-prev" href="detail.html">Previous</a>
-        <a class="carousel-next" href="detail.html">Next</a>
-        <ul id="all_route" name="all_route">
-           <!--<li>
-                <div class="image">
-                    <a href="itemsDetail.html"></a>
-                    <img src="assets/img/tmp/property-small-4.png" alt="">
-                </div>
-                <div class="title">
-                    <h3><a href="itemsDetail.html">27523 Pacific Coast</a></h3>
-                </div>
-                <div class="location">Palo Alto CA</div>
-                <div class="price">€2 300 000</div>
-                <div class="area">
-                    <span class="key">Area:</span>
-                    <span class="value">750m<sup>2</sup></span>
-                </div>
-                <div class="bathrooms"><div class="inner">3</div></div>
-                <div class="bedrooms"><div class="inner">3</div></div>
-            </li>-->
-        </ul>
-    </div><!-- /.content -->
-</div><!-- /.carousel -->       
 </div>
-</div><!-- /#content -->
-</div><!-- /#wrapper-inner -->
-</div><!-- /#footer -->
-</div><!-- /#footer-wrapper -->
-</div><!-- /#wrapper -->
-</div><!-- /#wrapper-outer -->
 
 <div class="palette">
     <div class="toggle">
@@ -481,7 +389,8 @@
 <script type="text/javascript" src="assets/js/carousel.js"></script>
 <!--<script type="text/javascript" src="assets/js/gmap3.min.js"></script>
 <script type="text/javascript" src="assets/js/gmap3.infobox.min.js"></script>-->
-<script type="text/javascript" src="assets/libraries/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript"
+        src="assets/libraries/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
 <script type="text/javascript" src="assets/libraries/chosen/chosen.jquery.min.js"></script>
 <script type="text/javascript" src="assets/libraries/iosslider/_src/jquery.iosslider.min.js"></script>
 <script type="text/javascript" src="assets/libraries/bootstrap-fileupload/bootstrap-fileupload.js"></script>
