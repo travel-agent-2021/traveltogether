@@ -67,8 +67,6 @@ console.log(fileReader.readAsDataURL(file));
                 return true;
             }
 
-
-
     }
 
 
@@ -107,32 +105,29 @@ function Download(){
         };
         var filename=''+new Date().getSeconds()+'.'+type;
         //我想用当前秒是可以解决重名的问题了 不行你就换成毫秒
-        savaFile(imgdata,filename,"image");
-        writeImg(imgdata, "image");
-console.log(imgdata);
+        //savaFile(imgdata,filename,"image");
+//console.log(imgdata);
         $("#agencyImageSource").val(filename);
+
+        //var saveImage = canvas.toDataURL('image/png');
+        var b64 = imgdata.substring(22);
+
+//console.log(b64);
+        $.ajax({
+        url: "http://localhost:8080/agency/saveImg",
+        type:'post',
+        data: { "pp": b64},
+        success:function (data)
+        {
+        //alert("data"+data.data);
+        $("#agencyImageSource").val(data.data);
+
+            alert('保存成功');
+        }
+
+        });
+
+//console.log(b64);
+//console.log(pp);
         };
 
-function writeImg(data, filePath){
-    let base64 = data.replace(/^data:image\/\w+;base64,/, '');
-    let buffer =  new Buffer(base64, 'base64');
-    // 写入图片
-    fs.writeFileSync(filePath, buffer);
-}
-
-
-/**
-function convertImageToCanvas(image) {
-    // 创建canvas DOM元素，并设置其宽高和图片一样
-
-        document.getElementById(image).style.display = "none";
-
-
-    var canvas = document.createElement("canvas");
-    canvas.width = image.width;
-    canvas.height = image.height;
-    // 坐标(0,0) 表示从此处开始绘制，相当于偏移。
-    canvas.getContext("2d").drawImage(image, 0, 0);
-    return canvas;
-}
-**/

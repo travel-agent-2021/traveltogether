@@ -40,7 +40,6 @@ function loadInfo(agencyList) {
             '                  <td>' + agency.agencyTelephone + '</td>\n' +
             '                  <td>' + agency.agencyEmail + '</td>\n' +
             '                  <td>' + agency.agencyAddress + '</td>\n' +
-            '                  <td>' + agency.agencyImageSource + '</td>\n' +
             '                  <td><a class="btn btn-primary"  href="#" onclick="setAndEdit(' + agencyId +')">修改</a>\n' +
             '                      <a class="btn btn-warning"  href="#" onclick="deleteAgency(' + agencyId +')">删除</a></td>\n'+
             '                </tr>';

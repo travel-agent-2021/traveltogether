@@ -9,10 +9,20 @@ import com.travelia.service.model.AgencyModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.BASE64Decoder;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/agency")
@@ -173,4 +183,37 @@ public class AgencyController extends BaseController {
         return CommonReturnType.create();
     }
 
+
+    @RequestMapping(value = "/saveImg", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    protected CommonReturnType doGet(HttpServletRequest req, HttpServletResponse resp,@RequestParam(name = "pp") String imgData)
+            throws ServletException, IOException {
+        return doPost(req,resp,imgData);
+
+    }
+
+
+
+    protected CommonReturnType doPost(HttpServletRequest req, HttpServletResponse resp,String imgData)
+            throws ServletException, IOException {
+
+
+        //String imageDataUrl = req.getParameter("pp");
+
+        String imageDataUrl = imgData;
+
+        BASE64Decoder decoder = new BASE64Decoder();
+        byte[] b = decoder.decodeBuffer(imageDataUrl);
+        ByteArrayInputStream bais = new ByteArrayInputStream(b);
+        BufferedImage bi1 = ImageIO.read(bais);
+        String filename = UUID.randomUUID().toString();
+        String filePath="D://image/"+filename+".png";
+        File w2 = new File(filePath);
+        ImageIO.write(bi1, "png", w2);
+
+        return CommonReturnType.create(filePath);
+    }
 }
+
+
+
