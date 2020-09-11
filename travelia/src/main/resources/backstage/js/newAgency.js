@@ -122,7 +122,7 @@ function Download(){
         //alert("data"+data.data);
         $("#agencyImageSource").val(data.data);
 
-            alert('保存成功');
+           // alert('保存成功');
         }
 
         });
