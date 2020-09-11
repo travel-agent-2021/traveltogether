@@ -433,14 +433,3 @@ function InitData() {
         }
     })
 }
-
-
-function loadInfo(itemList) {
-    if (itemList == null || itemList === "") {
-        return;
-    }
-    for (var i = 0; i < itemList.length; i++) {
-        var item = itemList[i];
-
-    }
-}

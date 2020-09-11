@@ -1,0 +1,101 @@
+$(document).ready(function () {
+    getHottestItems();
+    getLatestItems();
+    //$("#exampleItem").hide();
+});
+
+
+function getHottestItems() {
+    var itemsList = [];
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/item/getHottestItems",
+        xhrFields: { withCredentials: true },
+        success: function(data) {
+            if (data.status === "success") {
+                itemsList = data.data;
+                loadHottest(itemsList);
+            }else {
+                alert("获取数据失败，" + data.data.errMsg);
+            }
+        },
+        error: function(data) {
+            alert("获取数据失败, " + data.responseText);
+        }
+    });
+}
+
+
+function getLatestItems() {
+    var itemsList = [];
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/item/getLatestItems",
+        xhrFields: { withCredentials: true },
+        success: function(data) {
+            if (data.status === "success") {
+                itemsList = data.data;
+                loadLatest(itemsList);
+            }else {
+                alert("获取数据失败，" + data.data.errMsg);
+            }
+        },
+        error: function(data) {
+            alert("获取数据失败, " + data.responseText);
+        }
+    });
+
+}
+
+function getAllItems() {
+
+}
+
+function loadHottest(itemsList) {
+    if (itemsList == null || itemsList === []) {
+        return;
+    }
+    for (var i = 0; i < itemsList.length; i++) {
+        var item = itemsList[i];
+        var imageSource = "";
+        if (item.itemImageSources == null || item.itemImageSources.length === 0) {
+            imageSource = "assets/img/tmp/property-small-1.png";
+        }
+        var dom = '<div class="property span3">\n' +
+            '                <div class="image">\n' +
+            '                    <div class="content">\n' +
+            '                        <a href="#" onclick="getDetails(' + item.itemId + ')"></a>\n' +
+            '                        <img src="' + imageSource +'" alt="">\n' +
+            '                    </div>\n' +
+            '                    <div class="price">￥' + item.itemPrice + '</div>\n' +
+            '                </div>\n' +
+            '            <div class="title">\n' +
+            '                <h2><a href="#" onclick="getDetails(' + item.itemId + ')">' + item.itemName + '</a></h2>\n' +
+            '            </div>\n' +
+            '            <div class="location">旅行社：' + item.agencyTitle + '</div>\n' +
+            '            <div class="area">\n' +
+            '                <span class="key">天数</span>\n' +
+            '                <span class="value">' + item.duration + '</span>\n' +
+            '            </div>\n' +
+            '        </div>';
+        $("#hottestItems").append($(dom));
+    }
+}
+
+function loadLatest(itemsList) {
+    if (itemsList == null || itemsList === []) {
+        return;
+    }
+    for (var i = 0; i < itemsList.length; i++) {
+
+    }
+}
+
+function getDetails(itemId) {
+    if (window.localStorage) {
+        localStorage.itemId = itemId;
+        window.location.href = 'Detail.html';
+    } else {
+        alert("Your browser does not support this technology.");
+    }
+}
