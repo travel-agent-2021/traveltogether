@@ -57,7 +57,7 @@ function updateUser() {
             "gender": gender,
             "birthday": birthday,
             "email": email,
-            "userImageSource",userImageSource
+            "userImageSource":userImageSource
         },
         success: function(data) {
             if (data.status === "success") {
