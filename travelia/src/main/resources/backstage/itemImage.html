@@ -185,90 +185,57 @@
     </div>
 </nav>
 <div class="content-wrapper">
-    <div class="container">
-        <div class="card card-register mx-auto mt-5">
-            <div class="card-header">用户详情</div>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">主菜单</a>
+            </li>
+            <li class="breadcrumb-item active" >表格</li>
+        </ol>
+        <!-- Example DataTables Card-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> 用户列表<a class="btn btn-info pull-right"   href="newUser.html">添加用户</a></div>
             <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="username">用户名</label>
-                                <input class="form-control" id="username" type="text" aria-describedby="nameHelp" placeholder="输入用户名">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="password">用户密码</label>
-                                <input class="form-control" id="password" type="text" aria-describedby="nameHelp" placeholder="输入密码">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="age">年龄</label>
-                                <input class="form-control" id="age" type="text" placeholder="输入年龄">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="gender">性别</label>
-                                <select class="form-control" id="gender" type="text">
-                                    <option value ="2">请选择</option>
-                                    <option value ="1">男</option>
-                                    <option value ="0">女</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="telephone">电话</label>
-                                <input class="form-control" id="telephone" type="text" placeholder="输入电话">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="email">邮箱</label>
-                                <input class="form-control" id="email" type="text" placeholder="输入邮箱">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="birthday">生日</label>
-                                <input class="form-control" id="birthday" type="text" placeholder="输入生日">
-                            </div>
 
-                        </div>
-                    </div>
-                    <div class="form-group">
-                            <div>
-                                <img id="preview" width="100%" height="100%">
-                            </div>
-                            <form id="form" method="POST" enctype="multipart/form-data"
-                                  action="value" onsubmit="return check();">
+                <div class="table-responsive">
 
-                                <input type="file" onclick="readImage()" accept="image/*" name="file" id="file"/>
-                                <a class="btn btn-info " href="#"  onclick="Download()" >确认图片</a>
-
-                                <!--input class="form-control" id="agencyImageSource" type="text" value="输入邮箱"-->
-                                <input type="" hidden id="userImageSource" />
-
-                            </form>
-
-                    </div>
-
-
-                    <a class="btn btn-primary " href="#" id="addUser">提交</a>
-                    <a class="btn btn-danger " href="users.html">取消</a>
-                </form>
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>图片ID</th>
+                            <th>图片资源</th>
+                            <th>用户</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>图片ID</th>
+                            <th>图片资源</th>
+                            <th>用户</th>
+                            <th>操作</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+
         </div>
+
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
     <footer class="sticky-footer">
         <div class="container">
             <div class="text-center">
-                <small>Copyright © Your Website 2020 / <a href="index.html" target="_blank" title="TRAVELIA">TRAVELIA</a>></small>
+                <small>Copyright © Your Website 2020 / <a href="index.html" target="_blank" title="TRAVELIA">TRAVELIA</a></small>
             </div>
         </div>
     </footer>
@@ -306,8 +273,8 @@
     <script src="js/sb-admin.min.js"></script>
     <script src="js/validLogin.js"></script>
     <!-- Custom scripts for this page-->
-    <script src="js/sb-admin-datatables.min.js"></script>
-    <script src="js/newUser.js"></script>
+    <!--<script src="js/sb-admin-datatables.min.js"></script>-->
+    <script src="js/itemImage.js"></script>
 </div>
 </body>
 

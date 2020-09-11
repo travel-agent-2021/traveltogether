@@ -1,6 +1,9 @@
 package com.travelia.mapper;
 
+import com.travelia.entity.AgencyDO;
 import com.travelia.entity.OrderDO;
+
+import java.util.List;
 
 public interface OrderDOMapper {
     /**
@@ -50,4 +53,7 @@ public interface OrderDOMapper {
      * @mbg.generated Tue Sep 08 10:36:05 CST 2020
      */
     int updateByPrimaryKey(OrderDO record);
+
+    List<OrderDO> selectAllOrders();
+
 }

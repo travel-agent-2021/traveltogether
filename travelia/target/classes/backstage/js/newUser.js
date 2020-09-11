@@ -110,7 +110,7 @@ function Download(){
         //我想用当前秒是可以解决重名的问题了 不行你就换成毫秒
         //savaFile(imgdata,filename,"image");
 //console.log(imgdata);
-        $("#agencyImageSource").val(filename);
+        $("#userImageSource").val(filename);
 
         //var saveImage = canvas.toDataURL('image/png');
         var b64 = imgdata.substring(22);
@@ -123,7 +123,7 @@ function Download(){
         success:function (data)
         {
         //alert("data"+data.data);
-        $("#agencyImageSource").val(data.data);
+        $("#userImageSource").val(data.data);
 
            // alert('保存成功');
         }
