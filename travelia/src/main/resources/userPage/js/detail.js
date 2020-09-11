@@ -57,6 +57,7 @@ function setItemInfo(item) {
     // set image
 }
 
+// to do
 function placeOrder() {
     $.ajax({
         type: "POST",
@@ -66,7 +67,9 @@ function placeOrder() {
             if (data.status === "success") {
                 var user = data.data;
             } else {
-                if (data.data.errorCode === )
+                if (data.data.errorCode === 0) {
+                    alert();
+                }
             }
         },
         error: function(data) {
