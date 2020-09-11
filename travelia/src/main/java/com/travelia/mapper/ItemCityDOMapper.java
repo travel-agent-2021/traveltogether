@@ -28,8 +28,18 @@ public interface ItemCityDOMapper {
      * @mbg.generated Tue Sep 08 10:22:17 CST 2020
      */
     int insertSelective(ItemCityDOKey record);
-    
+
+    /**
+     * 根据商品ID查询城市
+     * @param itemId
+     * @return
+     */
     List<ItemCityDOKey> selectByItemId(Integer itemId);
 
+    /**
+     * 根据商品ID删除对应城市-商品对应关系
+     * @param itemId
+     * @return
+     */
     int deleteByItemId(Integer itemId);
 }

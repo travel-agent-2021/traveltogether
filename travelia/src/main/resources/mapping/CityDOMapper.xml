@@ -120,11 +120,10 @@
     where city_id = #{cityId,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByItemId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+  <select id="selectAllCities" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from city_info
-    where item_id = #{itemId,jdbcType=INTEGER}
   </select>
-
 </mapper>

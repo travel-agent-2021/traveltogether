@@ -139,6 +139,9 @@ public class ItemServiceImpl implements ItemService {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR);
         }
 
+        ItemDO itemDO = convertFormItemModel2DO(itemModel);
+        itemDOMapper.insertSelective(itemDO);
+
         // 插入城市记录表
         List<CityModel> cityModelList = itemModel.getCityModels();
         if (cityModelList != null) {
@@ -164,9 +167,6 @@ public class ItemServiceImpl implements ItemService {
                 }
             }
         }
-
-        ItemDO itemDO = convertFormItemModel2DO(itemModel);
-        itemDOMapper.insertSelective(itemDO);
 
         return 0;
     }
@@ -203,7 +203,7 @@ public class ItemServiceImpl implements ItemService {
         if (itemModel == null) {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
         }
-        if (itemModel.getItemId() == null || ("").equals(itemModel.getItemId())) {
+        if (itemModel.getItemId() == null) {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
         }
         ItemDO itemDO = convertFormItemModel2DO(itemModel);
@@ -235,7 +235,9 @@ public class ItemServiceImpl implements ItemService {
         if (itemCityDOKeyList != null) {
             for (ItemCityDOKey itemCityDOKey : itemCityDOKeyList) {
                 CityDO cityDO = cityDOMapper.selectByPrimaryKey(itemCityDOKey.getCityId());
-                cities.add(convertFromCityDO2Model(cityDO));
+                if (cityDO != null) {
+                    cities.add(convertFromCityDO2Model(cityDO));
+                }
             }
         }
         itemModel.setCityModels(cities);

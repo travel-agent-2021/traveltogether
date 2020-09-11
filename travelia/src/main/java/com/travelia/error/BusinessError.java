@@ -21,10 +21,11 @@ public enum  BusinessError implements CommonError {
     /* 400XX 管理员类型错误码 */
     ADMIN_NOT_EXIST(40001, "管理员账号不存在"),
     ADMIN_LOGIN_FAIL(40002, "账号或密码错误"),
-    ADMIN_NOT_LOGIN(40003, "管理员未登录");
+    ADMIN_NOT_LOGIN(40003, "管理员未登录"),
 
 
-
+    /* 500XX 城市类型错误码 */
+    CITY_NOT_FOUND(40003, "城市不存在");
 
     private int errCode;
     private String errMsg;
