@@ -72,12 +72,17 @@ function updateUser() {
 }
 
 function uploadFile() {
-    var options =  {
+    //alert("SAdf");
+    var data = new FormData($("#imageForm"));
+    $.ajax({
         type: "POST",
         dataType: "application/x-www-form-urlencoded",
         url: "http://localhost:8080/user/upload",
-        xhrFields: {withCredentials: true },
-        success: function(data) {
+        data: data,
+        contentType: false,
+        processData: false,
+        xhrFields: {withCredentials: true},
+        success: function (data) {
             if (data.status === "success") {
                 alert("上传成功");
                 alert(data.data);
@@ -85,9 +90,10 @@ function uploadFile() {
                 alert("上传失败！" + data.data.errMsg);
             }
         },
-        error: function(data) {
+        error: function (data) {
             alert("上传失败！" + data.responseText + "das");
         }
-    }
-    $("#imageForm").ajaxSubmit();
+    });
+
+
 }

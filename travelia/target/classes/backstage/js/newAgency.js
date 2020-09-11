@@ -56,14 +56,15 @@ $("#addAgency").on("click", function () {
             });
 
             var formDom = document.getElementById("form");
-
+console.log("fd"+formDom);
+console.log("previewDom.src"+previewDom.src);
             function check() {
                 var file = fileDom.files[0];
                 // check if input contains a valid image file
                 if (!file || file.type.indexOf("image/") < 0) {
                     return false;
                 }
-console.log(fileReader.readAsDataURL(file));
+
                 return true;
             }
 
@@ -105,7 +106,6 @@ function Download(){
         };
         var filename=''+new Date().getSeconds()+'.'+type;
         //我想用当前秒是可以解决重名的问题了 不行你就换成毫秒
-<<<<<<< Updated upstream
         //savaFile(imgdata,filename,"image");
 //console.log(imgdata);
         $("#agencyImageSource").val(filename);
@@ -122,13 +122,8 @@ function Download(){
         {
         //alert("data"+data.data);
         $("#agencyImageSource").val(data.data);
-=======
-        savaFile(imgdata,filename,"image");
-        
-        };
->>>>>>> Stashed changes
 
-            alert('保存成功');
+           // alert('保存成功');
         }
 
         });

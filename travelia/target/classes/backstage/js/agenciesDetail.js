@@ -23,6 +23,7 @@ $(document).ready(function () {
 
 
 function loadData(data) {
+
     $("#agencyId").val(data.agencyId);
     $("#agencyAccount").val(data.agencyAccount);
     $("#password").val(data.encryptPassword);
@@ -31,6 +32,19 @@ function loadData(data) {
     $("#agencyAddress").val(data.agencyAddress);
     $("#agencyEmail").val(data.agencyEmail);
     $("#agencyImageSource").val(data.agencyImageSource);
+
+
+    var previewDom = document.getElementById("preview");
+
+    console.log($("#agencyImageSource").val());
+    console.log($("#agencyImageSource").val().substring(47));
+previewDom.src =$("#agencyImageSource").val().substring(47);
+    //previewDom.src = $("#agencyImageSource").val();
+
+
+
+console.log("previewDom.src"+previewDom.src);
+
 }
 
 function updateAgency() {
@@ -69,4 +83,5 @@ function updateAgency() {
             alert("修改失败, " + data.responseText);
         }
     });
+
 }

@@ -56,14 +56,15 @@ $("#addAgency").on("click", function () {
             });
 
             var formDom = document.getElementById("form");
-
+console.log("fd"+formDom);
+console.log("previewDom.src"+previewDom.src);
             function check() {
                 var file = fileDom.files[0];
                 // check if input contains a valid image file
                 if (!file || file.type.indexOf("image/") < 0) {
                     return false;
                 }
-console.log(fileReader.readAsDataURL(file));
+
                 return true;
             }
 
