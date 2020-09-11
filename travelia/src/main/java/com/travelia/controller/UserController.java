@@ -1,6 +1,7 @@
 package com.travelia.controller;
 
 
+import ch.qos.logback.core.util.FileUtil;
 import com.travelia.error.BusinessError;
 import com.travelia.error.BusinessException;
 import com.travelia.response.CommonReturnType;
@@ -9,11 +10,17 @@ import com.travelia.service.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.attribute.FileAttributeView;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/user")
@@ -202,6 +209,21 @@ public class UserController extends BaseController {
         return CommonReturnType.create();
     }
 
+    /**
+     * 更新用户
+     * @param userId
+     * @param username
+     * @param password
+     * @param telephone
+     * @param gender
+     * @param age
+     * @param birthday
+     * @param email
+     * @return
+     * @throws BusinessException
+     * @throws UnsupportedEncodingException
+     * @throws NoSuchAlgorithmException
+     */
     @RequestMapping(value = "/updateUser", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType updateUser(@RequestParam(name = "userId" ) Integer userId,
@@ -241,6 +263,11 @@ public class UserController extends BaseController {
         return CommonReturnType.create();
     }
 
+    /**
+     * 删除用户
+     * @param userId
+     * @return
+     */
     @RequestMapping(value = "/deleteUser", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType deleteUser(@RequestParam(name = "userId") Integer userId) {
@@ -248,4 +275,24 @@ public class UserController extends BaseController {
         return CommonReturnType.create();
     }
 
+
+    @RequestMapping(value = "/upload", method = {RequestMethod.POST})
+    @ResponseBody
+    public CommonReturnType upload(MultipartRequest request) throws BusinessException {
+        MultipartFile file = request.getFile("imageFile");
+        if (file == null) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请选择图片！");
+        }
+        String filename = file.getOriginalFilename();
+        String suffixName = filename.substring(filename.lastIndexOf("."));
+        filename = UUID.randomUUID() + suffixName;
+        String filepath = "C:\\Users\\casdg\\Desktop\\traveltogether\\travelia\\src\\main\\resources\\backstage\\img";
+        try {
+            file.transferTo(new File(filepath + filename));
+            return CommonReturnType.create(filename + filepath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return CommonReturnType.create(null, "fail");
+    }
 }

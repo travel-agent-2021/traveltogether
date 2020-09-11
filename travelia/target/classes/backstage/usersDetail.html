@@ -240,10 +240,14 @@
                                 <label for="birthday">生日</label>
                                 <input class="form-control" id="birthday" type="text" value="">
                             </div>
-                            <div class="col-md-6">
+                            <!--<div class="col-md-6">
                                 <label for="imageSource">用户图片</label>
                                 <input class="form-control" id="imageSource" type="text" value="">
-                            </div>
+                            </div>-->
+                            <form enctype="multipart/form-data" method="post" action="" id="imageForm">
+                                文件：<input type="file" id="imageFile" name="fileUpload"/>
+                                <input type="button" onclick="uploadFile()" value="上传"/>
+                            </form>
                         </div>
                     </div>
 
@@ -298,6 +302,7 @@
     <script src="js/validLogin.js"></script>
     <!-- Custom scripts for this page-->
     <script src="js/sb-admin-datatables.min.js"></script>
+    <script src="js/jquery.form.min.js"></script>
     <script src="js/userDetail.js"></script>
 </div>
 </body>

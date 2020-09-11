@@ -70,3 +70,24 @@ function updateUser() {
         }
     });
 }
+
+function uploadFile() {
+    var options =  {
+        type: "POST",
+        dataType: "application/x-www-form-urlencoded",
+        url: "http://localhost:8080/user/upload",
+        xhrFields: {withCredentials: true },
+        success: function(data) {
+            if (data.status === "success") {
+                alert("上传成功");
+                alert(data.data);
+            } else {
+                alert("上传失败！" + data.data.errMsg);
+            }
+        },
+        error: function(data) {
+            alert("上传失败！" + data.responseText + "das");
+        }
+    }
+    $("#imageForm").ajaxSubmit();
+}
