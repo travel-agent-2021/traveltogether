@@ -250,7 +250,20 @@
                             </form>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="userImageSource">用户图片</label>
+                        <div>
+                            <img id="preview" width="400px" height="400px" >
+                        </div>
 
+                        <input type="file" onclick="readImage()" accept="image/*" name="file" id="file"/>
+                        <a class="btn btn-info " href="#"  onclick="Download()" >确认图片</a>
+
+                        <!--input class="form-control" id="agencyImageSource" type="text" value="输入邮箱"-->
+                        <input type="" hidden id="userImageSource" />
+
+
+                    </div>
                     <a class="btn btn-primary " href="#" onclick="updateUser()">提交修改</a>
                     <a class="btn btn-info " href="users.html">取消修改</a>
                     <a class="btn btn-danger " href="users.html">删除用户</a>

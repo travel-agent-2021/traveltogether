@@ -236,12 +236,26 @@
                                 <label for="birthday">生日</label>
                                 <input class="form-control" id="birthday" type="text" placeholder="输入生日">
                             </div>
-                            <div class="col-md-6">
-                                <label for="imageSource">图片资源</label>
-                                <input class="form-control" id="imageSource" type="text" placeholder="输入图片src">
-                            </div>
+
                         </div>
                     </div>
+                    <div class="form-group">
+                            <div>
+                                <img id="preview" width="400px" height="400px">
+                            </div>
+                            <form id="form" method="POST" enctype="multipart/form-data"
+                                  action="value" onsubmit="return check();">
+
+                                <input type="file" onclick="readImage()" accept="image/*" name="file" id="file"/>
+                                <a class="btn btn-info " href="#"  onclick="Download()" >确认图片</a>
+
+                                <!--input class="form-control" id="agencyImageSource" type="text" value="输入邮箱"-->
+                                <input type="" hidden id="userImageSource" />
+
+                            </form>
+
+                    </div>
+
 
                     <a class="btn btn-primary " href="#" id="addUser">提交</a>
                     <a class="btn btn-danger " href="users.html">取消</a>

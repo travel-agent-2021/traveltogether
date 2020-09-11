@@ -174,6 +174,7 @@ public class UserController extends BaseController {
      * @param age
      * @param birthday
      * @param email
+     * @param userImageSource
      * @return
      * @throws BusinessException
      * @throws UnsupportedEncodingException
@@ -187,7 +188,8 @@ public class UserController extends BaseController {
                                     @RequestParam(name = "gender") Integer gender,
                                     @RequestParam(name = "age") Integer age,
                                     @RequestParam(name = "birthday") String birthday,
-                                    @RequestParam(name = "email") String email) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+                                    @RequestParam(name = "email") String email,
+                                    @RequestParam(name = "userImageSource") String userImageSource) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
 
         if (telephone == null || ("").equals(telephone)) {
             throw new BusinessException(BusinessError.USER_TELEPHONE_NOT_EMPTY);
@@ -204,6 +206,7 @@ public class UserController extends BaseController {
         user.setGender(gender);
         user.setBirthday(birthday);
         user.setUserEmail(email);
+        user.setUserImageSource(userImageSource);
         userService.addUser(user);
 
         return CommonReturnType.create();
@@ -219,6 +222,7 @@ public class UserController extends BaseController {
      * @param age
      * @param birthday
      * @param email
+     * @param userImageSource
      * @return
      * @throws BusinessException
      * @throws UnsupportedEncodingException
@@ -233,7 +237,8 @@ public class UserController extends BaseController {
                                     @RequestParam(name = "gender") Integer gender,
                                     @RequestParam(name = "age") Integer age,
                                     @RequestParam(name = "birthday") String birthday,
-                                    @RequestParam(name = "email") String email) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+                                    @RequestParam(name = "email") String email,
+                                    @RequestParam(name = "userImageSource") String userImageSource) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
         if (userId == null || userId.equals("")) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "用户ID不能为空");
         }
@@ -258,6 +263,7 @@ public class UserController extends BaseController {
         user.setGender(gender);
         user.setBirthday(birthday);
         user.setUserEmail(email);
+        user.setUserImageSource(userImageSource);
         userService.updateUser(user);
 
         return CommonReturnType.create();

@@ -31,6 +31,7 @@ function loadData(data) {
     $("#birthday").val(data.birthday);
     $("#email").val(data.userEmail);
     $("#telephone").val(data.userTelephone);
+    $("#userImageSource").val(data.userImageSource);
 }
 
 function updateUser() {
@@ -42,7 +43,7 @@ function updateUser() {
     var gender = $("#gender").val();
     var birthday = $("#birthday").val()
     var email = $("#email").val();
-
+    var userImageSource = $("#userImageSource").val();
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/user/updateUser",
@@ -55,7 +56,8 @@ function updateUser() {
             "age": age,
             "gender": gender,
             "birthday": birthday,
-            "email": email
+            "email": email,
+            "userImageSource",userImageSource
         },
         success: function(data) {
             if (data.status === "success") {
