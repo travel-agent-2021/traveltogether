@@ -1,15 +1,26 @@
 $(document).ready(function () {
-    getOrders();
+    var fetchAgencyId = localStorage["storeAgencyId"];
+    //var agencyAccount = $("#user-name").text().substring(4);
+    console.log(fetchAgencyId);
+    //console.log($("#user-name").val().substring(4));
+    getOrders(fetchAgencyId);
 });
 
-function getOrders() {
+
+
+function getOrders(fetchAgencyId) {
     var orderList = [];
+    //console.log($("#agency-id").val());
+     //console.log($("#user-name").val().substring(4));
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/order/getAllOrders",
+        url: "http://localhost:8080/order/getOrdersByAgencyAccount",
+        data: { "agencyId": fetchAgencyId},
         xhrFields: { withCredentials: true },
         success: function(data) {
             if (data.status === "success") {
+             //console.log("agencyId"+agencyId);
+
                 orderList = data.data;
                 loadInfo(orderList);
             }else {

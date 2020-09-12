@@ -194,5 +194,11 @@
     where agency_id = #{agencyId,jdbcType=INTEGER}
   </select>
 
+  <select id="selectByAgencyAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+    where agency_account = #{agencyAccount,jdbcType=VARCHAR}
+  </select>
 
 </mapper>

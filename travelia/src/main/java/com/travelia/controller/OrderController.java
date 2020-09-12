@@ -65,6 +65,20 @@ public class OrderController extends BaseController {
         return CommonReturnType.create(orderModelList);
     }
 
+    /**
+     * 按经销商账户获取订单信息
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getOrdersByAgencyAccount", method = {RequestMethod.GET})
+    @ResponseBody
+    public CommonReturnType getOrdersByAgencyAccount(@RequestParam(name = "agencyId") Integer agencyId) throws BusinessException {
+        List<OrderModel> orderModelList = orderService.getOrdersByAgencyId(agencyId);
+        if (orderModelList == null) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR,"orderId未找到");
+        }
+        return CommonReturnType.create(orderModelList);
+    }
 //    /**
 //     * 获取热门商品信息
 //     * @return

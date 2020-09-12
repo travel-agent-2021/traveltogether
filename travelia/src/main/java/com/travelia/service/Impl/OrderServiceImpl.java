@@ -77,6 +77,24 @@ public class OrderServiceImpl implements OrderService {
         }
         return orderModels;
     }
+    /**
+     * 根据旅行社账号查询旅行社所有订单
+     * @param agencyAccount
+     * @return
+     */
+    @Override
+    public List<OrderModel> getOrdersByAgencyAccount(String agencyAccount) throws BusinessException {
+        List<OrderDO> orderDOS = orderDOMapper.selectByAgencyAccount(agencyAccount);
+        if (orderDOS == null) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR,"orderId未找到");
+        }
+        AgencyDO agencyDO =  agencyDOMapper.selectByAgencyAccount(agencyAccount);
+        List<OrderModel> orderModels = new ArrayList<>();
+        for (OrderDO orderDO: orderDOS) {
+            orderModels.add(convertFromOrderDO2Model(orderDO, agencyDO));
+        }
+        return orderModels;
+    }
 
     /**
      * 得到商品列表按下单次数降序排列

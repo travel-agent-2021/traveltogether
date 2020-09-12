@@ -236,7 +236,7 @@ public class AgencyController extends BaseController {
             throw new BusinessException(BusinessError.USER_LOGIN_FAIL);
         }
         httpServletRequest.getSession().setAttribute("AGENCY_LOGIN", true);
-        httpServletRequest.getSession().setAttribute("AGEMCY", agencyModel);
+        httpServletRequest.getSession().setAttribute("AGENCY", agencyModel);
 
         return CommonReturnType.create();
     }
@@ -250,7 +250,7 @@ public class AgencyController extends BaseController {
     @ResponseBody
     public CommonReturnType index() throws BusinessException {
         Boolean isLogin = (Boolean) httpServletRequest.getSession().getAttribute("AGENCY_LOGIN");
-        AgencyModel agencyModel = (AgencyModel) httpServletRequest.getSession().getAttribute("ADMIN");
+        AgencyModel agencyModel = (AgencyModel) httpServletRequest.getSession().getAttribute("AGENCY");
         if (isLogin == null || !isLogin || agencyModel == null) {
             throw new BusinessException(BusinessError.ADMIN_NOT_LOGIN);
         }

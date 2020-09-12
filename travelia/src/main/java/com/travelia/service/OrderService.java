@@ -13,6 +13,8 @@ public interface OrderService {
 
     List<OrderModel> getOrdersByAgencyId(Integer agencyId) throws BusinessException;
 
+    List<OrderModel> getOrdersByAgencyAccount(String agencyAccount) throws BusinessException;
+
     //List<ItemModel> getItemsOrderByTotalOrderTimesDESC() throws BusinessException;
 
     //List<ItemModel> getItemsOrderByCreateDateDESC() throws BusinessException;
