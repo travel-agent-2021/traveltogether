@@ -221,21 +221,30 @@
                                 <input class="form-control" id="orderCreateDate" type="text" value="帆宝的快乐time" readonly="readonly">
                             </div>
                             <div class="col-md-6">
-                                <label for="maxTourist">旅行社名称</label>
-                                <input class="form-control" id="maxTourist" type="text" value="霖宝旅行社" readonly="readonly">
+                                <label for="orderPrice">订单金额</label>
+                                <input class="form-control" id="orderPrice" type="text" value="霖宝旅行社" readonly="readonly">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="agency">旅游人数</label>
-                                <input class="form-control" id="agency" type="text" value="2" readonly="readonly">
+                                <label for="orderStatus">订单状态</label>
+                                <input class="form-control" id="orderStatus" type="text" value="2" readonly="readonly">
                             </div>
                             <div class="col-md-6">
-                                <label for="address">补充</label>
-                                <input class="form-control" id="address" type="text" value="" readonly="readonly">
+                                <label for="orderDetail">补充</label>
+                                <input class="form-control" id="orderDetail" type="text" value="" readonly="readonly">
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="orderTravelers">旅客人数</label>
+                                <input class="form-control" id="orderTravelers" type="text" value="2" readonly="readonly">
+                            </div>
+
                         </div>
                     </div>
                     <a class="btn btn-info " href="orders.html">返 回</a>
@@ -285,8 +294,10 @@
     <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
+    <script src="js/validLogin.js"></script>
     <!-- Custom scripts for this page-->
-    <script src="js/sb-admin-datatables.min.js"></script>
+    <!--<script src="js/sb-admin-datatables.min.js"></script>-->
+    <script src="js/ordersDetail.js"></script>
 </div>
 </body>
 

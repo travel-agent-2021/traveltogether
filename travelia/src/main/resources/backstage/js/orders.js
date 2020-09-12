@@ -11,7 +11,6 @@ function getOrders() {
         success: function(data) {
             if (data.status === "success") {
                 orderList = data.data;
-                 alert("orderId"+orderList[0].orderId+"date"+orderList[0].orderCreateDate);
                 loadInfo(orderList);
             }else {
                 alert("获取信息失败01，" + data.data.errMsg);
@@ -31,7 +30,7 @@ function loadInfo(orderList) {
     for (var i = 0; i < orderList.length; i++) {
         var order = orderList[i];
         var orderId = order.orderId;
-        alert(orderId);
+        //alert(orderId);
 
         var dom = '<tr>\n' +
             '                  <td>' + order.orderId + '</td>\n' +

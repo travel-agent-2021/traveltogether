@@ -1,6 +1,7 @@
 package com.travelia.service;
 
 import com.travelia.error.BusinessException;
+import com.travelia.service.model.AdminModel;
 import com.travelia.service.model.AgencyModel;
 import com.travelia.service.model.ItemModel;
 
@@ -24,4 +25,7 @@ public interface AgencyService {
     int updateAgency(AgencyModel agencyModel) throws BusinessException;
 
     List<AgencyModel> getAgenciesLikeAgencyAccount(String agencyAccount);
+
+    AgencyModel validateLogin(String agencyAccount, String encryptPassword) throws BusinessException;
+
 }

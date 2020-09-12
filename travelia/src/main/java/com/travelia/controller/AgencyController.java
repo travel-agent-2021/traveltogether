@@ -5,6 +5,7 @@ import com.travelia.error.BusinessError;
 import com.travelia.error.BusinessException;
 import com.travelia.response.CommonReturnType;
 import com.travelia.service.AgencyService;
+import com.travelia.service.model.AdminModel;
 import com.travelia.service.model.AgencyModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,9 @@ public class AgencyController extends BaseController {
 
     @Autowired
     private AgencyService agencyService;
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
 
     /**
      * 获取经销商列表
@@ -214,6 +218,60 @@ public class AgencyController extends BaseController {
 
         return CommonReturnType.create(filePath);
     }
+
+    /**
+     * 登录校验
+     * @param account
+     * @param password
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/login", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType login(@RequestParam(name = "account") String account,
+                                  @RequestParam(name = "password") String password) throws BusinessException {
+
+        AgencyModel agencyModel = agencyService.validateLogin(account, password);
+        if (agencyModel == null) {
+            throw new BusinessException(BusinessError.USER_LOGIN_FAIL);
+        }
+        httpServletRequest.getSession().setAttribute("AGENCY_LOGIN", true);
+        httpServletRequest.getSession().setAttribute("AGEMCY", agencyModel);
+
+        return CommonReturnType.create();
+    }
+
+    /**
+     * 主页
+     * @return 返回经销商信息
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/validateLogin", method = {RequestMethod.GET})
+    @ResponseBody
+    public CommonReturnType index() throws BusinessException {
+        Boolean isLogin = (Boolean) httpServletRequest.getSession().getAttribute("AGENCY_LOGIN");
+        AgencyModel agencyModel = (AgencyModel) httpServletRequest.getSession().getAttribute("ADMIN");
+        if (isLogin == null || !isLogin || agencyModel == null) {
+            throw new BusinessException(BusinessError.ADMIN_NOT_LOGIN);
+        }
+        return CommonReturnType.create(agencyModel, "success");
+    }
+
+    /**
+     * 退出登录
+     * @return success
+     */
+    @RequestMapping(value = "/logout", method = {RequestMethod.POST})
+    @ResponseBody
+    public CommonReturnType logout() {
+        if(httpServletRequest.getSession().getAttribute("LOGIN") != null &&
+                (Boolean) httpServletRequest.getSession().getAttribute("LOGIN")) {
+            httpServletRequest.getSession().removeAttribute("LOGIN");
+            httpServletRequest.getSession().removeAttribute("AGENCY");
+        }
+        return CommonReturnType.create();
+    }
+
 }
 
 

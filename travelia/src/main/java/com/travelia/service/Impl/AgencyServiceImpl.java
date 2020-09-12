@@ -5,6 +5,7 @@ import com.travelia.error.BusinessError;
 import com.travelia.error.BusinessException;
 import com.travelia.mapper.AgencyDOMapper;
 import com.travelia.service.AgencyService;
+import com.travelia.service.model.AdminModel;
 import com.travelia.service.model.AgencyModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,6 +155,20 @@ public class AgencyServiceImpl implements AgencyService {
         BeanUtils.copyProperties(agencyDO, agencyModel);
         return agencyModel;
     }
+
+    @Override
+    public AgencyModel validateLogin(String agencyAccount, String encryptPassword) throws BusinessException {
+        AgencyModel agencyModel = getAgencyByAgencyAccount(agencyAccount);
+        if (agencyModel == null) {
+            throw new BusinessException(BusinessError.ADMIN_LOGIN_FAIL);
+        }
+        if (agencyModel.getAgencyAccount().equals(agencyAccount)
+                && agencyModel.getEncryptPassword().equals(encryptPassword)) {
+            return agencyModel;
+        }
+        return null;
+    }
+
     /**
      * 用户model转化为dataObject
      * @param agencyModel

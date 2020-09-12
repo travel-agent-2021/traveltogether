@@ -30,7 +30,7 @@
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                 <a class="nav-link" href="index.html">
                     <i class="fa fa-fw fa-dashboard"></i>
-                    <span class="nav-link-text">TRAVELIA(管理员)</span>
+                    <span class="nav-link-text">TRAVELIA（经销商）</span>
                 </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
@@ -51,12 +51,7 @@
                     <li>
                         <a href="orders.html">订单列表</a>
                     </li>
-                    <li>
-                        <a href="users.html">用户列表</a>
-                    </li>
-                    <li>
-                        <a href="agencies.html">经销商列表</a>
-                    </li>
+
 
                 </ul>
             </li>
@@ -193,49 +188,58 @@
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="itemName">订单id</label>
-                                <input class="form-control" id="itemName" type="text" aria-describedby="nameHelp" value="1681016" readonly="readonly">
+                                <label for="orderId">订单id</label>
+                                <input class="form-control" id="orderId" type="text" aria-describedby="nameHelp" value="1681016" readonly="readonly">
                             </div>
                             <div class="col-md-6">
-                                <label for="price">创建日期</label>
-                                <input class="form-control" id="price" type="text" aria-describedby="nameHelp" value="2020-9-8" readonly="readonly">
+                                <label for="userId">用户id</label>
+                                <input class="form-control" id="userId" type="text" aria-describedby="nameHelp" value="2020-9-8" readonly="readonly">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="duaration">订单价格</label>
-                                <input class="form-control" id="duaration" type="text" value="2000" readonly="readonly">
+                                <label for="agencyId">经销商id</label>
+                                <input class="form-control" id="agencyId" type="text" value="2000" readonly="readonly">
                             </div>
                             <div class="col-md-6">
-                                <label for="city">订单状态</label>
-                                <input class="form-control" id="city" type="text" value="已完成" readonly="readonly">
+                                <label for="itemId">商品id</label>
+                                <input class="form-control" id="itemId" type="text" value="已完成" readonly="readonly">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="minTourist">用户名称</label>
-                                <input class="form-control" id="minTourist" type="text" value="帆宝的快乐time" readonly="readonly">
+                                <label for="orderCreateDate">订单创建日期</label>
+                                <input class="form-control" id="orderCreateDate" type="text" value="帆宝的快乐time" readonly="readonly">
                             </div>
                             <div class="col-md-6">
-                                <label for="maxTourist">旅行社名称</label>
-                                <input class="form-control" id="maxTourist" type="text" value="霖宝旅行社" readonly="readonly">
+                                <label for="orderPrice">订单金额</label>
+                                <input class="form-control" id="orderPrice" type="text" value="霖宝旅行社" readonly="readonly">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="agency">旅游人数</label>
-                                <input class="form-control" id="agency" type="text" value="2" readonly="readonly">
+                                <label for="orderStatus">订单状态</label>
+                                <input class="form-control" id="orderStatus" type="text" value="2" readonly="readonly">
                             </div>
                             <div class="col-md-6">
-                                <label for="address">补充</label>
-                                <input class="form-control" id="address" type="text" value="" readonly="readonly">
+                                <label for="orderDetail">补充</label>
+                                <input class="form-control" id="orderDetail" type="text" value="" readonly="readonly">
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="orderTravelers">旅客人数</label>
+                                <input class="form-control" id="orderTravelers" type="text" value="2" readonly="readonly">
+                            </div>
+
                         </div>
                     </div>
                     <a class="btn btn-info " href="orders.html">返 回</a>
@@ -285,8 +289,10 @@
     <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
+    <script src="js/validLogin.js"></script>
     <!-- Custom scripts for this page-->
-    <script src="js/sb-admin-datatables.min.js"></script>
+    <!--<script src="js/sb-admin-datatables.min.js"></script>-->
+    <script src="js/ordersDetail.js"></script>
 </div>
 </body>
 
