@@ -35,12 +35,19 @@ public class OrderModel {
     /**
      * 订单用户名称
      */
-    private String orderUserName;
-
+    private String username;
+    /**
+     * 商品ID
+     */
+    private Integer itemId;
+    /**
+     * 经销商ID
+     */
+    private Integer orderAgencyId;
     /**
      * 订单所属旅行社名称
      */
-    private Integer orderAgencyTitle;
+    private Integer agencyTitle;
 
     /**
      * 旅游人数
@@ -51,6 +58,7 @@ public class OrderModel {
      * 其他补充信息
      */
     private String orderDetail;
+
 
     /**
      * getters and setters
@@ -87,21 +95,6 @@ public class OrderModel {
         this.orderStatus = orderStatus;
     }
 
-    public String getOrderUserName() {
-        return orderUserName;
-    }
-
-    public void setOrderUserName(String orderUserName) {
-        this.orderUserName = orderUserName;
-    }
-
-    public Integer getOrderAgencyTitle() {
-        return orderAgencyTitle;
-    }
-
-    public void setOrderAgencyTitle(Integer orderAgencyTitle) {
-        this.orderAgencyTitle = orderAgencyTitle;
-    }
 
     public Integer getOrderTravelers() {
         return orderTravelers;
@@ -119,4 +112,35 @@ public class OrderModel {
         this.orderDetail = orderDetail;
     }
 
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
+    }
+
+    public Integer getOrderAgencyId() {
+        return orderAgencyId;
+    }
+
+    public void setOrderAgencyId(Integer orderAgencyId) {
+        this.orderAgencyId = orderAgencyId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Integer getAgencyTitle() {
+        return agencyTitle;
+    }
+
+    public void setAgencyTitle(Integer agencyTitle) {
+        this.agencyTitle = agencyTitle;
+    }
 }
