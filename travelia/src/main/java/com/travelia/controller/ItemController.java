@@ -196,11 +196,9 @@ public class ItemController extends BaseController {
         }
 
         // 修改城市信息
-        if (!itemName.equals(itemModel.getItemName())) {
-            //itemModel.setCityModels(setCityList(itemName));
-            itemCityService.deleteByItemId(itemId);
-            itemCityService.addItemCityDOKeys(itemId, setCityList(itemName));
-        }
+        itemCityService.deleteByItemId(itemId);
+        itemCityService.addItemCityDOKeys(itemId, setCityList(itemName));
+
         // 修改基本信息
         itemModel.setItemName(itemName);
         itemModel.setDuration(duration);

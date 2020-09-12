@@ -4,6 +4,7 @@ public enum  BusinessError implements CommonError {
 
     /* 100XX 参数类型错误码 */
     PARAMETER_VALIDATION_ERROR(10001, "参数不合法"),
+    PARAMETER_MISMATCH_ERROR(10002, "参数类型不正确，请重试"),
     UNKNOWN_ERROR(10002, "未知错误"),
 
     /* 200XX 用户类型错误码 */

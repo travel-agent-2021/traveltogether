@@ -1,6 +1,10 @@
 $(document).ready(function () {
+    initAgencyOptions();
+    initData();
+});
+
+function initData() {
     var itemId = localStorage["itemId"];
-    // alert(userId);
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/item/getItemById",
@@ -19,7 +23,7 @@ $(document).ready(function () {
             alert("获取信息失败, " + data.responseText);
         }
     });
-});
+}
 
 
 function loadData(data) {
@@ -70,4 +74,37 @@ function updateItem() {
             alert("修改失败, " + data.responseText);
         }
     });
+}
+
+
+function initAgencyOptions() {
+    var agencyList = [];
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/agency/getAllAgencies",
+        xhrFields: { withCredentials: true },
+        success: function(data) {
+            if (data.status === "success") {
+                agencyList = data.data;
+                loadAgencyOptions(agencyList);
+            }else {
+                alert("添加失败，" + data.data.errMsg);
+            }
+        },
+        error: function(data) {
+            alert("添加失败, " + data.responseText);
+        }
+
+    });
+}
+
+function loadAgencyOptions(agencyList) {
+    if (agencyList == null || agencyList.length === 0) {
+        return;
+    }
+    for (let i = 0; i < agencyList.length; i++) {
+        let agency = agencyList[i];
+        let dom = '<option value ="' + agency.agencyId + '">' + agency.agencyTitle + '</option>';
+        $("#agencyId").append($(dom));
+    }
 }

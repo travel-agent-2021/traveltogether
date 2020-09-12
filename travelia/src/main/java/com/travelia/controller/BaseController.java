@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import sun.misc.BASE64Encoder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +41,9 @@ public class BaseController {
             BusinessException businessException = (BusinessException) e;
             responseData.put("errCode", businessException.getErrorCode());
             responseData.put("errMsg", businessException.getErrorMsg());
+        }  else if (e instanceof MethodArgumentTypeMismatchException) {
+            responseData.put("errCode", BusinessError.PARAMETER_MISMATCH_ERROR.getErrorCode());
+            responseData.put("errMsg", BusinessError.PARAMETER_MISMATCH_ERROR.getErrorMsg());
         } else {
             responseData.put("errCode", BusinessError.UNKNOWN_ERROR.getErrorCode());
             responseData.put("errMsg", BusinessError.UNKNOWN_ERROR.getErrorMsg());
