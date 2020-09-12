@@ -172,13 +172,14 @@ public class ItemServiceImpl implements ItemService {
 
     /**
      * 根据商品名搜索商品
-     * @param itemName
+     * @param keyword
      * @return
      * @throws BusinessException
      */
     @Override
-    public List<ItemModel> searchItemsByItemName(String itemName) throws BusinessException {
-        List<ItemDO> itemDOList = itemDOMapper.selectLikeItemName(itemName);
+    public List<ItemModel> searchItemsByItemName(String keyword) throws BusinessException {
+        //List<ItemDO> itemDOList = itemDOMapper.selectLikeItemName("%" + itemName + "%");
+        List<ItemDO> itemDOList = itemDOMapper.selectAllItems();
         if (itemDOList == null) {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
         }
@@ -186,7 +187,10 @@ public class ItemServiceImpl implements ItemService {
         List<ItemModel> itemModels = new ArrayList<>();
         for (ItemDO itemDO: itemDOList) {
             AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(itemDO.getAgencyId());
-            itemModels.add(convertFromItemDO2Model(itemDO, agencyDO));
+            ItemModel itemModel = convertFromItemDO2Model(itemDO, agencyDO);
+            if (itemModel != null && itemModel.toString().contains(keyword)) {
+                itemModels.add(itemModel);
+            }
         }
         return itemModels;
     }

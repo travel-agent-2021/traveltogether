@@ -141,3 +141,6 @@ function placeOrder() {
         }
     })
 }
+function success() {
+    alert("支付成功！");
+}

@@ -206,4 +206,15 @@ public class ItemModel {
     public void setTotalOrderTimes(Integer totalOrderTimes) {
         this.totalOrderTimes = totalOrderTimes;
     }
+
+    @Override
+    public String toString() {
+        return "ItemModel{" +
+                "itemName='" + itemName + '\'' +
+                ", agencyId=" + agencyId +
+                ", agencyTitle='" + agencyTitle + '\'' +
+                ", agencyAddress='" + agencyAddress + '\'' +
+                ", itemDetail='" + itemDetail + '\'' +
+                '}';
+    }
 }

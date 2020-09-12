@@ -1,39 +1,21 @@
 $(document).ready(function () {
-    //var agencyAccount = $("#user-name").text().substring(4);
-    console.log($("#agency-id").text());
-    console.log($("#user-name").text().substring(4));
-    getOrders();
+    var fetchAgencyId = localStorage["storeAgencyId"];
+    console.log(fetchAgencyId);
+    getOrders(fetchAgencyId);
 });
-//
-//function getAgencyId(agencyAccount) {
-//    //var orderList = [];
-//         $.ajax({
-//                url: "http://localhost:8080/agency/getAgencyIdByAgencyAccount",
-//                type:'post',
-//                data: { "agencyAccount": agencyAccount},
-//                success:function (data)
-//                {
-//                //alert("data"+data.data);
-//                //$("#agencyImageSource").val(data.data);
-//                console.log("data.data"+data.data);
-//                getOrders(data.data);
-//                   // alert('保存成功');
-//                }
-//        });
-//
-//}
 
-function getOrders() {
+
+
+function getOrders(fetchAgencyId) {
     var orderList = [];
-    console.log($("#agency-id").text());
+
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/order/getOrdersByAgencyAccount",
-        data: { "agencyId": $("#agency-id").text()},
+        data: { "agencyId": fetchAgencyId},
         xhrFields: { withCredentials: true },
         success: function(data) {
             if (data.status === "success") {
-             console.log("agencyId"+agencyId);
                 orderList = data.data;
                 loadInfo(orderList);
             }else {

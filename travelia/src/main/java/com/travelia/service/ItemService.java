@@ -21,7 +21,7 @@ public interface ItemService {
 
     List<ItemModel> getRelatedItems(ItemModel itemModel) throws BusinessException;
 
-    List<ItemModel> searchItemsByItemName(String itemName) throws BusinessException;
+    List<ItemModel> searchItemsByItemName(String keyword) throws BusinessException;
 
     int insertItem(ItemModel itemModel) throws BusinessException;
 

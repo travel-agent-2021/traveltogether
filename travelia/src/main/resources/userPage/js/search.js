@@ -1,7 +1,8 @@
 
 $(document).ready(function () {
-    initSearchItems();
-    var pgindex = 1; //当前页
+    initSearchItems("");
+    getLatestItems();
+    /*var pgindex = 1; //当前页
     var obj = document.getElementById("frameContent");  //获取内容层
     var pages = document.getElementById("pages");         //获取翻页层
 
@@ -29,21 +30,20 @@ $(document).ready(function () {
     function showPage(pageINdex) {
         obj.scrollTop = (pageINdex - 1) * parseInt(obj.offsetHeight);//根据高度，输出指定的页
         pgindex = pageINdex;
-    }
+    }*/
 });
 
-function initSearchItems() {
-    var itemList = [];
+function initSearchItems(itemName) {
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/item/searchItemsByItemName",
         xhrFields: { withCredentials: true },
         data: {
-            "itemName": ""
+            "itemName": itemName
         },
         success: function(data) {
             if (data.status === "success") {
-                itemsList = data.data;
+                let itemsList = data.data;
                 loadSearchItems(itemsList);
             } else {
                 alert("获取数据失败，" + data.data.errMsg);
@@ -107,6 +107,72 @@ function getItemDetails(itemId) {
 }
 
 
-function initPagination() {
-
+function getLatestItems() {
+    var itemsList = [];
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/item/getLatestItems",
+        xhrFields: { withCredentials: true },
+        success: function(data) {
+            if (data.status === "success") {
+                itemsList = data.data;
+                loadLatest(itemsList);
+            }else {
+                alert("获取数据失败，" + data.data.errMsg);
+            }
+        },
+        error: function(data) {
+            alert("获取数据失败, " + data.responseText);
+        }
+    });
 }
+
+
+function loadLatest(itemsList) {
+    if (itemsList == null || itemsList === []) {
+        return;
+    }
+    for (var i = 0; i < itemsList.length; i++) {
+        var item = itemsList[i];
+        var imageSource = "";
+        if (item.itemImageSources == null || item.itemImageSources.length === 0) {
+            imageSource = "assets/img/tmp/property-small-1.png";
+        }
+        var dom = '<div class="property">\n' +
+            '                                                <div class="image">\n' +
+            '                                                    <a href="#" onclick="getItemDetails(' + item.itemId + ')"></a>\n' +
+            '                                                    <img src="' + imageSource + '" alt="">\n' +
+            '                                                </div>\n' +
+            '                                                <div class="wrapper">\n' +
+            '                                                    <div class="title">\n' +
+            '                                                        <h3>\n' +
+            '                                                            <a href="#" onclick="getItemDetails(' + item.itemId + ')">' + item.itemName + '</a>\n' +
+            '                                                        </h3>\n' +
+            '                                                    </div>\n' +
+            '                                                    <div class="location">' + item.agencyTitle + '</div>\n' +
+            '                                                    <div class="price">￥ ' + item.itemPrice + '</div>\n' +
+            '                                                </div>\n' +
+            '                                            </div>';
+        $("#latestItems").append($(dom));
+    }
+}
+
+
+
+$("#searchItems").on("click", searchItems);
+
+
+function searchItems() {
+    let itemName = $("#item_name").val();
+    $("#searchResult").children().remove();
+    initSearchItems(itemName);
+}
+
+window.onkeypress = function (ev) {
+    if (ev.code === "13") {
+        ev.cancleBubble = true;
+        ev.returnValue = false;
+        searchItems();
+        return false;
+    }
+};
