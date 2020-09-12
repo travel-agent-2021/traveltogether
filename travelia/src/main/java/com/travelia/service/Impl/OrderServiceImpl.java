@@ -1,16 +1,13 @@
 package com.travelia.service.Impl;
 
-import com.travelia.entity.AgencyDO;
 import com.travelia.entity.OrderDO;
 import com.travelia.error.BusinessError;
 import com.travelia.error.BusinessException;
 import com.travelia.mapper.OrderDOMapper;
 import com.travelia.service.OrderService;
-import com.travelia.service.model.AgencyModel;
 import com.travelia.service.model.OrderModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,8 +20,8 @@ public class OrderServiceImpl implements OrderService {
     private OrderDOMapper orderDOMapper;
 
     @Override
-    public OrderModel getOrderById(Integer id) {
-        OrderDO orderDO = orderDOMapper.selectByPrimaryKey(id);
+    public OrderModel getOrderById(Integer orderId) {
+        OrderDO orderDO = orderDOMapper.selectByPrimaryKey(orderId);
         if (orderDO == null) {
             return null;
         }
@@ -58,7 +55,19 @@ public class OrderServiceImpl implements OrderService {
         return flag;
     }
 
-
+    /**
+     * 根据订单ID查询订单
+     * @param orderId
+     * @return
+     * @throws BusinessException
+     */
+    public OrderModel getOrderByOrderId(String orderId) throws BusinessException {
+        OrderDO orderDO = orderDOMapper.selectOrderById(orderId);
+        if (orderDO == null) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "未找到信息！");
+        }
+        return convertFromOrderDO2Model(orderDO);
+    }
 
     /**
      * 用户model转化为dataObject

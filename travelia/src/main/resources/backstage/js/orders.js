@@ -10,8 +10,9 @@ function getOrders() {
         xhrFields: { withCredentials: true },
         success: function(data) {
             if (data.status === "success") {
-                orderyList = data.data;
-                loadInfo(orderyList);
+                orderList = data.data;
+                 alert("orderId"+orderList[0].orderId+"date"+orderList[0].orderCreateDate);
+                loadInfo(orderList);
             }else {
                 alert("获取信息失败01，" + data.data.errMsg);
             }
@@ -37,8 +38,8 @@ function loadInfo(orderList) {
             '                  <td>' + order.orderCreateDate + '</td>\n' +
             '                  <td>' + order.orderPrice + '</td>\n' +
             '                  <td>' + order.orderStatus + '</td>\n' +
-            '                  <td>' + order.orderUserName + '</td>\n' +
-            '                  <td>' + order.orderAgencyTitle + '</td>\n' +
+            '                  <td>' + order.orderUserId + '</td>\n' +
+            '                  <td>' + order.orderAgencyId + '</td>\n' +
             '                  <td>' + order.orderTravelers + '</td>\n' +
             '                  <td>' + order.orderDetail + '</td>\n' +
             '                  <td><a class="btn btn-primary"  href="#" onclick="setAndEdit(' + orderId +')">修改</a>\n' +

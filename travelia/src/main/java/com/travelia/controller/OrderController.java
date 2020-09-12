@@ -1,7 +1,6 @@
 package com.travelia.controller;
 
 
-import com.travelia.error.BusinessError;
 import com.travelia.error.BusinessException;
 import com.travelia.response.CommonReturnType;
 import com.travelia.service.OrderService;
@@ -30,6 +29,7 @@ public class OrderController extends BaseController {
     @ResponseBody
     public CommonReturnType getAllOrders() throws BusinessException {
         List<OrderModel> orders =  orderService.getAllOrders();
+        System.out.println(orders.get(0).getOrderId()+orders.get(0).getOrderCreateDate());
         return CommonReturnType.create(orders, "success");
     }
 
@@ -42,6 +42,7 @@ public class OrderController extends BaseController {
     @ResponseBody
     public CommonReturnType getOrderById(@RequestParam(name = "orderId") Integer orderId) throws BusinessException {
         OrderModel orderModel = orderService.getOrderById(orderId);
+        System.out.println(orderId);
         return CommonReturnType.create(orderModel, "success");
     }
 

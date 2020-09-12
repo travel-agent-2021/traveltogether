@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrderService {
 
-    OrderModel getOrderById(Integer id);
+    OrderModel getOrderById(Integer orderId);
 
     List<OrderModel> getAllOrders();
 

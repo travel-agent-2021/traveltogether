@@ -56,4 +56,5 @@ public interface OrderDOMapper {
 
     List<OrderDO> selectAllOrders();
 
+    OrderDO selectOrderById(String orderId);
 }

@@ -179,4 +179,19 @@
       order_travelers = #{orderTravelers,jdbcType=INTEGER}
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllOrders" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+  </select>
+
+  <select id="selectOrderById" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+
 </mapper>
