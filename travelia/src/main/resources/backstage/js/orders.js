@@ -38,11 +38,11 @@ function loadInfo(orderList) {
             '                  <td>' + order.orderCreateDate + '</td>\n' +
             '                  <td>' + order.orderPrice + '</td>\n' +
             '                  <td>' + order.orderStatus + '</td>\n' +
-            '                  <td>' + order.orderUserId + '</td>\n' +
-            '                  <td>' + order.orderAgencyId + '</td>\n' +
+            '                  <td>' + order.userId + '</td>\n' +
+            '                  <td>' + order.agencyId + '</td>\n' +
             '                  <td>' + order.orderTravelers + '</td>\n' +
             '                  <td>' + order.orderDetail + '</td>\n' +
-            '                  <td><a class="btn btn-primary"  href="#" onclick="setAndEdit(' + orderId +')">修改</a>\n' +
+            '                  <td><a class="btn btn-primary"  href="#" onclick="setAndEdit(' + orderId +')">查看</a>\n' +
             '                      <a class="btn btn-warning"  href="#" onclick="deleteOrder(' + orderId +')">删除</a></td>\n'+
             '                </tr>';
         $("#dataTable tbody").append($(dom));

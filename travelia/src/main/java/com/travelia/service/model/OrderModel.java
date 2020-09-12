@@ -10,7 +10,7 @@ public class OrderModel {
     /**
      * 订单ID
      */
-    private String orderId;
+    private Integer orderId;
 
     /**
      * 创建日期
@@ -37,13 +37,17 @@ public class OrderModel {
      */
     private String username;
     /**
+     * 用户ID
+     */
+    private Integer userId;
+    /**
      * 商品ID
      */
     private Integer itemId;
     /**
      * 经销商ID
      */
-    private Integer orderAgencyId;
+    private Integer agencyId;
     /**
      * 订单所属旅行社名称
      */
@@ -60,16 +64,34 @@ public class OrderModel {
     private String orderDetail;
 
 
-    /**
-     * getters and setters
-     */
-    public String getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getAgencyId() {
+        return agencyId;
+    }
+
+    public void setAgencyId(Integer agencyId) {
+        this.agencyId = agencyId;
+    }
+
+    /**
+     * getters and setters
+     */
+
 
     public String getOrderCreateDate() {
         return orderCreateDate;
@@ -118,14 +140,6 @@ public class OrderModel {
 
     public void setItemId(Integer itemId) {
         this.itemId = itemId;
-    }
-
-    public Integer getOrderAgencyId() {
-        return orderAgencyId;
-    }
-
-    public void setOrderAgencyId(Integer orderAgencyId) {
-        this.orderAgencyId = orderAgencyId;
     }
 
     public String getUsername() {
