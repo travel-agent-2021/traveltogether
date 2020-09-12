@@ -2,6 +2,7 @@ package com.travelia.service;
 
 import com.travelia.entity.ItemDO;
 import com.travelia.error.BusinessException;
+import com.travelia.service.model.CityModel;
 import com.travelia.service.model.ItemModel;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public interface ItemService {
     List<ItemModel> getItemsOrderByTotalOrderTimesDESC() throws BusinessException;
 
     List<ItemModel> getItemsOrderByCreateDateDESC() throws BusinessException;
+
+    List<ItemModel> getRelatedItems(ItemModel itemModel) throws BusinessException;
 
     int insertItem(ItemModel itemModel) throws BusinessException;
 

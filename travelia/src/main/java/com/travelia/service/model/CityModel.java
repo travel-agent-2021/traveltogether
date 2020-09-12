@@ -1,5 +1,7 @@
 package com.travelia.service.model;
 
+import java.util.Objects;
+
 /**
  * 城市模型
  */
@@ -60,5 +62,27 @@ public class CityModel {
 
     public void setCityImageSource(String cityImageSource) {
         this.cityImageSource = cityImageSource;
+    }
+
+    /**
+     * equals方法
+     * @param o
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CityModel cityModel = (CityModel) o;
+        return cityId.equals(cityModel.cityId);
+    }
+
+    /**
+     * hashcode
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(cityId);
     }
 }

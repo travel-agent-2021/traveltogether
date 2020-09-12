@@ -1,10 +1,11 @@
 $(document).ready(function () {
-    var itemId = getItemId();
+    let itemId = getItemId();
     initItemInfo(itemId);
+    initRelatedItems(itemId);
 });
 
 function getItemId() {
-    var itemId = window.localStorage['itemId'];
+    let itemId = window.localStorage['itemId'];
     if (itemId == null) {
         window.location.href = "index.html";
         return 0;
@@ -57,6 +58,69 @@ function setItemInfo(item) {
     // set image
 }
 
+function initRelatedItems(itemId) {
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/item/getRelatedItems",
+        xhrFields: { withCredentials: true },
+        data: {
+            "itemId": itemId
+        },
+        success: function(data) {
+            if (data.status === "success") {
+                let itemList = data.data;
+                loadRelatedItems(itemList);
+            } else {
+                alert("获取信息失败, " + data.data.errMsg);
+            }
+        },
+        error: function(data) {
+            alert("获取信息失败, " + data.responseText);
+        }
+    });
+}
+
+function loadRelatedItems(itemList) {
+    if (itemList == null || itemList.length === 0) {
+        let dom = '<h3>无相关推荐</h3>';
+        $("#relatedItems").append($(dom));
+        return;
+    }
+    for (let i = 0; i < itemList.length; i++) {
+        let item = itemList[i];
+        let imageSource = "";
+        if (item.itemImageSources == null || item.itemImageSources.length === 0) {
+            imageSource = "assets/img/tmp/property-small-1.png";
+        }
+        var dom = '<div class="property">\n' +
+            '                                                <div class="image">\n' +
+            '                                                    <a href="#" onclick="getItemDetails(' + item.itemId + ')"></a>\n' +
+            '                                                    <img src="' + imageSource + '" alt="">\n' +
+            '                                                </div>\n' +
+            '                                                <div class="wrapper">\n' +
+            '                                                    <div class="title">\n' +
+            '                                                        <h3>\n' +
+            '                                                            <a href="#" onclick="getItemDetails(' + item.itemId + ')">' + item.itemName + '</a>\n' +
+            '                                                        </h3>\n' +
+            '                                                    </div>\n' +
+            '                                                    <div class="location">' + item.agencyTitle + '</div>\n' +
+            '                                                    <div class="price">￥ ' + item.itemPrice + '</div>\n' +
+            '                                                </div>\n' +
+            '                                            </div>';
+        $("#relatedItems").append($(dom));
+    }
+}
+
+function getItemDetails(itemId) {
+    if (window.localStorage) {
+        localStorage.itemId = itemId;
+        window.location.href = 'Detail.html';
+    } else {
+        alert("Your browser does not support this technology.");
+    }
+}
+
+
 // to do
 function placeOrder() {
     $.ajax({
@@ -65,7 +129,7 @@ function placeOrder() {
         xhrFields: { withCredentials: true },
         success: function(data) {
             if (data.status === "success") {
-                var user = data.data;
+                let user = data.data;
             } else {
                 if (data.data.errorCode === 0) {
                     alert();

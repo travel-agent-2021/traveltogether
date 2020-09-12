@@ -93,7 +93,24 @@ public class ItemController extends BaseController {
         return CommonReturnType.create(itemModelList);
     }
 
-
+    /**
+     * 获取相关商品信息
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getRelatedItems", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType getRelatedItems(@RequestParam(name = "itemId") Integer itemId) throws BusinessException {
+        ItemModel itemModel = itemService.getItemByItemId(itemId);
+        if (itemId == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        List<ItemModel> relatedItems = itemService.getRelatedItems(itemModel);
+        if (relatedItems == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        return CommonReturnType.create(relatedItems);
+    }
 
     /**
      * 添加商品信息

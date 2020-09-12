@@ -125,6 +125,51 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /**
+     * 获取某商品相关商品信息
+     * @param itemModel
+     * @return
+     * @throws BusinessException
+     */
+    @Override
+    public List<ItemModel> getRelatedItems(ItemModel itemModel) throws BusinessException {
+        if (itemModel == null) {
+            return null;
+        }
+
+        // 获取商品包含城市
+        List<CityModel> containedCities = itemModel.getCityModels();
+        if (containedCities == null || containedCities.size() == 0) {
+            return null;
+        }
+
+        // 获取所有商品
+        List<ItemModel> itemModelList = getAllItems();
+        if (itemModelList == null || itemModelList.size() == 0) {
+            return null;
+        }
+
+        List<ItemModel> relatedItems = new ArrayList<>();
+        // 对比商品城市信息获取相关信息
+        for (ItemModel item : itemModelList) {
+            List<CityModel> cities = item.getCityModels();
+            if (cities != null && cities.size() != 0) {
+                for (CityModel city: containedCities) {
+                    if (cities.contains(city) && !item.getItemId().equals(itemModel.getItemId())) {
+                        relatedItems.add(item);
+                    }
+                }
+            }
+        }
+
+        // 添加至多三条相关商品信息
+        if (relatedItems.size() < 3) {
+            return relatedItems;
+        } else {
+            return relatedItems.subList(0, 3);
+        }
+    }
+
+    /**
      * 添加商品信息
      * @param itemModel
      * @return

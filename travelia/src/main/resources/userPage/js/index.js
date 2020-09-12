@@ -50,14 +50,13 @@ function loadHottest(itemsList) {
     if (itemsList == null || itemsList === []) {
         return;
     }
-    for (var i = 0; i < itemsList.length; i++) {
-        var item = itemsList[i];
-        var imageSource = "";
+    for (let i = 0; i < itemsList.length; i++) {
+        let item = itemsList[i];
+        let imageSource = "";
         if (item.itemImageSources == null || item.itemImageSources.length === 0) {
             imageSource = "assets/img/tmp/property-small-1.png";
-
         }
-        var dom = '<div class="property span3">\n' +
+        let dom = '<div class="property span3">\n' +
             '                <div class="image">\n' +
             '                    <div class="content">\n' +
             '                        <a href="#" onclick="getItemDetails(' + item.itemId + ')"></a>\n' +
