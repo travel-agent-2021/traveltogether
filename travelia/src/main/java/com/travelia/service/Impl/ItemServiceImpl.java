@@ -142,21 +142,8 @@ public class ItemServiceImpl implements ItemService {
         ItemDO itemDO = convertFormItemModel2DO(itemModel);
         itemDOMapper.insertSelective(itemDO);
 
-        // 插入城市记录表
-        List<CityModel> cityModelList = itemModel.getCityModels();
-        if (cityModelList != null) {
-            for (CityModel cityModel: cityModelList) {
-                if (cityModel != null) {
-                    ItemCityDOKey itemCityDOKey = new ItemCityDOKey();
-                    itemCityDOKey.setCityId(cityModel.getCityId());
-                    itemCityDOKey.setItemId(itemModel.getItemId());
-                    itemCityDOMapper.insertSelective(itemCityDOKey);
-                }
-            }
-        }
-
         // 插入图片记录表
-        List<String> images = itemModel.getItemImageSources();
+        /*List<String> images = itemModel.getItemImageSources();
         if (images != null) {
             for (String imageSrc: images) {
                 if (imageSrc != null) {
@@ -166,7 +153,7 @@ public class ItemServiceImpl implements ItemService {
                     itemImageDOMapper.insertSelective(itemImageDO);
                 }
             }
-        }
+        }*/
 
         return 0;
     }
@@ -208,6 +195,7 @@ public class ItemServiceImpl implements ItemService {
         }
         ItemDO itemDO = convertFormItemModel2DO(itemModel);
         int flag = itemDOMapper.updateByPrimaryKeySelective(itemDO);
+
         return flag;
     }
 
@@ -269,6 +257,11 @@ public class ItemServiceImpl implements ItemService {
         return cityModel;
     }
 
+    /**
+     * ItemDO转化为ItemModel
+     * @param itemModel
+     * @return
+     */
     private ItemDO convertFormItemModel2DO(ItemModel itemModel) {
         if (itemModel == null) {
             return null;

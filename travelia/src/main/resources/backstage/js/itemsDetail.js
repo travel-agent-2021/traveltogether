@@ -31,7 +31,7 @@ function loadData(data) {
     $("#maxTourists").val(data.maxTourists);
     $("#agencyId").val(data.agencyId);
     $("#agencyTitle").val(data.agencyTitle);
-    $("#detail").val(data.itemDetail);
+    $("#detail").text(data.itemDetail);
 }
 
 function updateItem() {

@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @Controller
 public class BaseController {
@@ -61,9 +62,36 @@ public class BaseController {
         return encryptStr;
     }
 
+    /**
+     * 获取当前日期
+     * @param pattern
+     * @return
+     */
     public String getNowDate(String pattern) {
         String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern));
         return now;
     }
+
+    /**
+     * 生成10位随机ID
+     * @return
+     */
+    public  Integer generateRandomId() {
+        StringBuilder id = new StringBuilder();
+
+        // 取年份后两位
+        String now = getNowDate("yyyy");
+        id.append(now.substring(now.length() - 2));
+
+        // 取时间戳后六位
+        String timeStr = String.valueOf(System.currentTimeMillis());
+        id.append(timeStr.substring(timeStr.length() - 6));
+
+        // 取随机两位数10-99
+        id.append(new Random().nextInt(90) + 10);
+
+        return Integer.parseInt(id.toString());
+    }
+
 
 }

@@ -5,6 +5,7 @@ import com.travelia.error.BusinessError;
 import com.travelia.error.BusinessException;
 import com.travelia.response.CommonReturnType;
 import com.travelia.service.CityService;
+import com.travelia.service.ItemCityService;
 import com.travelia.service.ItemService;
 import com.travelia.service.model.CityModel;
 import com.travelia.service.model.ItemModel;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -27,6 +27,9 @@ public class ItemController extends BaseController {
 
     @Autowired
     private CityService cityService;
+
+    @Autowired
+    private ItemCityService itemCityService;
 
 
     /**
@@ -124,7 +127,9 @@ public class ItemController extends BaseController {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入旅行社");
         }
 
+
         ItemModel itemModel = new ItemModel();
+        itemModel.setItemId(generateItemId());
         itemModel.setItemName(itemName);
         itemModel.setDuration(duration);
         itemModel.setMaxTourists(maxTourists);
@@ -134,13 +139,17 @@ public class ItemController extends BaseController {
         itemModel.setAgencyId(agencyId);
         itemModel.setTotalOrderTimes(0);
         itemModel.setItemCreateDate(getNowDate("yyyy-MM-dd"));
-        // 根据商品名设置城市信息
-        itemModel.setCityModels(setCityList(itemName));
         // 待修改
         itemModel.setItemImageSources(null);
 
-
         itemService.insertItem(itemModel);
+
+        // 根据商品名设置城市信息
+        Integer itemId = itemModel.getItemId();
+        itemModel.setCityModels(setCityList(itemName));
+        itemCityService.addItemCityDOKeys(itemId, itemModel.getCityModels());
+
+
         return CommonReturnType.create();
     }
 
@@ -178,11 +187,21 @@ public class ItemController extends BaseController {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品价格");
         }
         if (agencyId == null) {
-            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入旅行社");
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入旅行社ID");
         }
 
         ItemModel itemModel = itemService.getItemByItemId(itemId);
-        itemModel.setItemId(itemId);
+        if (itemModel == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+
+        // 修改城市信息
+        if (!itemName.equals(itemModel.getItemName())) {
+            //itemModel.setCityModels(setCityList(itemName));
+            itemCityService.deleteByItemId(itemId);
+            itemCityService.addItemCityDOKeys(itemId, setCityList(itemName));
+        }
+        // 修改基本信息
         itemModel.setItemName(itemName);
         itemModel.setDuration(duration);
         itemModel.setMaxTourists(maxTourists);
@@ -190,6 +209,10 @@ public class ItemController extends BaseController {
         itemModel.setAgencyId(agencyId);
         itemModel.setItemPrice(itemPrice);
         itemModel.setItemDetail(itemDetail);
+        itemModel.setItemCreateDate(getNowDate("yyyy-MM-dd"));
+
+        // to do 修改图片信息
+
         itemService.updateItemById(itemModel);
         return CommonReturnType.create();
     }
@@ -230,5 +253,16 @@ public class ItemController extends BaseController {
         return list;
     }
 
+    /**
+     * 生成随机itemId
+     * @return
+     */
+    private Integer generateItemId () {
+        Integer id = generateRandomId();
+        if (itemService.getItemByItemId(id) != null) {
+            id = generateRandomId();
+        }
+        return id;
+    }
 
 }

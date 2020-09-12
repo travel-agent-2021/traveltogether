@@ -1,7 +1,6 @@
 $(document).ready(function () {
     getHottestItems();
     getLatestItems();
-    //$("#exampleItem").hide();
 });
 
 
@@ -47,10 +46,6 @@ function getLatestItems() {
 
 }
 
-function getAllItems() {
-
-}
-
 function loadHottest(itemsList) {
     if (itemsList == null || itemsList === []) {
         return;
@@ -65,13 +60,13 @@ function loadHottest(itemsList) {
         var dom = '<div class="property span3">\n' +
             '                <div class="image">\n' +
             '                    <div class="content">\n' +
-            '                        <a href="#" onclick="getDetails(' + item.itemId + ')"></a>\n' +
+            '                        <a href="#" onclick="getItemDetails(' + item.itemId + ')"></a>\n' +
             '                        <img src="' + imageSource +'" alt="">\n' +
             '                    </div>\n' +
             '                    <div class="price">￥' + item.itemPrice + '</div>\n' +
             '                </div>\n' +
             '            <div class="title">\n' +
-            '                <h2><a href="#" onclick="getDetails(' + item.itemId + ')">' + item.itemName + '</a></h2>\n' +
+            '                <h2><a href="#" onclick="getItemDetails(' + item.itemId + ')">' + item.itemName + '</a></h2>\n' +
             '            </div>\n' +
             '            <div class="location">旅行社：' + item.agencyTitle + '</div>\n' +
             '            <div class="area">\n' +
@@ -95,13 +90,13 @@ function loadLatest(itemsList) {
         }
         var dom = '<div class="property">\n' +
             '                                                <div class="image">\n' +
-            '                                                    <a href="#" onclick="getDetails(' + item.itemId + ')"></a>\n' +
+            '                                                    <a href="#" onclick="getItemDetails(' + item.itemId + ')"></a>\n' +
             '                                                    <img src="' + imageSource + '" alt="">\n' +
             '                                                </div>\n' +
             '                                                <div class="wrapper">\n' +
             '                                                    <div class="title">\n' +
             '                                                        <h3>\n' +
-            '                                                            <a href="detail.html">' + item.itemName + '</a>\n' +
+            '                                                            <a href="#" onclick="getItemDetails(' + item.itemId + ')">' + item.itemName + '</a>\n' +
             '                                                        </h3>\n' +
             '                                                    </div>\n' +
             '                                                    <div class="location">' + item.agencyTitle + '</div>\n' +
@@ -112,7 +107,7 @@ function loadLatest(itemsList) {
     }
 }
 
-function getDetails(itemId) {
+function getItemDetails(itemId) {
     if (window.localStorage) {
         localStorage.itemId = itemId;
         window.location.href = 'Detail.html';
@@ -121,6 +116,12 @@ function getDetails(itemId) {
     }
 }
 
-function personalInfo() {
+function personalInfo(userId) {
+    if (window.localStorage) {
+        localStorage.userId = userId;
+        window.location.href = "personalInfo.html";
+    } else {
+        alert("Your browser does not support this technology.");
+    }
 
 }
