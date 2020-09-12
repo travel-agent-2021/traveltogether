@@ -53,14 +53,35 @@ public interface ItemDOMapper {
      */
     int updateByPrimaryKey(ItemDO record);
 
-
+    /**
+     * 查询所有商品
+     * @return
+     */
     List<ItemDO> selectAllItems();
 
-
+    /**
+     * 根据AgencyId查询商品
+     * @param agencyId
+     * @return
+     */
     List<ItemDO> selectByAgencyId(Integer agencyId);
 
+    /**
+     * 将商品按商品下单次数降序排列
+     * @return
+     */
     List<ItemDO> selectAllByOrderTimesDESC();
 
-
+    /**
+     * 将商品按时间降序排列
+     * @return
+     */
     List<ItemDO> selectAllByCreateDateDESC();
+
+    /**
+     * 查询所有包含itemName的商品
+     * @param itemName
+     * @return
+     */
+    List<ItemDO> selectLikeItemName(String itemName);
 }

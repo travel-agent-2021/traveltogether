@@ -218,4 +218,11 @@
     ORDER BY item_create_date DESC
   </select>
 
+  <select id="selectLikeItemName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from item_info
+    where item_name like #{itemName,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

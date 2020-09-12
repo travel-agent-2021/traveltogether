@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -111,6 +112,28 @@ public class ItemController extends BaseController {
         }
         return CommonReturnType.create(relatedItems);
     }
+
+    /**
+     * 根据itemName搜索item
+     * @param itemName
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/searchItemsByItemName", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType searchItemsByItemName(@RequestParam(name = "itemName") String itemName) throws BusinessException {
+        List<ItemModel> itemModelList;
+        if (itemName == null || itemName.equals("")) {
+            itemModelList = itemService.getAllItems();
+        } else {
+            itemModelList = itemService.searchItemsByItemName(itemName);
+        }
+        if (itemModelList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        return CommonReturnType.create(itemModelList);
+    }
+
 
     /**
      * 添加商品信息

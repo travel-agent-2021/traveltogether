@@ -125,7 +125,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /**
-     * 获取某商品相关商品信息
+     * 获取某商品相关商品
      * @param itemModel
      * @return
      * @throws BusinessException
@@ -167,6 +167,28 @@ public class ItemServiceImpl implements ItemService {
         } else {
             return relatedItems.subList(0, 3);
         }
+    }
+
+
+    /**
+     * 根据商品名搜索商品
+     * @param itemName
+     * @return
+     * @throws BusinessException
+     */
+    @Override
+    public List<ItemModel> searchItemsByItemName(String itemName) throws BusinessException {
+        List<ItemDO> itemDOList = itemDOMapper.selectLikeItemName(itemName);
+        if (itemDOList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+
+        List<ItemModel> itemModels = new ArrayList<>();
+        for (ItemDO itemDO: itemDOList) {
+            AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(itemDO.getAgencyId());
+            itemModels.add(convertFromItemDO2Model(itemDO, agencyDO));
+        }
+        return itemModels;
     }
 
     /**
