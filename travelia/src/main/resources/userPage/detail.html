@@ -251,7 +251,7 @@
 </div><!-- /#wrapper-outer -->
 
 <!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+<div class="modal fade" data-backdrop="static" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
      style="width: 200px;">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -263,12 +263,14 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <button type="button" class="btn btn-default" data-dismiss="modal" style="left: 0px;">
-                    微信
-                </button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" style="right: 0px;">
-                    支付宝
-                </button>
+                <div class="social-container">
+                <a onclick="success()">
+                    <i class="iconfont icon-weixin"></i>
+                </a>
+                <a onclick="success()">
+                    <i class="iconfont icon-zhifubao"></i>
+                </a>
+                </div>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -340,13 +342,6 @@
 <script>
     $(function () {
         $('#myModal').modal('hide')
-    });
-</script>
-<script>
-    $(function () {
-        $('#myModal').on('hide.bs.modal', function () {
-            alert('支付成功！');
-        })
     });
 </script>
 <!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true"></script>-->
