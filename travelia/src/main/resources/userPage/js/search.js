@@ -168,11 +168,10 @@ function searchItems() {
     initSearchItems(itemName);
 }
 
-window.onkeypress = function (ev) {
+/*
+function onKeyPress (ev) {
     if (ev.code === "13") {
-        ev.cancleBubble = true;
-        ev.returnValue = false;
         searchItems();
-        return false;
+
     }
-};
+}*/

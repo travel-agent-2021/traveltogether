@@ -177,7 +177,7 @@ public class ItemServiceImpl implements ItemService {
      * @throws BusinessException
      */
     @Override
-    public List<ItemModel> searchItemsByItemName(String keyword) throws BusinessException {
+    public List<ItemModel> searchItemsByKeyword(String keyword) throws BusinessException {
         //List<ItemDO> itemDOList = itemDOMapper.selectLikeItemName("%" + itemName + "%");
         List<ItemDO> itemDOList = itemDOMapper.selectAllItems();
         if (itemDOList == null) {

@@ -126,7 +126,7 @@ public class ItemController extends BaseController {
         if (itemName == null || itemName.equals("")) {
             itemModelList = itemService.getAllItems();
         } else {
-            itemModelList = itemService.searchItemsByItemName(itemName);
+            itemModelList = itemService.searchItemsByKeyword(itemName);
         }
         if (itemModelList == null) {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
