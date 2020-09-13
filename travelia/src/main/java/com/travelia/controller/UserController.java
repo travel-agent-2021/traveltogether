@@ -19,6 +19,10 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.attribute.FileAttributeView;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -219,7 +223,6 @@ public class UserController extends BaseController {
      * @param password
      * @param telephone
      * @param gender
-     * @param age
      * @param birthday
      * @param email
      * @param userImageSource
@@ -235,7 +238,7 @@ public class UserController extends BaseController {
                                     @RequestParam(name = "password") String password,
                                     @RequestParam(name = "telephone") String telephone,
                                     @RequestParam(name = "gender") Integer gender,
-                                    @RequestParam(name = "age") Integer age,
+                                   // @RequestParam(name = "age") Integer age,
                                     @RequestParam(name = "birthday") String birthday,
                                     @RequestParam(name = "email") String email,
                                     @RequestParam(name = "userImageSource") String userImageSource) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
@@ -245,21 +248,21 @@ public class UserController extends BaseController {
         if (telephone == null || ("").equals(telephone)) {
             throw new BusinessException(BusinessError.USER_TELEPHONE_NOT_EMPTY);
         }
-        UserModel userModel = userService.getUserByUserId(userId);
-        if (userModel == null) {
+        UserModel user = userService.getUserByUserId(userId);
+        if (user == null) {
             throw new BusinessException(BusinessError.USER_NOT_FOUND);
         }
 
         if (password == null || ("").equals(password)) {
-            userModel.setEncryptPassword(userModel.getEncryptPassword());
+            user.setEncryptPassword(user.getEncryptPassword());
+        } else {
+            user.setEncryptPassword(encodeByMD5(password));
         }
 
-        UserModel user = new UserModel();
         user.setUserId(userId);
         user.setUsername(username);
         user.setUserTelephone(telephone);
-        user.setEncryptPassword(encodeByMD5(password));
-        user.setAge(age);
+        user.setAge(getAge(birthday));
         user.setGender(gender);
         user.setBirthday(birthday);
         user.setUserEmail(email);
@@ -301,4 +304,43 @@ public class UserController extends BaseController {
         }
         return CommonReturnType.create(null, "fail");
     }
+
+    private static Integer getAge(String birthday) throws BusinessException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date formatDate = null;
+        try {
+            formatDate = sdf.parse(birthday);
+        } catch (ParseException e) {
+           throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "生日格式有误！");
+        }
+        Calendar cal = Calendar.getInstance();
+        //出生日期晚于当前时间，无法计算
+        if (cal.before(formatDate)) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "生日超过当前日期！");
+        }
+        int yearNow = cal.get(Calendar.YEAR);
+        int monthNow = cal.get(Calendar.MONTH);
+        int dayOfMonthNow = cal.get(Calendar.DAY_OF_MONTH);
+        cal.setTime(formatDate);
+        int yearBirth = cal.get(Calendar.YEAR);
+        int monthBirth = cal.get(Calendar.MONTH);
+        int dayOfMonthBirth = cal.get(Calendar.DAY_OF_MONTH);
+        int age = yearNow - yearBirth;
+        if (monthNow <= monthBirth) {
+            if (monthNow == monthBirth) {
+                if (dayOfMonthNow < dayOfMonthBirth) {
+                    age--;
+                }
+            } else {
+                age--;
+            }
+        }
+        return age;
+    }
+
+
+    public static void main(String[] args) throws BusinessException {
+        System.out.println(getAge("2022-12-31"));
+    }
+
 }

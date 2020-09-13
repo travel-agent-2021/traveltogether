@@ -73,8 +73,12 @@ public class UserServiceImpl implements UserService {
         if (userModel == null) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "更新失败");
         }
-        int flag = userDOMapper.updateByPrimaryKeySelective(convertFromModel2DO(userModel));
-        return flag;
+        try {
+            userDOMapper.updateByPrimaryKeySelective(convertFromModel2DO(userModel));
+        } catch (DuplicateKeyException e) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "手机号已注册");
+        }
+        return 0;
     }
 
     /**
