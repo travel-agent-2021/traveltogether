@@ -110,9 +110,8 @@
                                     <li><a style="font-size: 20px;" id="user_name"></a></li>
                                     <li><a style="font-size: 20px;" id="user_telephone"></a></li>
                                     <li>
-                                        <button type="button" data-toggle="modal" data-target="#myModal"
-                                                class="btn btn-primary btn-lg btn-block"
-                                                style="background-color: rgb(122, 98, 255);color: black;">修改个人资料
+                                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                            修改个人资料
                                         </button>
                                     </li>
                                 </ul>
@@ -185,7 +184,7 @@
     </div>
 </div>-->
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" style="display: none" role="dialog" data-backdrop="false" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -193,7 +192,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    修改个人信息
+                    模态框（Modal）标题
                 </h4>
             </div>
             <div class="modal-body">
@@ -207,10 +206,6 @@
                         <input type="text" class="form-control" id="telephone" placeholder="请输入手机号">
                     </div>
                     <div>
-                        <label for="age" class="control-label">年龄：</label>
-                        <input type="text" class="form-control" id="age" placeholder="请输入年龄">
-                    </div>
-                    <div>
                         <label for="gender" class="control-label">性别：</label>
                         <select class="form-control" id="gender" type="text">
                             <option value ="2">请选择</option>
@@ -218,18 +213,16 @@
                             <option value ="0">女</option>
                         </select>
                     </div>
-                    &lt;!&ndash;<div>
+                    <div>
                         <label for="email" class="control-label">邮箱：</label>
                         <input type="text" class="form-control" id="email" placeholder="请输入邮箱">
                     </div>
                     <div>
                         <label for="birthday" class="control-label">生日：</label>
                         <input type="text" class="form-control" id="birthday" placeholder="请输入生日">
-                    </div>&ndash;&gt;
+                    </div>
                 </form>
             </div>
-
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
@@ -237,11 +230,9 @@
                     提交更改
                 </button>
             </div>
-        </div>
-    </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
-
-
 
 <div class="palette">
     <div class="toggle">

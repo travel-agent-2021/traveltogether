@@ -10,14 +10,16 @@
     <link rel="stylesheet" href="assets/css/bootstrap-responsive.css" type="text/css">
     <link rel="stylesheet" href="assets/libraries/chosen/chosen.css" type="text/css">
     <link rel="stylesheet" href="assets/libraries/bootstrap-fileupload/bootstrap-fileupload.css" type="text/css">
-    <link rel="stylesheet" href="assets/libraries/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css" type="text/css">
+    <link rel="stylesheet"
+          href="assets/libraries/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css"
+          type="text/css">
     <link rel="stylesheet" href="assets/css/realia-blue.css" type="text/css" id="color-variant-default">
     <link rel="stylesheet" href="#" type="text/css" id="color-variant">
 
     <title>Realia | HTML Template</title>
 </head>
 <body>
-<div id="wrapper-outer" >
+<div id="wrapper-outer">
     <div id="wrapper">
         <div id="wrapper-inner">
             <!-- BREADCRUMB -->
@@ -28,12 +30,25 @@
                             <ul class="breadcrumb pull-left">
                                 <li><a href="index.html">首页</a></li>
                             </ul><!-- /.breadcrumb -->
-                            <div class="account pull-right">
+
+                            <div class="account pull-right" id="logoutPanel">
                                 <ul class="nav nav-pills">
-                                    <li><a>欢迎您，安小雨</a></li>
-                                    <li><a href="personalInfo.html">个人中心</a></li>
+                                    <li><a href="#" id="logout">退出登录</a></li>
                                 </ul>
                             </div>
+                            <div class="account pull-right" id="loginAndRegister">
+                                <ul class="nav nav-pills">
+                                    <li><a href="login.html">登录</a></li>
+                                    <li><a href="registration.html">注册</a></li>
+                                </ul>
+                            </div>
+                            <div class="account pull-right">
+                                <ul class="nav nav-pills">
+                                    <li><a id="user-name-label" href="#" onclick="personalInfo()">欢迎您，访客</a></li>
+                                    <li style="display: none" id="user_id"></li>
+                                </ul>
+                            </div>
+
                         </div><!-- /.span12 -->
                     </div><!-- /.row -->
                 </div><!-- /.container -->
@@ -84,142 +99,150 @@
             <!-- NAVIGATION -->
             <!-- CONTENT -->
             <div id="content">
-<div class="container">
-    
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-    <div class="navbar-inner">
-        <ul class="nav navbar-nav">
-            <li><a href="#"><img class="img-circle" style="width: 50px;height: 50px;" src="assets/img/tmp/头像.jpg" alt=""></a></li>
-            <li><a style="font-size: 20px;">安小雨</a></li>
-            <li><a style="font-size: 20px;">男</a></li>
-            <li><a style="font-size: 20px;">2513077685@qq.com</a></li>
-            <li> <button type="button" data-toggle="modal" data-target="#myModal" 
-            class="btn btn-primary btn-lg btn-block" style="background-color: rgb(122, 98, 255);color: black;">修改个人资料</button></li>
-        </ul>
-    </div>
-    </div>
-</nav>
-    <div class="table-responsive">
-            
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-      <thead>
-        <tr>
-          <th>订单ID</th>
-          <th>商品图标</th>
-          <th>商品名</th>
-          <th>当前抱团人数</th>
-          <th>出发时间</th>
-          <th>当前状态</th>
-          <th>查看订单</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><a>1681016</a></td>
-          <td><img class="img test" src="img/test.jpg" alt="" width="120px" height="60px"></td>
-          <td>北京-天津2日游</td>
-          <td>7/10</td>
-          <td>2020.9.25</td>
-          <td>仍在抱团</td>
-          <td><a href="orderdetail.html">查看</a></td>>
-        </tr>
-        <tr>
-            <td><a>1681016</a></td>
-            <td><img class="img test" src="img/test.jpg" alt="" width="120px" height="60px"></td>
-            <td>北京-天津2日游</td>
-            <td>7/10</td>
-            <td>2020.9.25</td>
-            <td>仍在抱团</td>
-            <td><a href="orderdetail.html">查看</a></td>>
-          </tr>
-          <tr>
-            <td><a>1681016</a></td>
-            <td><img class="img test" src="img/test.jpg" alt="" width="120px" height="60px"></td>
-            <td>北京-天津2日游</td>
-            <td>7/10</td>
-            <td>2020.9.25</td>
-            <td>仍在抱团</td>
-            <td><a href="orderdetail.html">查看</a></td>>
-          </tr>
-          <tr>
-            <td><a>1681016</a></td>
-            <td><img class="img test" src="img/test.jpg" alt="" width="120px" height="60px"></td>
-            <td>北京-天津2日游</td>
-            <td>7/10</td>
-            <td>2020.9.25</td>
-            <td>仍在抱团</td>
-            <td><a href="orderdetail.html">查看</a></td>>
-          </tr>
-          <tr>
-            <td><a>1681016</a></td>
-            <td><img class="img test" src="img/test.jpg" alt="" width="120px" height="60px"></td>
-            <td>北京-天津2日游</td>
-            <td>7/10</td>
-            <td>2020.9.25</td>
-            <td>仍在抱团</td>
-            <td><a href="orderdetail.html">查看</a></td>>
-          </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-</div><!-- /#content -->
-</div><!-- /#wrapper-inner -->
-</div><!-- /#wrapper -->
+                <div class="container">
+
+                    <nav class="navbar navbar-default" role="navigation">
+                        <div class="container-fluid">
+                            <div class="navbar-inner">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#"><img class="img-circle" style="width: 50px;height: 50px;"
+                                                         id="user_image" src="" alt=""></a></li>
+                                    <li><a style="font-size: 20px;" id="user_name"></a></li>
+                                    <li><a style="font-size: 20px;" id="user_telephone"></a></li>
+                                    <li>
+                                        <button type="button" data-toggle="modal" data-target="#myModal"
+                                                class="btn btn-primary btn-lg btn-block"
+                                                style="background-color: rgb(122, 98, 255);color: black;">修改个人资料
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered" id="dataTable">
+                            <thead>
+                            <tr>
+                                <th>订单ID</th>
+                                <th>商品图标</th>
+                                <th>商品名</th>
+                                <th>当前抱团人数</th>
+                                <th>出发时间</th>
+                                <th>当前状态</th>
+                                <th>查看订单</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><a>1681016</a></td>
+                                <td><img class="img test" src="img/test.jpg" alt="" width="120px" height="60px"></td>
+                                <td>北京-天津2日游</td>
+                                <td>7/10</td>
+                                <td>2020.9.25</td>
+                                <td>仍在抱团</td>
+                                <td><a href="orderdetail.html">查看</a></td>
+                                >
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div><!-- /#content -->
+        </div><!-- /#wrapper-inner -->
+    </div><!-- /#wrapper -->
 </div><!-- /#wrapper-outer -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 300px;">
+
+<!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 300px;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
                 <h4 class="modal-title" id="myModalLabel">修改个人资料</h4>
             </div>
-                <form class="modal-body" name="addForm" id="form_add" action="<%=basePath%>/teacher/addProblem.action" method="post">
-                 昵称<input type="text" name="proDif" class="form-control" value="安小雨"style="font-size: 15px">
-                 <br> 
-                 性别<input type="text" name="chaNo" class="form-control" value="男" style="font-size: 15px"> 
-                 <br> 
-                 邮箱<input type="text" name="chaTitle" class="form-control" value="2513077685@qq.com" style="font-size: 15px"> 
-                 <br> 
-                 手机号<input type="text" name="chaMpoint" class="form-control" value="13035152271">
-                 </form>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input type="text" name="" class="form-control" value="">
+                </div>
+                <div class="form-group">
+                    <label for="user-name-label">性别</label>
+                    <input type="text" name="" class="form-control" value="男" style="font-size: 15px">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="" class="form-control" value="2513077685@qq.com" style="font-size: 15px">
+                </div>
+                <div class="form-group">
+                    手机号<input type="text" name="" class="form-control" value="13035152271">
+                </div>
+            </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" style="left: 0px;">确定</button>
                 <button type="button" class="btn btn-default" style="right: 0px;" data-dismiss="modal">取消</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-<!--
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 500px;">
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-                <span>x</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">个人资料</h4>
         </div>
-        <form class="modal-body" name="addForm" id="form_add"
-            action="<%=basePath%>/teacher/addProblem.action" method="post">
-            关键字<input type="text" name="proKeyw" class="form-control" value=""
-                style="font-size: 15px"> 昵称<input type="text"
-                name="proDif" class="form-control" value="安小雨"
-                style="font-size: 15px"> 性别<input type="text"
-                name="chaNo" class="form-control" value="男"
-                style="font-size: 15px"> 邮箱<input type="text"
-                name="chaTitle" class="form-control" value="2513077685@qq.com"
-                style="font-size: 15px"> 手机号<input type="text"
-                name="chaMpoint" class="form-control" value="13035152271"
-        </form>
-        <div class="modal-footer">
-            <input type="button" value="确定" class="btn btn-primary"
-                onclick="check_add()">
+    </div>
+</div>-->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改个人信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div>
+                        <label for="user_name_1" class="control-label">用户名：</label>
+                        <input type="text" class="form-control" id="user_name_1" placeholder="请输入名">
+                    </div>
+                    <div>
+                        <label for="telephone" class="control-label">手机号：</label>
+                        <input type="text" class="form-control" id="telephone" placeholder="请输入手机号">
+                    </div>
+                    <div>
+                        <label for="age" class="control-label">年龄：</label>
+                        <input type="text" class="form-control" id="age" placeholder="请输入年龄">
+                    </div>
+                    <div>
+                        <label for="gender" class="control-label">性别：</label>
+                        <select class="form-control" id="gender" type="text">
+                            <option value ="2">请选择</option>
+                            <option value ="1">男</option>
+                            <option value ="0">女</option>
+                        </select>
+                    </div>
+                    &lt;!&ndash;<div>
+                        <label for="email" class="control-label">邮箱：</label>
+                        <input type="text" class="form-control" id="email" placeholder="请输入邮箱">
+                    </div>
+                    <div>
+                        <label for="birthday" class="control-label">生日：</label>
+                        <input type="text" class="form-control" id="birthday" placeholder="请输入生日">
+                    </div>&ndash;&gt;
+                </form>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="updateUserBtn">
+                    提交更改
+                </button>
+            </div>
         </div>
     </div>
 </div>
-</div>-->
+
+
+
 <div class="palette">
     <div class="toggle">
         <a href="#">Toggle</a>
@@ -284,7 +307,7 @@
     </div><!-- /.inner -->
 </div><!-- /.palette -->
 
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true"></script>
+<!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true"></script>-->
 <script type="text/javascript" src="assets/js/jquery.js"></script>
 <script type="text/javascript" src="assets/js/jquery.ezmark.js"></script>
 <script type="text/javascript" src="assets/js/jquery.currency.js"></script>
@@ -292,12 +315,15 @@
 <script type="text/javascript" src="assets/js/retina.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/carousel.js"></script>
-<script type="text/javascript" src="assets/js/gmap3.min.js"></script>
-<script type="text/javascript" src="assets/js/gmap3.infobox.min.js"></script>
-<script type="text/javascript" src="assets/libraries/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
+<!--<script type="text/javascript" src="assets/js/gmap3.min.js"></script>
+<script type="text/javascript" src="assets/js/gmap3.infobox.min.js"></script>-->
+<script type="text/javascript"
+        src="assets/libraries/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
 <script type="text/javascript" src="assets/libraries/chosen/chosen.jquery.min.js"></script>
 <script type="text/javascript" src="assets/libraries/iosslider/_src/jquery.iosslider.min.js"></script>
 <script type="text/javascript" src="assets/libraries/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <script type="text/javascript" src="assets/js/realia.js"></script>
+<script type="text/javascript" src="js/validLogin.js"></script>
+<script type="text/javascript" src="js/personalInfo.js"></script>
 </body>
 </html>

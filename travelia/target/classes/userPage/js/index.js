@@ -69,7 +69,7 @@ function loadHottest(itemsList) {
             '            </div>\n' +
             '            <div class="location">旅行社：' + item.agencyTitle + '</div>\n' +
             '            <div class="area">\n' +
-            '                <span class="key">天数</span>\n' +
+            '                <span class="key">天数：</span>\n' +
             '                <span class="value">' + item.duration + '</span>\n' +
             '            </div>\n' +
             '        </div>';
@@ -116,11 +116,29 @@ function getItemDetails(itemId) {
 }
 
 function personalInfo(userId) {
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/user/validateLogin",
+        xhrFields: { withCredentials: true },
+        success: function(data) {
+            if (data.status === "success") {
+                let user = data.data;
+                loadPersonalInfoPage(user.userId);
+            } else {
+                alert("请先登录");
+            }
+        },
+        error: function(data) {
+            alert("获取信息失败, " + data.responseText);
+        }
+    });
+}
+
+function loadPersonalInfoPage(userId) {
     if (window.localStorage) {
         localStorage.userId = userId;
         window.location.href = "personalInfo.html";
     } else {
         alert("Your browser does not support this technology.");
     }
-
 }
