@@ -240,8 +240,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="itemImage">商品图片</label>
-                        <input class="form-control" id="itemImage" type="text" aria-describedby="emailHelp" placeholder="image_src">
+                        <div>
+                            <img id="preview" width="100%" height="100%">
+                        </div>
+                        <form id="form" method="POST" enctype="multipart/form-data"
+                              action="value" onsubmit="return check();">
+
+                            <input type="file" onclick="readImage()" accept="image/*" name="file" id="file"/>
+                            <a class="btn btn-info " href="#"  onclick="Download()" >确认图片</a>
+
+                            <!--input class="form-control" id="agencyImageSource" type="text" value="输入邮箱"-->
+                            <input type="" hidden id="itemImageSource" />
+
+                        </form>
                     </div>
                     <a class="btn btn-primary " href="#" onclick="addItem()">添加商品</a>
                     <a class="btn btn-danger " href="items.html">取消添加</a>
