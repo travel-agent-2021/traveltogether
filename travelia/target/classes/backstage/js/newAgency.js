@@ -108,6 +108,7 @@ function Download(){
         //我想用当前秒是可以解决重名的问题了 不行你就换成毫秒
         //savaFile(imgdata,filename,"image");
 //console.log(imgdata);
+        //alert("filename"+filename);
         $("#agencyImageSource").val(filename);
 
         //var saveImage = canvas.toDataURL('image/png');

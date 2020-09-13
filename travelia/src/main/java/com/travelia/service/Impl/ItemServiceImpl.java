@@ -213,18 +213,20 @@ public class ItemServiceImpl implements ItemService {
         ItemDO itemDO = convertFormItemModel2DO(itemModel);
         itemDOMapper.insertSelective(itemDO);
 
+        System.out.println("图片处理");
         // 插入图片记录表
-        /*List<String> images = itemModel.getItemImageSources();
+        List<String> images = itemModel.getItemImageSources();
         if (images != null) {
             for (String imageSrc: images) {
                 if (imageSrc != null) {
+                    System.out.println("图片src"+imageSrc);
                     ItemImageDO itemImageDO = new ItemImageDO();
                     itemImageDO.setItemId(itemModel.getItemId());
                     itemImageDO.setItemImageSource(imageSrc);
                     itemImageDOMapper.insertSelective(itemImageDO);
                 }
             }
-        }*/
+        }
 
         return 0;
     }

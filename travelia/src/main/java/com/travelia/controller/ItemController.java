@@ -12,11 +12,21 @@ import com.travelia.service.model.ItemModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.BASE64Decoder;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/item")
@@ -144,6 +154,7 @@ public class ItemController extends BaseController {
      * @param minTourists
      * @param maxTourists
      * @param itemDetail
+     * @param itemImageSources
      * @return
      * @throws BusinessException
      */
@@ -155,7 +166,8 @@ public class ItemController extends BaseController {
                                     @RequestParam(name = "duration") Integer duration,
                                     @RequestParam(name = "minTourists") Integer minTourists,
                                     @RequestParam(name = "maxTourists") Integer maxTourists,
-                                    @RequestParam(name = "itemDetail") String itemDetail) throws BusinessException {
+                                    @RequestParam(name = "itemDetail") String itemDetail,
+                                    @RequestParam(name = "itemImageSources") String itemImageSources) throws BusinessException {
 
         if (itemName == null || itemName.equals("")) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品名称");
@@ -166,7 +178,9 @@ public class ItemController extends BaseController {
         if (agencyId == null) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入旅行社");
         }
-
+        System.out.println("iir"+itemImageSources);
+        List<String> imageRe = new ArrayList<>();
+        imageRe.add(itemImageSources);
 
         ItemModel itemModel = new ItemModel();
         itemModel.setItemId(generateItemId());
@@ -176,11 +190,12 @@ public class ItemController extends BaseController {
         itemModel.setMinTourists(minTourists);
         itemModel.setItemPrice(itemPrice);
         itemModel.setItemDetail(itemDetail);
+        itemModel.setItemImageSources(imageRe);
         itemModel.setAgencyId(agencyId);
         itemModel.setTotalOrderTimes(0);
         itemModel.setItemCreateDate(getNowDate("yyyy-MM-dd"));
         // 待修改
-        itemModel.setItemImageSources(null);
+        //itemModel.setItemImageSources(null);
 
         itemService.insertItem(itemModel);
 
@@ -192,7 +207,41 @@ public class ItemController extends BaseController {
 
         return CommonReturnType.create();
     }
-
+//    /**
+//     * 添加商品图片信息
+//     * @param itemImageResources
+//     * @return
+//     * @throws BusinessException
+//     */
+//    @RequestMapping(value = "/addItemImageResources", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+//    @ResponseBody
+//    public CommonReturnType addItem(@RequestParam(name = "itemImageResources") String itemImageResources) throws BusinessException {
+//
+////        if (itemName == null || itemName.equals("")) {
+////            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品名称");
+////        }
+////        if (itemPrice == null) {
+////            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品价格");
+////        }
+////        if (agencyId == null) {
+////            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入旅行社");
+////        }
+//
+//        List<String> imageRe = null;
+//        itemImageResources=imageRe.get(0);
+//        ItemModel itemModel = new ItemModel();
+//        itemModel.setItemImageSources(imageRe);
+//        //待修改啊啊啊
+//        itemService.insertItem(itemModel);
+//
+//        // 根据商品名设置城市信息
+//        Integer itemId = itemModel.getItemId();
+//        itemModel.setCityModels(setCityList(itemName));
+//        itemCityService.addItemCityDOKeys(itemId, itemModel.getCityModels());
+//
+//
+//        return CommonReturnType.create();
+//    }
     /**
      * 修改商品信息
      * @param itemId
