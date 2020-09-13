@@ -6,6 +6,7 @@ import com.travelia.error.BusinessException;
 import com.travelia.mapper.*;
 import com.travelia.service.ItemService;
 import com.travelia.service.OrderService;
+import com.travelia.service.UserService;
 import com.travelia.service.model.CityModel;
 import com.travelia.service.model.ItemModel;
 import com.travelia.service.model.OrderModel;
@@ -23,10 +24,14 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderDOMapper orderDOMapper;
 
-
     @Autowired
     private AgencyDOMapper agencyDOMapper;
 
+    @Autowired
+    private UserDOMapper userDOMapper;
+
+    @Autowired
+    private ItemDOMapper itemDOMapper;
 
 
     /**
@@ -97,48 +102,26 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
-     * 得到商品列表按下单次数降序排列
+     * 根据用户Id查询旅行社所有订单
+     * @param userId
      * @return
-     * @throws BusinessException
-
+     */
     @Override
-    public List<ItemModel> getItemsOrderByTotalOrderTimesDESC() throws BusinessException {
-        List<ItemDO> itemDOList = itemDOMapper.selectAllByOrderTimesDESC();
-        if (itemDOList == null) {
-            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+    public List<OrderModel> getOrdersByUserId(Integer userId) throws BusinessException {
+        List<OrderDO> orderDOS = orderDOMapper.selectByUserId(userId);
+        if (orderDOS == null) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "orderId未找到");
         }
-        List<ItemModel> itemModels = new ArrayList<>();
-        int num = Math.min(itemDOList.size(), 6);
-        for (int i = 0; i < num; i++) {
-            ItemDO itemDO = itemDOList.get(i);
-            AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(itemDO.getAgencyId());
-            itemModels.add(convertFromItemDO2Model(itemDO, agencyDO));
-        }
-        return itemModels;
-    }
- */
 
-    /**
-     * 商品按日期降序排列
-     * @return
-     * @throws BusinessException
-
-    @Override
-    public List<ItemModel> getItemsOrderByCreateDateDESC() throws BusinessException {
-        List<ItemDO> itemDOList = itemDOMapper.selectAllByCreateDateDESC();
-        if (itemDOList == null) {
-            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        List<OrderModel> orderModels = new ArrayList<>();
+        for (OrderDO orderDO: orderDOS) {
+            AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(orderDO.getAgencyId());
+            OrderModel orderModel = convertFromOrderDO2Model(orderDO, agencyDO);
+            orderModels.add(orderModel);
         }
-        List<ItemModel> itemModels = new ArrayList<>();
-        int num = Math.min(itemDOList.size(), 7);
-        for (int i = 0; i < num; i++) {
-            ItemDO itemDO = itemDOList.get(i);
-            AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(itemDO.getAgencyId());
-            itemModels.add(convertFromItemDO2Model(itemDO, agencyDO));
-        }
-        return itemModels;
+        return orderModels;
     }
-*/
+
 
     /**
      * 添加订单信息
@@ -151,7 +134,7 @@ public class OrderServiceImpl implements OrderService {
         if (orderModel == null) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR);
         }
-        if (orderModel.getOrderId() == null || orderModel.getOrderId().equals("") )  {
+        if (orderModel.getOrderId() == null) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR);
         }
 
@@ -187,10 +170,6 @@ public class OrderServiceImpl implements OrderService {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR);
         }
         orderDOMapper.deleteByPrimaryKey(orderModel.getOrderId());
-        // 删除商品相关图片信息
-        //orderImageDOMapper.deleteByOrderId(orderModel.getOrderId());
-        // 删除商品相关城市信息
-        //orderCityDOMapper.deleteByOrderId(orderModel.getOrderId());
         return 0;
     }
 
@@ -230,51 +209,23 @@ public class OrderServiceImpl implements OrderService {
 
         // 旅行社信息
         if (agencyDO != null) {
-            BeanUtils.copyProperties(agencyDO, orderModel);
+            orderModel.setAgencyTitle(agencyDO.getAgencyTitle());
         }
 
-//        // 城市信息
-//        List<ItemCityDOKey> itemCityDOKeyList = itemCityDOMapper.selectByItemId(itemModel.getItemId());
-//        List<CityModel> cities = new ArrayList<>();
-//        if (itemCityDOKeyList != null) {
-//            for (ItemCityDOKey itemCityDOKey : itemCityDOKeyList) {
-//                CityDO cityDO = cityDOMapper.selectByPrimaryKey(itemCityDOKey.getCityId());
-//                if (cityDO != null) {
-//                    cities.add(convertFromCityDO2Model(cityDO));
-//                }
-//            }
-//        }
-//        itemModel.setCityModels(cities);
+        UserDO userDO = userDOMapper.selectByPrimaryKey(orderDO.getUserId());
+        if (userDO != null) {
+            orderModel.setUsername(userDO.getUsername());
+        }
+        ItemDO itemDO = itemDOMapper.selectByPrimaryKey(orderDO.getItemId());
+        if (itemDO != null) {
+            orderModel.setItemName(itemDO.getItemName());
+        }
 
-//        // 图片信息
-//        List<ItemImageDO> itemImageDOS = itemImageDOMapper.selectByItemId(itemModel.getItemId());
-//        List<String> itemImages = new ArrayList<>();
-//        if (itemImageDOS != null) {
-//            for (ItemImageDO itemImageDO: itemImageDOS) {
-//                String imageSrc = itemImageDO.getItemImageSource();
-//                itemImages.add(imageSrc);
-//            }
-//        }
-//        itemModel.setItemImageSources(itemImages);
         return orderModel;
     }
 
     /**
-     * CityDO转化为CityModel
-     * @param cityDO
-     * @return CityModel
-     */
-    private CityModel convertFromCityDO2Model(CityDO cityDO) {
-        if (cityDO == null) {
-            return null;
-        }
-        CityModel cityModel = new CityModel();
-        BeanUtils.copyProperties(cityDO, cityModel);
-        return cityModel;
-    }
-
-    /**
-     * OrderDO转化为OrderModel
+     * OrderModel转化为OrderDO
      * @param orderModel
      * @return
      */

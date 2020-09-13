@@ -79,36 +79,21 @@ public class OrderController extends BaseController {
         }
         return CommonReturnType.create(orderModelList);
     }
-//    /**
-//     * 获取热门商品信息
-//     * @return
-//     * @throws BusinessException
-//     */
-//    @RequestMapping(value = "/getHottestItems", method = {RequestMethod.GET})
-//    @ResponseBody
-//    public CommonReturnType getHottestItems() throws BusinessException {
-//        List<ItemModel> itemModelList = itemService.getItemsOrderByTotalOrderTimesDESC();
-//        if (itemModelList == null) {
-//            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
-//        }
-//        return CommonReturnType.create(itemModelList);
-//    }
 
-//    /**
-//     * 获取最新商品信息
-//     * @return
-//     * @throws BusinessException
-//     */
-//    @RequestMapping(value = "/getLatestItems", method = {RequestMethod.GET})
-//    @ResponseBody
-//    public CommonReturnType getLatestItems() throws BusinessException {
-//        List<ItemModel> itemModelList = itemService.getItemsOrderByCreateDateDESC();
-//        if (itemModelList == null) {
-//            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
-//        }
-//        return CommonReturnType.create(itemModelList);
-//    }
-
+    /**
+     * 按用户ID获取订单信息
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getOrdersByUserId", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType getOrdersByUserId(@RequestParam(name = "userId") Integer userId) throws BusinessException {
+        List<OrderModel> orderModelList = orderService.getOrdersByUserId(userId);
+        if (orderModelList == null) {
+            return CommonReturnType.create();
+        }
+        return CommonReturnType.create(orderModelList);
+    }
 
 
     /**

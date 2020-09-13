@@ -10,7 +10,7 @@ $(document).ready(function () {
 >>>>>>> acd9037cf9ee9efd1f536f9a15bb36798d40b90c
     checkLogin();
     initPersonalInfo(userId);
-
+    initUserOrders(userId);
 });
 
 function checkLogin() {
@@ -80,15 +80,66 @@ function loadPersonalInfo(user) {
 =======
     $("#username").val(user.username);
     $("#gender").val(user.gender);
-    console.log(user.gender);
+    console.log($("#gender").val());
     $("#birthday").val(user.birthday);
     $("#telephone").val(user.userTelephone);
     $("#email").val(user.userEmail);
 }
 
+function initUserOrders(userId) {
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/order/getOrdersByUserId",
+        xhrFields: { withCredentials: true },
+        data: {
+            "userId": userId
+        },
+        success: function(data) {
+            if (data.status === "success") {
+                let orderList = data.data;
+                loadUserOrders(orderList);
+            } else {
+                alert("请先登录");
+            }
+        },
+        error: function(data) {
+            alert("获取信息失败, " + data.responseText);
+        }
+    });
+}
+
+function loadUserOrders(orderList) {
+    if (orderList == null) {
+        return;
+    }
+    for (let i = 0; i < orderList.length; i++) {
+        let order = orderList[i];
+        let statusStr = "";
+        if (order.orderStatus === 0) {
+            statusStr = "未付款";
+        } else if (order.orderStatus === 1) {
+            statusStr = "未完成";
+        } else if (order.orderStatus === 2) {
+            statusStr = "已完成";
+        } else if (order.orderStatus === 3) {
+            statusStr = "以取消";
+        }
+
+        let dom = '<td>' + order.orderId + '</td>\n' +
+            '                                <td>' + order.orderCreateDate + '</td>\n' +
+            '                                <td> ' + order.orderPrice + ' </td>\n' +
+            '                                <td>' + statusStr + '</td>\n' +
+            '                                <td> + order.itemName + </td>\n' +
+            '                                <td>' + order.orderPrice + '</td>\n' +
+            '                                <td>' + order.agencyTitle + '</td>';
+
+        $("#dataTable").append($(dom));
+    }
+}
+
+
 $("#updateUserBtn").on("click", function () {
     let userId = $("#user_id").val();
-    alert(userId);
     let username = $("#username").val();
     let gender = $("#gender").val();
     let birthday = $("#birthday").val();

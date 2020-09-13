@@ -110,39 +110,29 @@
                                     <li><a style="font-size: 20px;" id="user_name"></a></li>
                                     <li><a style="font-size: 20px;" id="user_telephone"></a></li>
                                     <li>
-                                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                        <button class="btn btn-primary btn-lg" id="showModal">
                                             修改个人资料
-                                        </button>
+                                        </button><!--data-toggle="modal" data-target="#myModal"-->
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
                     <div class="table-responsive">
-
                         <table class="table table-bordered" id="dataTable">
                             <thead>
                             <tr>
                                 <th>订单ID</th>
-                                <th>商品图标</th>
-                                <th>商品名</th>
-                                <th>当前抱团人数</th>
-                                <th>出发时间</th>
-                                <th>当前状态</th>
-                                <th>查看订单</th>
+                                <th>订单状态</th>
+                                <th>创建日期</th>
+                                <th>商品名称</th>
+                                <th>订单价格</th>
+                                <th>旅行社名称</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><a>1681016</a></td>
-                                <td><img class="img test" src="img/test.jpg" alt="" width="120px" height="60px"></td>
-                                <td>北京-天津2日游</td>
-                                <td>7/10</td>
-                                <td>2020.9.25</td>
-                                <td>仍在抱团</td>
-                                <td><a href="orderdetail.html">查看</a></td>
-                                >
-                            </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -157,8 +147,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
+                <button type="button" class="close" aria-hidden="true" onclick="closeModal()">
+                    <strong>&times;</strong>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
                     查看/修改信息
@@ -171,15 +161,15 @@
                         <input type="text" class="form-control" id="username" placeholder="请输入名">
                     </div>
                     <div>
-                        <label for="telephone" class="control-label">手机号：</label>
+                        <label for="telephone" class="control-label">手机号（必填）：</label>
                         <input type="text" class="form-control" id="telephone" placeholder="请输入手机号">
                     </div>
                     <div>
                         <label for="gender" class="control-label">性别：</label>
                         <select class="form-control" id="gender" type="text">
-                            <option value ="2">请选择</option>
-                            <option value ="1">男</option>
-                            <option value ="0">女</option>
+                            <option value="2">请选择</option>
+                            <option value="1">男</option>
+                            <option value="0">女</option>
                         </select>
                     </div>
                     <div>
@@ -188,12 +178,12 @@
                     </div>
                     <div>
                         <label for="birthday" class="control-label">生日：</label>
-                        <input type="text" class="form-control" id="birthday" placeholder="请输入生日">
+                        <input type="text" class="form-control" id="birthday" placeholder="请输入生日(格式：yyyy-MM-dd)">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModalBtn">关闭
+                <button type="button" class="btn btn-default" onclick="closeModal()">关闭
                 </button>
                 <button type="button" class="btn btn-primary" id="updateUserBtn">
                     提交更改

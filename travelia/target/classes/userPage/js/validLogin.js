@@ -45,3 +45,31 @@ $("#logout").on("click", function () {
         }
     });
 });
+
+function personalInfo(userId) {
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/user/validateLogin",
+        xhrFields: { withCredentials: true },
+        success: function(data) {
+            if (data.status === "success") {
+                let user = data.data;
+                loadPersonalInfoPage(user.userId);
+            } else {
+                alert("请先登录");
+            }
+        },
+        error: function(data) {
+            alert("获取信息失败, " + data.responseText);
+        }
+    });
+}
+
+function loadPersonalInfoPage(userId) {
+    if (window.localStorage) {
+        localStorage.userId = userId;
+        window.location.href = "personalInfo.html";
+    } else {
+        alert("Your browser does not support this technology.");
+    }
+}

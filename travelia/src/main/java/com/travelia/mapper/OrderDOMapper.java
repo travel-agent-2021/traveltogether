@@ -62,8 +62,6 @@ public interface OrderDOMapper {
 
     List<OrderDO> selectByAgencyAccount(String agencyAccount);
 
-//    List<ItemDO> selectAllByOrderTimesDESC();
-//
-//
-//    List<ItemDO> selectAllByCreateDateDESC();
+
+    List<OrderDO> selectByUserId(Integer userId);
 }
