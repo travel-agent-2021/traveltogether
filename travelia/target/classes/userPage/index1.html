@@ -9,8 +9,11 @@
     <link rel="stylesheet" href="assets/css/bootstrap-responsive.css" type="text/css">
     <link rel="stylesheet" href="assets/libraries/chosen/chosen.css" type="text/css">
     <link rel="stylesheet" href="assets/libraries/bootstrap-fileupload/bootstrap-fileupload.css" type="text/css">
-    <link rel="stylesheet" href="assets/libraries/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css" type="text/css">
+    <link rel="stylesheet"
+          href="assets/libraries/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css"
+          type="text/css">
     <link rel="stylesheet" href="assets/css/realia-blue.css" type="text/css" id="color-variant-default">
+    <link rel="stylesheet" href="#" type="text/css" id="color-variant">
     <style type="text/css">
     #frameContent{
         width:1000px; /*调整显示区的宽*/
@@ -34,163 +37,134 @@
 </style>
 </head>
 <body>
-<div id="frameContent" class="properties-grid">
-    <div class="property span3">
-        <div class="image">
-            <div class="content">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-1.png" alt="">
-            </div><!-- /.content -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    开始演示模态框
+</button>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    模态框（Modal）标题
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                <div>
+                    <label for="user_name_1" class="control-label">用户名：</label>
+                    <input type="text" class="form-control" id="user_name_1" placeholder="请输入名">
+                </div>
+                <div>
+                    <label for="telephone" class="control-label">手机号：</label>
+                    <input type="text" class="form-control" id="telephone" placeholder="请输入手机号">
+                </div>
+                <div>
+                    <label for="age" class="control-label">年龄：</label>
+                    <input type="text" class="form-control" id="age" placeholder="请输入年龄">
+                </div>
+                <div>
+                    <label for="gender" class="control-label">性别：</label>
+                    <select class="form-control" id="gender" type="text">
+                        <option value ="2">请选择</option>
+                        <option value ="1">男</option>
+                        <option value ="0">女</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="email" class="control-label">邮箱：</label>
+                    <input type="text" class="form-control" id="email" placeholder="请输入邮箱">
+                </div>
+                <div>
+                    <label for="birthday" class="control-label">生日：</label>
+                    <input type="text" class="form-control" id="birthday" placeholder="请输入生日">
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="updateUserBtn">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改个人信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div>
+                        <label for="user_name_1" class="control-label">用户名：</label>
+                        <input type="text" class="form-control" id="user_name_1" placeholder="请输入名">
+                    </div>
+                    <div>
+                        <label for="telephone" class="control-label">手机号：</label>
+                        <input type="text" class="form-control" id="telephone" placeholder="请输入手机号">
+                    </div>
+                    <div>
+                        <label for="age" class="control-label">年龄：</label>
+                        <input type="text" class="form-control" id="age" placeholder="请输入年龄">
+                    </div>
+                    <div>
+                        <label for="gender" class="control-label">性别：</label>
+                        <select class="form-control" id="gender" type="text">
+                            <option value ="2">请选择</option>
+                            <option value ="1">男</option>
+                            <option value ="0">女</option>
+                        </select>
+                    </div>
+                   <div>
+                        <label for="email" class="control-label">邮箱：</label>
+                        <input type="text" class="form-control" id="email" placeholder="请输入邮箱">
+                    </div>
+                    <div>
+                        <label for="birthday" class="control-label">生日：</label>
+                        <input type="text" class="form-control" id="birthday" placeholder="请输入生日">
+                    </div>
+                </form>
+            </div>
 
-            <div class="price">￥5000</div><!-- /.price -->
-            <div class="reduced">降价 </div><!-- /.reduced -->
-        </div><!-- /.image -->
 
-        <div class="title">
-            <h2><a href="detail.html">武大华科一日游</a></h2>
-        </div><!-- /.title -->
-
-        <div class="location">出发日期：2020.9.25</div><!-- /.location -->
-        <div class="area">
-            <span class="key">抱团人数:</span><!-- /.key -->
-            <span class="value">7/10</span><!-- /.value -->
-        </div><!-- /.area -->
-    </div><!-- /.property -->
-    <div class="property span3">
-        <div class="image">
-            <div class="content">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-1.png" alt="">
-            </div><!-- /.content -->
-
-            <div class="price">￥5000</div><!-- /.price -->
-            <div class="reduced">降价 </div><!-- /.reduced -->
-        </div><!-- /.image -->
-
-        <div class="title">
-            <h2><a href="detail.html">武大华科一日游</a></h2>
-        </div><!-- /.title -->
-
-        <div class="location">出发日期：2020.9.25</div><!-- /.location -->
-        <div class="area">
-            <span class="key">抱团人数:</span><!-- /.key -->
-            <span class="value">7/10</span><!-- /.value -->
-        </div><!-- /.area -->
-    </div><!-- /.property -->
-    <div class="property span3">
-        <div class="image">
-            <div class="content">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-1.png" alt="">
-            </div><!-- /.content -->
-
-            <div class="price">￥5000</div><!-- /.price -->
-            <div class="reduced">降价 </div><!-- /.reduced -->
-        </div><!-- /.image -->
-
-        <div class="title">
-            <h2><a href="detail.html">武大华科一日游</a></h2>
-        </div><!-- /.title -->
-
-        <div class="location">出发日期：2020.9.25</div><!-- /.location -->
-        <div class="area">
-            <span class="key">抱团人数:</span><!-- /.key -->
-            <span class="value">7/10</span><!-- /.value -->
-        </div><!-- /.area -->
-    </div><!-- /.property -->
-    <div class="property span3">
-        <div class="image">
-            <div class="content">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-1.png" alt="">
-            </div><!-- /.content -->
-
-            <div class="price">￥5000</div><!-- /.price -->
-            <div class="reduced">降价 </div><!-- /.reduced -->
-        </div><!-- /.image -->
-
-        <div class="title">
-            <h2><a href="detail.html">武大华科一日游</a></h2>
-        </div><!-- /.title -->
-
-        <div class="location">出发日期：2020.9.25</div><!-- /.location -->
-        <div class="area">
-            <span class="key">抱团人数:</span><!-- /.key -->
-            <span class="value">7/10</span><!-- /.value -->
-        </div><!-- /.area -->
-    </div><!-- /.property -->
-    <div class="property span3">
-        <div class="image">
-            <div class="content">
-                <a href="detail.html"></a>
-                <img src="assets/img/tmp/property-small-1.png" alt="">
-            </div><!-- /.content -->
-
-            <div class="price">￥5000</div><!-- /.price -->
-            <div class="reduced">降价 </div><!-- /.reduced -->
-        </div><!-- /.image -->
-
-        <div class="title">
-            <h2><a href="detail.html">武大华科一日游</a></h2>
-        </div><!-- /.title -->
-
-        <div class="location">出发日期：2020.9.25</div><!-- /.location -->
-        <div class="area">
-            <span class="key">抱团人数:</span><!-- /.key -->
-            <span class="value">7/10</span><!-- /.value -->
-        </div><!-- /.area -->
-    </div><!-- /.property -->
-    <div class="property span3">
-    <div class="image">
-        <div class="content">
-            <a href="detail.html"></a>
-            <img src="assets/img/tmp/property-small-1.png" alt="">
-        </div><!-- /.content -->
-
-        <div class="price">￥5000</div><!-- /.price -->
-        <div class="reduced">降价 </div><!-- /.reduced -->
-    </div><!-- /.image -->
-
-    <div class="title">
-        <h2><a href="detail.html">武大华科一日游</a></h2>
-    </div><!-- /.title -->
-
-    <div class="location">出发日期：2020.9.25</div><!-- /.location -->
-    <div class="area">
-        <span class="key">抱团人数:</span><!-- /.key -->
-        <span class="value">7/10</span><!-- /.value -->
-    </div><!-- /.area -->
-</div><!-- /.property -->
-  </div>
-<div id="pages" class="pagination pagination-centered"></div>
-<script language="javascript">
-    var obj = document.getElementById("frameContent");  //获取内容层
-    var pages = document.getElementById("pages");         //获取翻页层
-    var pgindex=1;                                      //当前页
-    window.onload = function()                             //重写窗体加载的事件
-    {
-        alert("显示");
-        var allpages = Math.ceil(parseInt(obj.scrollHeight)/parseInt(obj. offsetHeight));//获取页面数量
-    pages.innerHTML = "<ul>";     //输出页面数量
-    for (var i=1;i<=allpages;i++){
-        pages.innerHTML += "<li><a href=\"javascript:showPage('"+i+"');\">"+i+"</a></li>&nbsp;"; //循环输出第几页
-     }
-    pages.innerHTML +=
-        "<li><a href=\"javascript:gotopage('-1');\">上一页</a></li>" +
-        "<li> <a href=\"javascript:gotopage('1');\">下一页</a></li></ul>" }
-        function gotopage(value){ try{  value=="-1"?showPage(pgindex-1):showPage(pgindex+1);  }catch(e){    } }
-        function showPage(pageINdex) {          obj.scrollTop=(pageINdex-1)*parseInt(obj.offsetHeight);//根据高度，输出指定的页
-        pgindex=pageINdex; }
-</script>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="updateUserBtn">
+                    提交更改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>-->
 <script type="text/javascript" src="assets/js/jquery.js"></script>
 <script type="text/javascript" src="assets/js/jquery.ezmark.js"></script>
 <script type="text/javascript" src="assets/js/jquery.currency.js"></script>
 <script type="text/javascript" src="assets/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="assets/js/retina.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="assets/libraries/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="assets/js/carousel.js"></script>
+<!--<script type="text/javascript" src="assets/js/gmap3.min.js"></script>
+<script type="text/javascript" src="assets/js/gmap3.infobox.min.js"></script>-->
+<script type="text/javascript"
+        src="assets/libraries/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
 <script type="text/javascript" src="assets/libraries/chosen/chosen.jquery.min.js"></script>
 <script type="text/javascript" src="assets/libraries/iosslider/_src/jquery.iosslider.min.js"></script>
 <script type="text/javascript" src="assets/libraries/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <script type="text/javascript" src="assets/js/realia.js"></script>
+<script type="text/javascript" src="js/validLogin.js"></script>
+<script type="text/javascript" src="js/personalInfo.js"></script>
 </body>
 </html>
