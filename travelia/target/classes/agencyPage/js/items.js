@@ -8,7 +8,7 @@ $(document).ready(function () {
 function getItems(fetchItemAgencyId) {
     var itemList = [];
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "http://localhost:8080/item/getItemByAgencyId",
         data: { "agencyId": fetchItemAgencyId},
         xhrFields: { withCredentials: true },

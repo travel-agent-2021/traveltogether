@@ -78,7 +78,6 @@ function updateOrder() {
     });
 }
 
-
 function initAgencyOptions() {
     var agencyList = [];
     $.ajax({

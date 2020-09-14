@@ -2,40 +2,10 @@
 $(document).ready(function () {
     initSearchItems("");
     getLatestItems();
-    //initPagination();
-    /*var pgindex = 1; //当前页
-    var obj = document.getElementById("frameContent");  //获取内容层
-    var pages = document.getElementById("pages");         //获取翻页层
-
-    var allpages = Math.ceil(parseInt(obj.scrollHeight) / parseInt(obj.offsetHeight));//获取页面数量
-    pages.innerHTML += '<li><a  id="last_page">上一页</a></li>';
-    for (var i = 1; i <= allpages; i++) {
-        pages.innerHTML += "<li><a  id='page" + i + "'>" + i + '</a></li>'; //循环输出第几页
-        $("#page" + i).on("click", function(){
-            showPage(i);
-        });
-    }
-    pages.innerHTML += "<li> <a id='next_page'>下一页</a></li>";
-
-    $("#next_page").on("click", function(){
-        gotoPage(1);
-    });
-    $("#last_page").on("click", function(){
-        gotoPage(-1);
-    });
-
-    function gotoPage(value){
-        value === -1 ? showPage(pgindex - 1) : showPage(pgindex + 1);
-    }
-
-    function showPage(pageINdex) {
-        obj.scrollTop = (pageINdex - 1) * parseInt(obj.offsetHeight);//根据高度，输出指定的页
-        pgindex = pageINdex;
-    }*/
 });
 
 function initSearchItems(itemName) {
-    $("#searchItems").empty();
+    $("#searchResult").empty();
     $("#hiddenResult").empty();
     $.ajax({
         type: "POST",
@@ -71,6 +41,14 @@ function loadSearchItems(itemList) {
         if (item.itemImageSources == null || item.itemImageSources.length === 0) {
             imageSource = "assets/img/tmp/property-small-1.png";
         }
+        let detail = "";
+        if (item.itemDetail === "") {
+            detail = "无描述信息";
+        } else if (item.itemDetail.length < 30) {
+            detail = item.itemDetail;
+        } else {
+            detail = item.itemDetail.substring(0, 31) + "...";
+        }
         let dom = '<div class="property span9">\n' +
             '                                            <div class="row">\n' +
             '                                                <div class="image span3">\n' +
@@ -87,9 +65,7 @@ function loadSearchItems(itemList) {
             '                                                        <div class="price">￥' + item.itemPrice + '</div>\n' +
             '                                                    </div>\n' +
             '                                                    <div class="location">' + item.agencyTitle + '</div>\n' +
-            '                                                    <p>Etiam at ante id enim dictum posuere id vel est. Praesent at\n' +
-            '                                                        massa quis risus cursus tristique vel non orci. Phasellus ut\n' +
-            '                                                        nisi non odio</p>\n' +
+            '                                                    <p>' + detail + '</p>\n' +
             '                                                    <div class="area">\n' +
             '                                                        <span class="key">销量</span>\n' +
             '                                                        <span class="value">' + item.totalOrderTimes + '</span>\n' +
