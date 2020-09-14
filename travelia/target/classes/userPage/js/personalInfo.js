@@ -74,9 +74,17 @@ $("#updateUserBtn").on("click", updateUser);
 $("#showModal").on("click", function () {
     $("#myModal").modal('show');
 });
+<<<<<<< Updated upstream
 $("#showPasswordModal").on("click", function () {
     $("#updatePassword").modal('show');
 });
+=======
+
+$("#showPasswordModal").on("click", function () {
+    $("#updatePasswordModal").modal('show');
+});
+
+>>>>>>> Stashed changes
 function closeModal() {
     initPersonalInfo($("#user_id").val());
     $("#myModal").modal("hide");
@@ -172,6 +180,38 @@ function loadUserOrders(orderList) {
     }
 }
 
+$("#updatePasswordBtn").on("click", function () {
+    let userId = $("#user_id").text();
+    console.log("userid：" + userId);
+    let password = $("#oldPassword").val();
+    let newPassword = $("#newPassword").val();
+    let confirmedNewPassword = $("#confirmNewPassword").val();
+    if (newPassword !== confirmedNewPassword) {
+        alert("两次密码不一致，请重试");
+        return;
+    }
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/user/updatePassword",
+        xhrFields: { withCredentials: true },
+        data: {
+            "userId": userId,
+            "password": password,
+            "newPassword": newPassword
+        },
+        success: function(data) {
+            if (data.status === "success") {
+                alert("修改成功！,请重新登录");
+                $("#updatePasswordModal").modal('hide');
+            } else {
+                alert(data.data.errMsg);
+            }
+        },
+        error: function(data) {
+            alert("修改失败, " + data.responseText);
+        }
+    });
+});
 
 
 function showOrderDetails(orderId) {

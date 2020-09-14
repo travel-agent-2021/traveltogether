@@ -197,11 +197,12 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="updatePassword" tabindex="-1" style="display: none" role="dialog" data-backdrop="false" aria-labelledby="myModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="updatePasswordModal" tabindex="-1" style="display: none" role="dialog" data-backdrop="false" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" aria-hidden="true" onclick="closeModal()">
+                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">
                     <strong>&times;</strong>
                 </button>
                 <h4 class="modal-title" id="updatePasswordLabel">
@@ -211,23 +212,23 @@
             <div class="modal-body">
                 <form role="form">
                     <div>
-                        <label for="username" class="control-label">原密码：</label>
-                        <input type="text" class="form-control" id="oldPassword" placeholder="请输入原密码">
+                        <label for="oldPassword" class="control-label">原密码：</label>
+                        <input type="password" class="form-control" id="oldPassword" placeholder="请输入原密码">
                     </div>
                     <div>
-                        <label for="telephone" class="control-label">新密码：</label>
-                        <input type="text" class="form-control" id="newPassword" placeholder="请输入新密码">
+                        <label for="newPassword" class="control-label">新密码：</label>
+                        <input type="password" class="form-control" id="newPassword" placeholder="请输入新密码">
                     </div>
                     <div>
-                        <label for="email" class="control-label">确认新密码：</label>
-                        <input type="text" class="form-control" id="confirmPassword" placeholder="重复新密码">
+                        <label for="confirmNewPassword" class="control-label">确认新密码：</label>
+                        <input type="password" class="form-control" id="confirmNewPassword" placeholder="重复新密码">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" onclick="closeModal()">关闭
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-primary" id="updateUserBtn">
+                <button type="button" class="btn btn-primary" id="updatePasswordBtn">
                     提交更改
                 </button>
             </div>

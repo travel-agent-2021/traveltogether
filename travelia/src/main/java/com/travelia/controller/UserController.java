@@ -108,7 +108,10 @@ public class UserController extends BaseController {
        return CommonReturnType.create(userModel);
     }
 
-
+    /**
+     * 退出登录
+     * @return
+     */
     @RequestMapping(value = "/logout", method = {RequestMethod.POST})
     @ResponseBody
     public CommonReturnType logout() {
@@ -273,6 +276,51 @@ public class UserController extends BaseController {
     }
 
     /**
+     * 更新密码
+     * @param userId
+     * @param password
+     * @param newPassword
+     * @return
+     * @throws BusinessException
+     * @throws UnsupportedEncodingException
+     * @throws NoSuchAlgorithmException
+     */
+    @RequestMapping(value = "/updatePassword", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType updatePassword(@RequestParam(name = "userId") Integer userId,
+                                           @RequestParam(name = "password") String password,
+                                           @RequestParam(name = "newPassword") String newPassword) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+        if (userId == null) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "用户ID不能为空");
+        }
+        if (password == null || password.equals("")) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入密码");
+        }
+        if (newPassword == null || newPassword.equals("")) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入新密码");
+        }
+
+        UserModel user = userService.getUserByUserId(userId);
+        if (user == null) {
+            throw new BusinessException(BusinessError.USER_NOT_FOUND);
+        }
+
+        if (!user.getEncryptPassword().equals(encodeByMD5(password))) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "密码错误, 请重试");
+        }
+
+        if (newPassword.equals(password)) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "新密码不能和原密码一样噢！");
+        }
+
+        user.setEncryptPassword(encodeByMD5(newPassword));
+        userService.updateUser(user);
+        httpServletRequest.getSession().removeAttribute("USER_LOGIN");
+        httpServletRequest.getSession().removeAttribute("USER");
+        return CommonReturnType.create();
+    }
+
+    /**
      * 删除用户
      * @param userId
      * @return
@@ -305,6 +353,12 @@ public class UserController extends BaseController {
         return CommonReturnType.create(null, "fail");
     }
 
+    /**
+     * 根据生日计算年龄
+     * @param birthday
+     * @return
+     * @throws BusinessException
+     */
     private static Integer getAge(String birthday) throws BusinessException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date formatDate = null;
