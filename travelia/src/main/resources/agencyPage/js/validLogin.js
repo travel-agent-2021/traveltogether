@@ -48,6 +48,7 @@ function validateLogin () {
 function storeId(storeAgencyId){
     if (window.localStorage) {
             localStorage.storeAgencyId = storeAgencyId;
+            localStorage.storeItemAgencyId = storeAgencyId;
         } else {
             alert("Your browser do not support this technology.");
         }

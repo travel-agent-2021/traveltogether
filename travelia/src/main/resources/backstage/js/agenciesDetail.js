@@ -34,14 +34,16 @@ function loadData(data) {
     $("#agencyImageSource").val(data.agencyImageSource);
 
     var previewDom = document.getElementById("preview");
-
-   // console.log($("#agencyImageSource").val());
-   // console.log($("#agencyImageSource").val().substring(57));
-previewDom.src =$("#agencyImageSource").val().substring(57);
+console.log(previewDom.src);
+    console.log($("#agencyImageSource").val());
+   console.log($("#agencyImageSource").val().substring(47));
+previewDom.src =$("#agencyImageSource").val().substring(47);
     //previewDom.src = $("#agencyImageSource").val();
 
-console.log("agencyImageSource"+$("#agencyImageSource").val());
-
+console.log("47"+previewDom.src);
+console.log("cut"+previewDom.src.substring(0,32)+$("#agencyImageSource").val().substring(47));
+previewDom.src = previewDom.src.substring(0,32)+$("#agencyImageSource").val().substring(47);
+console.log("final"+previewDom.src);
 }
 
 function updateAgency() {

@@ -41,9 +41,11 @@ function loadData(data) {
 
 var previewDom = document.getElementById("preview");
 
+
 previewDom.src =$("#itemImageSources").val().substring(57);
 
-//console.log("itemImageSources"+$("#itemImageSources").val());
+previewDom.src = previewDom.src.substring(0,32)+$("#itemImageSources").val().substring(57);
+console.log("final"+previewDom.src);
 }
 
 function updateItem() {

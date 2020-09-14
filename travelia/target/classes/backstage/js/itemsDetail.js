@@ -41,9 +41,11 @@ function loadData(data) {
 
 var previewDom = document.getElementById("preview");
 
+
 previewDom.src =$("#itemImageSources").val().substring(57);
 
-//console.log("itemImageSources"+$("#itemImageSources").val());
+previewDom.src = previewDom.src.substring(0,32)+$("#itemImageSources").val().substring(57);
+console.log("final"+previewDom.src);
 }
 
 function updateItem() {
@@ -198,7 +200,7 @@ console.log("filename"+filename);
         //var saveImage = canvas.toDataURL('image/png');
         var b64 = imgdata.substring(22);
 
-//console.log(b64);
+
         $.ajax({
         url: "http://localhost:8080/agency/saveImg",
         type:'post',
@@ -207,12 +209,9 @@ console.log("filename"+filename);
         {
         alert("data"+data.data);
         $("#itemImageSources").val(data.data);
-console.log($("#itemImageSources").val());
            // alert('保存成功');
         }
 
         });
 
-//console.log(b64);
-//console.log(pp);
         };

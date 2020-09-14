@@ -61,7 +61,21 @@ public class ItemController extends BaseController {
         }
         return CommonReturnType.create(itemModel);
     }
-
+    /**
+     * 根据AgencyId获取商品信息
+     * @param agencyId
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getItemByAgencyId", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType getItemByAgencyId(@RequestParam(name = "agencyId") Integer agencyId) throws BusinessException {
+        List<ItemModel> itemModel = itemService.getItemsByAgencyId(agencyId);
+        if (itemModel == null) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR);
+        }
+        return CommonReturnType.create(itemModel);
+    }
     /**
      * 获取所有商品信息
      * @return
@@ -293,7 +307,6 @@ public class ItemController extends BaseController {
         // 修改城市信息
         itemCityService.deleteByItemId(itemId);
         itemCityService.addItemCityDOKeys(itemId, setCityList(itemName));
-        System.out.println("iir"+itemImageSources);
         List<String> imageRe = new ArrayList<>();
         imageRe.add(itemImageSources);
         itemImageService.deleteByItemId(itemId);

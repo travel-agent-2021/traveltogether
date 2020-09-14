@@ -216,8 +216,6 @@ public class ItemServiceImpl implements ItemService {
         ItemDO itemDO = convertFormItemModel2DO(itemModel);
         itemDOMapper.insertSelective(itemDO);
 
-        System.out.println("图片处理");
-
         return 0;
     }
 
@@ -300,7 +298,6 @@ public class ItemServiceImpl implements ItemService {
             for (ItemImageDO itemImageDO: itemImageDOS) {
                 String imageSrc = itemImageDO.getItemImageSource();
                 itemImages.add(imageSrc);
-                System.out.println("imageSource convert:+"+imageSrc);
             }
         }
         itemModel.setItemImageSources(itemImages);

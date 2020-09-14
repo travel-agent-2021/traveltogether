@@ -27,7 +27,7 @@ function loadInfo(itemList) {
     if (itemList == null || itemList === "") {
         return;
     }
-console.log("itemImageSources sub"+itemList[4].itemImageSources[0].substring(57));
+console.log(itemList[4].itemImageSources[0].substring(57));
     for (var i = 0; i < itemList.length; i++) {
         var item = itemList[i];
         var itemId = item.itemId;
@@ -40,7 +40,6 @@ console.log("itemImageSources sub"+itemList[4].itemImageSources[0].substring(57)
         }
         var dom = '<tr>\n' +
             '                  <td>' + item.itemId + '</td>\n' +
-            '                  <td><img class="img test" src="'+ imageSource +'" alt="" width="120px" height="60px"></td>\n' +
             '                  <td>' + item.itemName + '</td>\n' +
             '                  <td>' + item.itemCreateDate + '</td>\n' +
             '                  <td>' + item.itemPrice + '</td>\n' +

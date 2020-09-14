@@ -10,7 +10,7 @@ function getOrders(fetchAgencyId) {
     var orderList = [];
 
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "http://localhost:8080/order/getOrdersByAgencyAccount",
         data: { "agencyId": fetchAgencyId},
         xhrFields: { withCredentials: true },
