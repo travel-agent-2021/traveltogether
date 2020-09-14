@@ -1,7 +1,9 @@
 $(document).ready(function () {
     initData();
 });
-
+function confirmDelete() {
+    var r=confirm("确定要取消订单吗？");
+}
 function initData() {
     var orderId = localStorage["userOrderId"];
     $.ajax({
