@@ -44,7 +44,7 @@ function addItem() {
     var agencyId = $("#agencyId").val()
     var itemDetail = $("#itemDetail").val();
     var itemImageSources = $("#itemImageSources").val();
-
+console.log("addI iis"+itemImageSources);
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/item/addItem",
