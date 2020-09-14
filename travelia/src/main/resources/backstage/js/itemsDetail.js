@@ -198,7 +198,7 @@ console.log("filename"+filename);
         //var saveImage = canvas.toDataURL('image/png');
         var b64 = imgdata.substring(22);
 
-//console.log(b64);
+
         $.ajax({
         url: "http://localhost:8080/agency/saveImg",
         type:'post',
@@ -207,12 +207,9 @@ console.log("filename"+filename);
         {
         alert("data"+data.data);
         $("#itemImageSources").val(data.data);
-console.log($("#itemImageSources").val());
            // alert('保存成功');
         }
 
         });
 
-//console.log(b64);
-//console.log(pp);
         };

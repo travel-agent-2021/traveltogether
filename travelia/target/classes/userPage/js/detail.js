@@ -147,9 +147,9 @@ function placeOrder() {
 
 function success() {
     let itemId = getItemId();
-    let userId = $("#user_id").val();
+    let userId = $("#user_id").text();
     let orderDetail = "";
-    let orderTravelers = $("order_travelers").val();
+    let orderTravelers = $("#order_travelers").val();
     let orderPrice = $("#order_price").text().substring(5);
     $.ajax({
         type: "POST",
@@ -168,7 +168,6 @@ function success() {
                 $("#myModal").modal("hide");
             } else {
                 alert("下单失败！" + data.data.errMsg);
-                //window.location.href = "login.html";
             }
         },
         error: function(data) {

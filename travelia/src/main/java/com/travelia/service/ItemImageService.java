@@ -8,4 +8,6 @@ public interface ItemImageService {
 
     int deleteByItemId(Integer itemId);
 
+    int addByItemId(Integer itemId,List<String > itemImageSources);
+
 }

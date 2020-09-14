@@ -185,6 +185,7 @@ public class ItemController extends BaseController {
         List<String> imageRe = new ArrayList<>();
         imageRe.add(itemImageSources);
 
+
         ItemModel itemModel = new ItemModel();
         itemModel.setItemId(generateItemId());
         itemModel.setItemName(itemName);
@@ -193,7 +194,6 @@ public class ItemController extends BaseController {
         itemModel.setMinTourists(minTourists);
         itemModel.setItemPrice(itemPrice);
         itemModel.setItemDetail(itemDetail);
-        itemModel.setItemImageSources(imageRe);
         itemModel.setAgencyId(agencyId);
         itemModel.setTotalOrderTimes(0);
         itemModel.setItemCreateDate(getNowDate("yyyy-MM-dd"));
@@ -207,6 +207,7 @@ public class ItemController extends BaseController {
         itemModel.setCityModels(setCityList(itemName));
         itemCityService.addItemCityDOKeys(itemId, itemModel.getCityModels());
 
+        itemImageService.addByItemId(itemId,imageRe);
 
         return CommonReturnType.create();
     }
@@ -295,6 +296,8 @@ public class ItemController extends BaseController {
         System.out.println("iir"+itemImageSources);
         List<String> imageRe = new ArrayList<>();
         imageRe.add(itemImageSources);
+        itemImageService.deleteByItemId(itemId);
+        itemImageService.addByItemId(itemId,imageRe);
 
         // 修改基本信息
         itemModel.setItemName(itemName);
