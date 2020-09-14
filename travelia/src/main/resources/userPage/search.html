@@ -15,6 +15,7 @@
           href="assets/libraries/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css"
           type="text/css">
     <link rel="stylesheet" href="assets/css/realia-blue.css" type="text/css" id="color-variant-default">
+    <link rel="stylesheet" href="css/pagination.css" type="text/css">
     <link rel="stylesheet" href="#" type="text/css" id="color-variant">
     <!--<style type="text/css">
         #frameContent {
@@ -186,11 +187,13 @@
                                     <div class="row" id="searchResult">
                                         <!-- 搜索结果 -->
                                     </div>
+                                    <div class="row" id="hiddenResult" style="display: none">
+
+                                    </div>
                                 </div>
 
                                 <div class="pagination pagination-centered">
-                                    <ul id="pages">
-                                    </ul>
+                                    <div id="Pagination" class="pagination"></div>
                                 </div>
 
                             </div>
@@ -295,22 +298,7 @@
 <script type="text/javascript" src="assets/libraries/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <script type="text/javascript" src="assets/js/realia.js"></script>
 <script type="text/javascript" src="js/validLogin.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
 <script type="text/javascript" src="js/search.js"></script>
-<!--<script language="javascript">
-    var obj = document.getElementById("frameContent");  //获取内容层
-    var pages = document.getElementById("pages");         //获取翻页层
-    var pgindex=1;                                      //当前页
-    window.onload = function()                             //重写窗体加载的事件
-    {
-        var allpages = Math.ceil(parseInt(obj.scrollHeight)/parseInt(obj. offsetHeight));//获取页面数量
-        pages.innerHTML +="<li><a href=\"javascript:gotopage('-1');\">上一页</a></li>";
-        for (var i=1;i<=allpages;i++){
-            pages.innerHTML += "<li><a href=\"javascript:showPage('"+i+"');\">"+i+"</a></li>&nbsp;"; //循环输出第几页
-        }
-        pages.innerHTML += "<li> <a href=\"javascript:gotopage('1');\">下一页</a></li>" }
-    function gotopage(value){ try{  value=="-1"?showPage(pgindex-1):showPage(pgindex+1);  }catch(e){    } }
-    function showPage(pageINdex) {          obj.scrollTop=(pageINdex-1)*parseInt(obj.offsetHeight);//根据高度，输出指定的页
-        pgindex=pageINdex; }
-</script>-->
 </body>
 </html>

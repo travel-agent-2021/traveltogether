@@ -15,6 +15,7 @@
           href="assets/libraries/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css"
           type="text/css">
     <link rel="stylesheet" href="assets/css/realia-blue.css" type="text/css" id="color-variant-default">
+    <link rel="stylesheet" href="css/pagination.css" type="text/css">
     <link rel="stylesheet" href="#" type="text/css" id="color-variant">
     <!--<style type="text/css">
         #frameContent {
@@ -186,11 +187,13 @@
                                     <div class="row" id="searchResult">
                                         <!-- 搜索结果 -->
                                     </div>
+                                    <div class="row" id="hiddenResult" style="display: none">
+
+                                    </div>
                                 </div>
 
                                 <div class="pagination pagination-centered">
-                                    <ul id="pages">
-                                    </ul>
+                                    <div id="Pagination" class="pagination"></div>
                                 </div>
 
                             </div>
@@ -295,6 +298,7 @@
 <script type="text/javascript" src="assets/libraries/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <script type="text/javascript" src="assets/js/realia.js"></script>
 <script type="text/javascript" src="js/validLogin.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
 <script type="text/javascript" src="js/search.js"></script>
 <!--<script language="javascript">
     var obj = document.getElementById("frameContent");  //获取内容层

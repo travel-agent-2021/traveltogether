@@ -2,6 +2,7 @@
 $(document).ready(function () {
     initSearchItems("");
     getLatestItems();
+    //initPagination();
     /*var pgindex = 1; //当前页
     var obj = document.getElementById("frameContent");  //获取内容层
     var pages = document.getElementById("pages");         //获取翻页层
@@ -34,6 +35,8 @@ $(document).ready(function () {
 });
 
 function initSearchItems(itemName) {
+    $("#searchItems").empty();
+    $("#hiddenResult").empty();
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/item/searchItemsByItemName",
@@ -45,6 +48,7 @@ function initSearchItems(itemName) {
             if (data.status === "success") {
                 let itemsList = data.data;
                 loadSearchItems(itemsList);
+                initPagination(itemsList.length);
             } else {
                 alert("获取数据失败，" + data.data.errMsg);
             }
@@ -168,10 +172,40 @@ function searchItems() {
     initSearchItems(itemName);
 }
 
-/*
-function onKeyPress (ev) {
-    if (ev.code === "13") {
-        searchItems();
+function initPagination(length) {
+    //创建分页
+    var num_entries = length;
+    console.log("length:" + length);
 
+    let initPagination = function() {
+        // 创建分页
+        $("#Pagination").pagination(num_entries, {
+            num_edge_entries: 1, //边缘页数
+            num_display_entries: 4, //主体页数
+            callback: pageselectCallback,
+            items_per_page: 4 //每页显示4项
+        });
+    }();
+
+    function pageselectCallback(page_index, jq) {
+        let max_elem = Math.min((page_index + 1) * 4, num_entries);
+        let prev_content = document.getElementById("searchResult").getElementsByClassName("property span9");
+        // document.getElementById('searchResult').getElementsByTagName('tr');
+        let hiddenresult = document.getElementById("hiddenResult");
+        let length = prev_content.length;
+        // console.log(prev_content);
+        console.log("prev: " + prev_content.length);
+        for (let i = 0; i < length; i++) {
+            //debugger;
+            hiddenresult.appendChild(prev_content[0]);
+        }
+        // 获取加载元素
+        for(let i = page_index * 4; i < max_elem; i++) {
+            let content = document.getElementById("hiddenResult").getElementsByClassName("property span9")[0];
+            if (content != null) {
+                document.getElementById('searchResult').appendChild(content);
+            }
+        }
+        return false;
     }
-}*/
+}
