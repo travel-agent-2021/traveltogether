@@ -74,7 +74,9 @@ $("#updateUserBtn").on("click", updateUser);
 $("#showModal").on("click", function () {
     $("#myModal").modal('show');
 });
-
+$("#showPasswordModal").on("click", function () {
+    $("#updatePassword").modal('show');
+});
 function closeModal() {
     initPersonalInfo($("#user_id").val());
     $("#myModal").modal("hide");
