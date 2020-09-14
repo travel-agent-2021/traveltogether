@@ -130,7 +130,7 @@ public class OrderController extends BaseController {
         orderModel.setItemId(itemId);
         orderModel.setOrderCreateDate(getNowDate("yyyy-MM-dd"));
         orderModel.setOrderPrice(orderPrice);
-        orderModel.setOrderStatus(1);
+        orderModel.setOrderStatus(0);
         orderModel.setOrderDetail(orderDetail);
         orderModel.setOrderTravelers(orderTravelers);
         // 待修改
@@ -213,7 +213,10 @@ public class OrderController extends BaseController {
     public CommonReturnType deleteOrder(@RequestParam(name = "orderId") Integer orderId) throws BusinessException {
         OrderModel orderModel = orderService.getOrderByOrderId(orderId);
         if (orderModel == null) {
-            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR,"orderId未找到");
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "订单未找到");
+        }
+        if (orderModel.getOrderStatus() == 1) {
+            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "订单正在进行中，不可删除！");
         }
         orderService.deleteOrder(orderModel);
         return CommonReturnType.create();

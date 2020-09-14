@@ -154,13 +154,13 @@ function loadUserOrders(orderList) {
         let order = orderList[i];
         let statusStr = "";
         if (order.orderStatus === 0) {
-            statusStr = "未付款";
+            statusStr = "已付款";
         } else if (order.orderStatus === 1) {
             statusStr = "未完成";
         } else if (order.orderStatus === 2) {
             statusStr = "已完成";
         } else if (order.orderStatus === 3) {
-            statusStr = "以取消";
+            statusStr = "已取消";
         }
 
         let dom = '<tr><td>' + order.orderId + '</td>\n' +

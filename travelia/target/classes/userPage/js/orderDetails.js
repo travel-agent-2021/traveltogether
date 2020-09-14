@@ -1,11 +1,25 @@
 $(document).ready(function () {
-    initData();
+    let orderId = getUserOrderId();
+    initData(orderId);
 });
-function confirmDelete() {
-    var r=confirm("确定要取消订单吗？");
+
+function getUserOrderId() {
+    let orderId = localStorage["userOrderId"];
+    if (orderId == null) {
+        window.location.href = "index.html";
+    }
+    return orderId;
 }
-function initData() {
-    var orderId = localStorage["userOrderId"];
+
+function removeUserOrderId() {
+    if (window.localStorage) {
+        window.localStorage.removeItem("userOrderId");
+    } else {
+        alert("Your browser does not support this technology.");
+    }
+}
+
+function initData(orderId) {
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/order/getOrderById",
@@ -46,5 +60,46 @@ function loadData(data) {
     $("#orderStatus").val(statusStr);
     $("#orderDetail").val(data.orderDetail);
     $("#orderTravelers").val(data.orderTravelers);
+    removeUserOrderId();
 }
 
+
+function confirmDelete() {
+    let r = confirm("确定要删除订单吗？");
+    if (r) {
+       deleteOrder();
+    }
+}
+
+function deleteOrder() {
+    let orderId = $("#orderId").val();
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/order/deleteOrder",
+        xhrFields: { withCredentials: true },
+        data : {
+            "orderId": orderId
+        },
+        success: function(data) {
+            if (data.status === "success") {
+                alert("订单已删除！");
+                showPersonalInfo();
+            }else {
+                alert(data.data.errMsg);
+            }
+        },
+        error: function(data) {
+            alert("获取信息失败, " + data.responseText);
+        }
+    });
+}
+
+function showPersonalInfo() {
+    let orderId = $("#user_id").val();
+    if (window.localStorage) {
+        localStorage.userOrderId = orderId;
+        window.location.href = 'personalInfo.html';
+    } else {
+        alert("Your browser does not support this technology.");
+    }
+}
