@@ -27,12 +27,8 @@ public class OrderController extends BaseController {
     @Autowired
     private OrderService orderService;
 
-//    @Autowired
-//    private CityService cityService;
-//
-//    @Autowired
-//    private ItemCityService itemCityService;
-
+    @Autowired
+    private ItemService itemService;
 
     /**
      * 根据OrderId获取订单信息
@@ -98,13 +94,9 @@ public class OrderController extends BaseController {
 
     /**
      * 添加订单信息
-     * @param orderId
      * @param userId
-     * @param agencyId
      * @param itemId
-     * @param orderCreateDate
      * @param orderPrice
-     * @param orderStatus
      * @param orderDetail
      * @param orderTravelers
      * @return
@@ -112,23 +104,16 @@ public class OrderController extends BaseController {
      */
     @RequestMapping(value = "/addOrder", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
-    public CommonReturnType addOrder(@RequestParam(name = "orderId") Integer orderId,
-                                    @RequestParam(name = "userId") Integer userId,
-                                    @RequestParam(name = "agencyId") Integer agencyId,
-                                    @RequestParam(name = "itemId") Integer itemId,
-                                    @RequestParam(name = "orderCreateDate") String orderCreateDate,
-                                    @RequestParam(name = "orderPrice") BigDecimal orderPrice,
-                                    @RequestParam(name = "orderStatus") Integer orderStatus,
-                                    @RequestParam(name = "orderDetail") String orderDetail,
-                                    @RequestParam(name = "orderTravelers") Integer orderTravelers) throws BusinessException {
+    public CommonReturnType addOrder(@RequestParam(name = "userId") Integer userId,
+                                     @RequestParam(name = "itemId") Integer itemId,
+                                     @RequestParam(name = "orderPrice") BigDecimal orderPrice,
+                                     @RequestParam(name = "orderDetail") String orderDetail,
+                                     @RequestParam(name = "orderTravelers") Integer orderTravelers) throws BusinessException {
 
-//        if (orderId == null || orderId.equals("")) {
-//            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品名称");
-//        }
         if (orderPrice == null) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入订单价格");
         }
-        if (agencyId == null) {
+        if (itemId == null) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入旅行社");
         }
 
@@ -136,23 +121,22 @@ public class OrderController extends BaseController {
         OrderModel orderModel = new OrderModel();
         orderModel.setOrderId(generateOrderId());
         orderModel.setUserId(userId);
-        orderModel.setAgencyId(agencyId);
+        ItemModel itemModel = itemService.getItemByItemId(itemId);
+        if (itemModel != null) {
+            orderModel.setAgencyId(itemModel.getAgencyId());
+            itemModel.setTotalOrderTimes(itemModel.getTotalOrderTimes() + 1);
+            itemService.updateItemById(itemModel);
+        }
         orderModel.setItemId(itemId);
-        orderModel.setOrderCreateDate(orderCreateDate);
+        orderModel.setOrderCreateDate(getNowDate("yyyy-MM-dd"));
         orderModel.setOrderPrice(orderPrice);
-        orderModel.setOrderStatus(orderStatus);
+        orderModel.setOrderStatus(1);
         orderModel.setOrderDetail(orderDetail);
         orderModel.setOrderTravelers(orderTravelers);
         // 待修改
         //orderModel.setOrderImageSources(null);
 
         orderService.insertOrder(orderModel);
-
-//        // 根据商品名设置城市信息
-//        Integer orderId = itemModel.getItemId();
-//        itemModel.setCityModels(setCityList(itemName));
-//        itemCityService.addItemCityDOKeys(itemId, itemModel.getCityModels());
-//
 
         return CommonReturnType.create();
     }
@@ -201,10 +185,6 @@ public class OrderController extends BaseController {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR,"orderId未找到");
         }
 
-//        // 修改城市信息
-//        itemCityService.deleteByItemId(itemId);
-//        itemCityService.addItemCityDOKeys(itemId, setCityList(itemName));
-
         // 修改基本信息
         orderModel.setOrderId(generateOrderId());
         orderModel.setUserId(userId);
@@ -238,25 +218,6 @@ public class OrderController extends BaseController {
         orderService.deleteOrder(orderModel);
         return CommonReturnType.create();
     }
-
-//    /**
-//     * 根据item名称得到城市列表
-//     * @param itemName
-//     * @return List<CityModel>
-//     */
-//    private List<CityModel> setCityList(String itemName) throws BusinessException {
-//        if (itemName == null || itemName.equals("")) {
-//            return null;
-//        }
-//        List<CityModel> list = new ArrayList<>();
-//        List<CityModel> allCities = cityService.getAllCities();
-//        for (CityModel cityModel: allCities) {
-//            if (itemName.contains(cityModel.getCityName())) {
-//                list.add(cityModel);
-//            }
-//        }
-//        return list;
-//    }
 
     /**
      * 生成随机itemId

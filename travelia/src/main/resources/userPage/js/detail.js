@@ -130,10 +130,13 @@ function placeOrder() {
         success: function(data) {
             if (data.status === "success") {
                 let user = data.data;
+                let itemPrice = $("#item_price").text().substring(1);
+                let orderTravelers = $("#order_travelers").val();
+                $("#order_price").text("订单总价：" + itemPrice * orderTravelers);
+                $("#myModal").modal('show');
             } else {
-                if (data.data.errorCode === 0) {
-                    alert();
-                }
+                alert("请先登录");
+                window.location.href = "login.html";
             }
         },
         error: function(data) {
@@ -141,6 +144,34 @@ function placeOrder() {
         }
     })
 }
+
 function success() {
-    alert("支付成功！");
+    let itemId = getItemId();
+    let userId = $("#user_id").text();
+    let orderDetail = "";
+    let orderTravelers = $("#order_travelers").val();
+    let orderPrice = $("#order_price").text().substring(5);
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/order/addOrder",
+        xhrFields: { withCredentials: true },
+        data: {
+            "itemId": itemId,
+            "userId": userId,
+            "orderDetail": orderDetail,
+            "orderTravelers": orderTravelers,
+            "orderPrice": orderPrice
+        },
+        success: function(data) {
+            if (data.status === "success") {
+                alert("下单成功！");
+                $("#myModal").modal("hide");
+            } else {
+                alert("下单失败！" + data.data.errMsg);
+            }
+        },
+        error: function(data) {
+            alert("获取信息失败, " + data.responseText);
+        }
+    });
 }
