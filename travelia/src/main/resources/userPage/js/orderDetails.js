@@ -98,7 +98,7 @@ function showPersonalInfo() {
     let userId = $("#user_id").text();
     if (window.localStorage) {
         localStorage.userId = userId;
-        removeUserOrderId();
+        // removeUserOrderId();
         window.location.href = 'personalInfo.html';
     } else {
         alert("Your browser does not support this technology.");
