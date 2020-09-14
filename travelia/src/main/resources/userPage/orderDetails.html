@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Aviators - byaviators.com">
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/bootstrap-responsive.css" type="text/css">
+    <link rel="stylesheet" href="assets/libraries/chosen/chosen.css" type="text/css">
+    <link rel="stylesheet" href="assets/libraries/bootstrap-fileupload/bootstrap-fileupload.css" type="text/css">
+    <link rel="stylesheet" href="assets/libraries/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/realia-blue.css" type="text/css" id="color-variant-default">
+    <link rel="stylesheet" href="#" type="text/css" id="color-variant">
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <title>Realia | HTML Template</title>
+</head>
+<body>
+<div id="wrapper-outer" >
+    <div id="wrapper">
+        <div id="wrapper-inner">
+            <!-- BREADCRUMB -->
+            <div class="breadcrumb-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="span12">
+                            <ul class="breadcrumb pull-left">
+                                <li><a href="index.html">首页</a></li>
+                            </ul><!-- /.breadcrumb -->
+
+                            <div class="account pull-right" id="logoutPanel">
+                                <ul class="nav nav-pills">
+                                    <li><a href="#" id="logout">退出登录</a></li>
+                                </ul>
+                            </div>
+                            <div class="account pull-right" id="loginAndRegister">
+                                <ul class="nav nav-pills">
+                                    <li><a href="login.html">登录</a></li>
+                                    <li><a href="registration.html">注册</a></li>
+                                </ul>
+                            </div>
+                            <div class="account pull-right">
+                                <ul class="nav nav-pills">
+                                    <li><a id="user-name-label" href="#" onclick="personalInfo()">欢迎您，访客</a></li>
+                                    <li style="display: none" id="user_id"></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- HEADER -->
+            <div id="header-wrapper">
+                <div id="header">
+                    <div id="header-inner">
+                        <div class="container">
+                            <div class="navbar">
+                                <div class="navbar-inner">
+                                    <div class="row">
+                                        <div class="logo-wrapper span4">
+                                            <a href="#nav" class="hidden-desktop" id="btn-nav">Toggle navigation</a>
+
+                                            <div class="logo">
+                                                <a href="index.html" title="Home">
+                                                    <img src="assets/img/logo.png" alt="Home">
+                                                </a>
+                                            </div><!-- /.logo -->
+
+                                            <div class="site-name">
+                                                <a href="/" title="Home" class="brand">Travel Together</a>
+                                            </div><!-- /.site-name -->
+
+                                            <div class="site-slogan">
+                                                <span>一起游<br>让旅游更简单</span>
+                                            </div><!-- /.site-slogan -->
+                                        </div><!-- /.logo-wrapper -->
+
+                                        <div class="info">
+                                            <div class="site-email">
+                                                <a href="mailto:info@byaviators.com">info@TravelTogether.com</a>
+                                            </div><!-- /.site-email -->
+
+                                            <div class="site-phone">
+                                                <span>333-666-777</span>
+                                            </div><!-- /.site-phone -->
+                                        </div><!-- /.info -->
+                                    </div><!-- /.row -->
+                                </div><!-- /.navbar-inner -->
+                            </div><!-- /.navbar -->
+                        </div><!-- /.container -->
+                    </div><!-- /#header-inner -->
+                </div><!-- /#header -->
+            </div><!-- /#header-wrapper -->
+
+            <!-- CONTENT -->
+            <div id="content">
+                <div class="container">
+                    <div class="card card-register mx-auto mt-5">
+                        <div class="card-header">订单详情</div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <label for="orderId">订单id</label>
+                                            <input class="form-control" id="orderId" type="text" aria-describedby="nameHelp" readonly="readonly">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="orderTravelers">旅客人数</label>
+                                            <input class="form-control" id="orderTravelers" type="text" readonly="readonly">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <label for="agencyTitle">经销商id</label>
+                                            <input class="form-control" id="agencyTitle" type="text"  readonly="readonly">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="itemName">商品id</label>
+                                            <input class="form-control" id="itemName" type="text"  readonly="readonly">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <label for="orderCreateDate">订单创建日期</label>
+                                            <input class="form-control" id="orderCreateDate" type="text" readonly="readonly">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="orderPrice">订单金额</label>
+                                            <input class="form-control" id="orderPrice" type="text" readonly="readonly">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <label for="orderStatus">订单状态</label>
+                                            <input class="form-control" id="orderStatus" type="text" readonly="readonly">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="orderDetail">补充</label>
+                                            <input class="form-control" id="orderDetail" type="text" readonly="readonly">
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn btn-info " href="personalInfo.html">返 回</a>
+                                <a class="btn btn-danger " data-toggle="modal" data-target="#myModal">取消订单</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    </div><!-- /#content -->
+</div><!-- /#wrapper-inner -->
+</div><!-- /#wrapper -->
+</div><!-- /#wrapper-outer -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 200px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">警告⚠</h4>
+            </div>
+            <div class="modal-body">确定要取消订单吗？</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" style="left: 0px;">确定</button>
+                <button type="button" class="btn btn-default" style="right: 0px;" data-dismiss="modal">取消</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="palette">
+    <div class="toggle">
+        <a href="#">Toggle</a>
+    </div><!-- /.toggle -->
+
+    <div class="inner">
+        <div class="headers">
+            <h2>Header styles</h2>
+            <ul>
+                <li><a class="header-light">Light</a></li>
+                <li><a class="header-normal">Normal</a></li>
+                <li><a class="header-dark">Dark</a></li>
+            </ul>
+        </div><!-- /.headers -->
+
+        <div class="patterns">
+            <h2>Background patterns</h2>
+            <ul>
+                <li><a class="pattern-cloth-alike">cloth-alike</a></li>
+                <li><a class="pattern-corrugation">corrugation</a></li>
+                <li><a class="pattern-diagonal-noise">diagonal-noise</a></li>
+                <li><a class="pattern-dust">dust</a></li>
+                <li><a class="pattern-fabric-plaid">fabric-plaid</a></li>
+                <li><a class="pattern-farmer">farmer</a></li>
+                <li><a class="pattern-grid-noise">grid-noise</a></li>
+                <li><a class="pattern-lghtmesh">lghtmesh</a></li>
+                <li><a class="pattern-pw-maze-white">pw-maze-white</a></li>
+                <li><a class="pattern-none">none</a></li>
+            </ul>
+        </div>
+
+        <div class="colors">
+            <h2>Color variants</h2>
+            <ul>
+                <li><a href="assets/css/realia-red.css" class="red">Red</a></li>
+                <li><a href="assets/css/realia-magenta.css" class="magenta">Magenta</a></li>
+                <li><a href="assets/css/realia-brown.css" class="brown">Brown</a></li>
+                <li><a href="assets/css/realia-orange.css" class="orange">Orange</a></li>
+                <li><a href="assets/css/realia-brown-dark.css" class="brown-dark">Brown dark</a></li>
+
+                <li><a href="assets/css/realia-gray-red.css" class="gray-red">Gray Red</a></li>
+                <li><a href="assets/css/realia-gray-magenta.css" class="gray-magenta">Gray Magenta</a></li>
+                <li><a href="assets/css/realia-gray-brown.css" class="gray-brown">Gray Brown</a></li>
+                <li><a href="assets/css/realia-gray-orange.css" class="gray-orange">Gray Orange</a></li>
+                <li><a href="assets/css/realia-gray-brown-dark.css" class="gray-brown-dark">Gray Brown dark</a></li>
+
+                <li><a href="assets/css/realia-green-light.css" class="green-light">Green light</a></li>
+                <li><a href="assets/css/realia-green.css" class="green">Green</a></li>
+                <li><a href="assets/css/realia-turquiose.css" class="turquiose">Turquiose</a></li>
+                <li><a href="assets/css/realia-blue.css" class="blue">Blue</a></li>
+                <li><a href="assets/css/realia-violet.css" class="violet">Violet</a></li>
+
+                <li><a href="assets/css/realia-gray-green-light.css" class="gray-green-light">Gray Green light</a></li>
+                <li><a href="assets/css/realia-gray-green.css" class="gray-green">Gray Green</a></li>
+                <li><a href="assets/css/realia-gray-turquiose.css" class="gray-turquiose">Gray Turquiose</a></li>
+                <li><a href="assets/css/realia-gray-blue.css" class="gray-blue">Gray Blue</a></li>
+                <li><a href="assets/css/realia-gray-violet.css" class="gray-violet">Gray Violet</a></li>
+            </ul>
+        </div><!-- /.colors -->
+
+        <a href="#" class="btn btn-primary reset">Reset default</a>
+    </div><!-- /.inner -->
+</div><!-- /.palette -->
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true"></script>
+<script type="text/javascript" src="assets/js/jquery.js"></script>
+<script type="text/javascript" src="assets/js/jquery.ezmark.js"></script>
+<script type="text/javascript" src="assets/js/jquery.currency.js"></script>
+<script type="text/javascript" src="assets/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="assets/js/retina.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/carousel.js"></script>
+<script type="text/javascript" src="assets/js/gmap3.min.js"></script>
+<script type="text/javascript" src="assets/js/gmap3.infobox.min.js"></script>
+<script type="text/javascript" src="assets/libraries/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="assets/libraries/chosen/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="assets/libraries/iosslider/_src/jquery.iosslider.min.js"></script>
+<script type="text/javascript" src="assets/libraries/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+<script type="text/javascript" src="assets/js/realia.js"></script>
+<script type="text/javascript" src="js/validLogin.js"></script>
+<script type="text/javascript" src="js/orderDetails.js"></script>
+
+</body>
+</html>
