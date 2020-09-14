@@ -1,7 +1,16 @@
+<<<<<<< Updated upstream
+=======
+var userModel;
+
+>>>>>>> Stashed changes
 $(document).ready(function () {
     checkLogin();
     let userId = window.localStorage.getItem("userId");
     $("#user_id").val(userId);
+<<<<<<< Updated upstream
+=======
+    checkLogin();
+>>>>>>> Stashed changes
     initPersonalInfo(userId);
     initUserOrders(userId);
 });
@@ -36,8 +45,13 @@ function initPersonalInfo(userId) {
         },
         success: function(data) {
             if (data.status === "success") {
+<<<<<<< Updated upstream
                 let user = data.data;
                 loadPersonalInfo(user);
+=======
+                userModel = data.data;
+                loadPersonalInfo(userModel)
+>>>>>>> Stashed changes
             } else {
                 alert("请先登录");
             }
@@ -119,6 +133,7 @@ function updateUser() {
 }
 
 
+<<<<<<< Updated upstream
 function initUserOrders(userId) {
     $.ajax({
         type: "POST",
@@ -180,3 +195,8 @@ function showOrderDetails(orderId) {
         alert("Your browser does not support this technology.");
     }
 }
+=======
+$("#myModal").on("show.bs.modal", function () {
+    loadPersonalInfo(userModel);
+});
+>>>>>>> Stashed changes

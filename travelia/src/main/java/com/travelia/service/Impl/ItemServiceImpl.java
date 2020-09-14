@@ -59,6 +59,8 @@ public class ItemServiceImpl implements ItemService {
             AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(itemDO.getAgencyId());
             itemModels.add(convertFromItemDO2Model(itemDO, agencyDO));
         }
+
+
         return itemModels;
     }
 
@@ -160,6 +162,7 @@ public class ItemServiceImpl implements ItemService {
                 }
             }
         }
+
 
         // 添加至多三条相关商品信息
         if (relatedItems.size() < 3) {
@@ -269,6 +272,19 @@ public class ItemServiceImpl implements ItemService {
         ItemDO itemDO = convertFormItemModel2DO(itemModel);
         int flag = itemDOMapper.updateByPrimaryKeySelective(itemDO);
 
+        List<String> images = itemModel.getItemImageSources();
+        if (images != null) {
+            for (String imageSrc: images) {
+                if (imageSrc != null) {
+                    System.out.println("图片src: "+imageSrc);
+                    ItemImageDO itemImageDO = new ItemImageDO();
+                    itemImageDO.setItemId(itemModel.getItemId());
+                    itemImageDO.setItemImageSource(imageSrc);
+                    itemImageDOMapper.updateByPrimaryKeySelective(itemImageDO);
+                }
+            }
+        }
+
         return flag;
     }
 
@@ -310,9 +326,12 @@ public class ItemServiceImpl implements ItemService {
             for (ItemImageDO itemImageDO: itemImageDOS) {
                 String imageSrc = itemImageDO.getItemImageSource();
                 itemImages.add(imageSrc);
+                System.out.println("imageSource convert:+"+imageSrc);
             }
         }
         itemModel.setItemImageSources(itemImages);
+
+
         return itemModel;
     }
 

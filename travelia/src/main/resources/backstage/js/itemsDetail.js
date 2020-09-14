@@ -14,6 +14,7 @@ function initData() {
         },
         success: function(data) {
             if (data.status === "success") {
+            console.log("itemImageSources"+data.data.itemImageSources);
                 loadData(data.data);
             }else {
                 alert("获取信息失败，" + data.data.errMsg);
@@ -36,6 +37,13 @@ function loadData(data) {
     $("#agencyId").val(data.agencyId);
     $("#agencyTitle").val(data.agencyTitle);
     $("#detail").text(data.itemDetail);
+    $("#itemImageSources").val(data.itemImageSources);
+
+var previewDom = document.getElementById("preview");
+
+previewDom.src =$("#itemImageSources").val().substring(57);
+
+//console.log("itemImageSources"+$("#itemImageSources").val());
 }
 
 function updateItem() {
@@ -47,6 +55,7 @@ function updateItem() {
     var maxTourists = $("#maxTourists").val();
     var agencyId =  $("#agencyId").val();
     var detail = $("#detail").val();
+    var itemImageSources = $("#itemImageSources").val();
 
     $.ajax({
         type: "POST",
@@ -60,7 +69,8 @@ function updateItem() {
             "minTourists": minTourists,
             "maxTourists": maxTourists,
             "agencyId": agencyId,
-            "itemDetail": detail
+            "itemDetail": detail,
+            "itemImageSources": itemImageSources
         },
         success: function(data) {
             if (data.status === "success") {
@@ -182,8 +192,8 @@ function Download(){
         var filename=''+new Date().getSeconds()+'.'+type;
         //我想用当前秒是可以解决重名的问题了 不行你就换成毫秒
         //savaFile(imgdata,filename,"image");
-//console.log(imgdata);
-        $("#agencyImageSource").val(filename);
+console.log("filename"+filename);
+        $("#itemImageSources").val(filename);
 
         //var saveImage = canvas.toDataURL('image/png');
         var b64 = imgdata.substring(22);
@@ -195,9 +205,9 @@ function Download(){
         data: { "pp": b64},
         success:function (data)
         {
-        //alert("data"+data.data);
-        $("#agencyImageSource").val(data.data);
-
+        alert("data"+data.data);
+        $("#itemImageSources").val(data.data);
+console.log($("#itemImageSources").val());
            // alert('保存成功');
         }
 

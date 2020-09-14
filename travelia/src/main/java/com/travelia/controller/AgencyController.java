@@ -215,7 +215,7 @@ public class AgencyController extends BaseController {
         //String filePath="D://image/"+filename+".png";
         File w2 = new File(filePath);
         ImageIO.write(bi1, "png", w2);
-
+        System.out.println("filename"+filename);
         return CommonReturnType.create(filePath);
     }
 

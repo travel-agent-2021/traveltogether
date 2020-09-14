@@ -27,14 +27,16 @@ function loadInfo(itemList) {
     if (itemList == null || itemList === "") {
         return;
     }
+console.log("itemImageSources sub"+itemList[4].itemImageSources[0].substring(57));
     for (var i = 0; i < itemList.length; i++) {
         var item = itemList[i];
         var itemId = item.itemId;
         var imageSource = "";
-        if (item.itemImageSources == null) {
-            imageSource = "img/default.jpg";
+        var rec = "";
+        if (item.itemImageSources[0] == null) {
+            imageSource = "image/default.png";
         } else {
-            imageSource = item.itemImageSources[0];
+            imageSource = itemList[i].itemImageSources[0].substring(57);
         }
         var dom = '<tr>\n' +
             '                  <td>' + item.itemId + '</td>\n' +

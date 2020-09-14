@@ -6,6 +6,7 @@ import com.travelia.error.BusinessException;
 import com.travelia.response.CommonReturnType;
 import com.travelia.service.CityService;
 import com.travelia.service.ItemCityService;
+import com.travelia.service.ItemImageService;
 import com.travelia.service.ItemService;
 import com.travelia.service.model.CityModel;
 import com.travelia.service.model.ItemModel;
@@ -42,6 +43,8 @@ public class ItemController extends BaseController {
     @Autowired
     private ItemCityService itemCityService;
 
+    @Autowired
+    private ItemImageService itemImageService;
 
     /**
      * 根据ItemId获取商品信息
@@ -252,6 +255,7 @@ public class ItemController extends BaseController {
      * @param minTourists
      * @param maxTourists
      * @param itemDetail
+     * @param itemImageSources
      * @return
      * @throws BusinessException
      */
@@ -264,7 +268,8 @@ public class ItemController extends BaseController {
                                        @RequestParam(name = "duration") Integer duration,
                                        @RequestParam(name = "minTourists") Integer minTourists,
                                        @RequestParam(name = "maxTourists") Integer maxTourists,
-                                       @RequestParam(name = "itemDetail") String itemDetail) throws BusinessException {
+                                       @RequestParam(name = "itemDetail") String itemDetail,
+                                       @RequestParam(name = "itemImageSources") String itemImageSources) throws BusinessException {
 
         if (itemId == null) {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
@@ -287,6 +292,9 @@ public class ItemController extends BaseController {
         // 修改城市信息
         itemCityService.deleteByItemId(itemId);
         itemCityService.addItemCityDOKeys(itemId, setCityList(itemName));
+        System.out.println("iir"+itemImageSources);
+        List<String> imageRe = new ArrayList<>();
+        imageRe.add(itemImageSources);
 
         // 修改基本信息
         itemModel.setItemName(itemName);
@@ -296,6 +304,7 @@ public class ItemController extends BaseController {
         itemModel.setAgencyId(agencyId);
         itemModel.setItemPrice(itemPrice);
         itemModel.setItemDetail(itemDetail);
+        itemModel.setItemImageSources(imageRe);
         itemModel.setItemCreateDate(getNowDate("yyyy-MM-dd"));
 
         // to do 修改图片信息

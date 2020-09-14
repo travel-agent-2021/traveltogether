@@ -40,7 +40,7 @@ function loadData(data) {
 previewDom.src =$("#agencyImageSource").val().substring(57);
     //previewDom.src = $("#agencyImageSource").val();
 
-console.log("previewDom.src"+previewDom.src);
+console.log("agencyImageSource"+$("#agencyImageSource").val());
 
 }
 
