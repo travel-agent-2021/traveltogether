@@ -91,7 +91,9 @@ function loadRelatedItems(itemList) {
         let imageSource = "";
         if (item.itemImageSources == null || item.itemImageSources.length === 0) {
             imageSource = "assets/img/tmp/property-small-1.png";
-        }
+        }else{
+            imageSource = item.itemImageSources;
+             }
         var dom = '<div class="property">\n' +
             '                                                <div class="image">\n' +
             '                                                    <a href="#" onclick="getItemDetails(' + item.itemId + ')"></a>\n' +

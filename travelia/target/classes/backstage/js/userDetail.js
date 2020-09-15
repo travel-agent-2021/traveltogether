@@ -194,6 +194,7 @@ function Download(){
         success:function (data)
         {
         //alert("data"+data.data);
+        alert("图片上传成功");
         $("#userImageSource").val(data.data);
 
            // alert('保存成功');

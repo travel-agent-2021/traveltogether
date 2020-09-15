@@ -7,7 +7,7 @@ var ctx = document.getElementById("日成交量");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["09-01", "09-02", "09-03", "09-04", "09-05", "09-06", "09-07", "09-08", "09-09", "09-10", "09-11", "09-12", "09-13"],
+    labels: ["09-01", "09-02", "09-03", "09-04", "09-05", "09-06", "09-07"],
     datasets: [{
       label: "Sessions",
       lineTension: 0.3,
@@ -20,7 +20,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 20,
       pointBorderWidth: 2,
-      data: [10, 12, 23, 14, 27, 62, 74, 29, 29, 9, 31, 4, 31],
+      data: ["09-01":10, "09-03":12, "09-02":23, 14, 27, 62, 74],
     }],
   },
   options: {

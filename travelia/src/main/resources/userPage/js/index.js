@@ -66,7 +66,7 @@ function loadHottest(itemsList) {
             '                <div class="image">\n' +
             '                    <div class="content">\n' +
             '                        <a href="#" onclick="getItemDetails(' + item.itemId + ')"></a>\n' +
-            '                        <img src="' + imageSource +'" alt="">\n' +
+            '                        <img src="' + imageSource +'" alt="" style="width:100%;height:208px">\n' +
             '                    </div>\n' +
             '                    <div class="price">￥' + item.itemPrice + '</div>\n' +
             '                </div>\n' +
@@ -92,7 +92,9 @@ function loadLatest(itemsList) {
         var imageSource = "";
         if (item.itemImageSources == null || item.itemImageSources.length === 0) {
             imageSource = "assets/img/tmp/property-small-1.png";
-        }
+        }else{
+                     imageSource = item.itemImageSources;
+                 }
         var dom = '<div class="property">\n' +
             '                                                <div class="image">\n' +
             '                                                    <a href="#" onclick="getItemDetails(' + item.itemId + ')"></a>\n' +

@@ -174,7 +174,7 @@ function Download(){
         data: { "pp": b64},
         success:function (data)
         {
-        //alert("data"+data.data);
+        alert("图片上传成功");
         $("#agencyImageSource").val(data.data);
 
            // alert('保存成功');

@@ -187,65 +187,65 @@
                     <input class="form-control" id="itemName" type="text" aria-describedby="nameHelp" placeholder="输入商品名称">
                   </div>
                   <div class="col-md-6">
-                    <label for="itemImage">商品价格</label>
-                    <input class="form-control" id="itemImage" type="text" aria-describedby="nameHelp" placeholder="输入商品价格">
+                    <label for="itemPrice">商品价格</label>
+                    <input class="form-control" id="itemPrice" type="text" aria-describedby="nameHelp" placeholder="输入商品价格">
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-6">
-                    <label for="exampleInputPassword1">旅游时长</label>
-                    <input class="form-control" id="exampleInputPassword1" type="password" placeholder="输入旅游时长">
+                    <label for="duration">旅游时长</label>
+                    <input class="form-control" id="duration" type="text" placeholder="输入旅游时长">
                   </div>
                   <div class="col-md-6">
-                    <label for="exampleConfirmPassword">包含城市</label>
-                    <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="输入包含城市">
+                    <label for="agencyId">旅行社ID</label>
+                    <!--<input class="form-control" id="agencyId" type="text" placeholder="输入旅行社ID">-->
+                    <select class="form-control" id="agencyId" type="text">
+                      <option value="0">请选择旅行社</option>
+
+                    </select>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-6">
-                    <label for="exampleInputPassword1">最少游客数</label>
-                    <input class="form-control" id="exampleInputPassword1" type="password" placeholder="输入最少游客数">
+                    <label for="minTourists">最少游客数</label>
+                    <input class="form-control" id="minTourists" type="text" placeholder="输入最少游客数">
                   </div>
                   <div class="col-md-6">
-                    <label for="exampleConfirmPassword">最多游客数</label>
-                    <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="输入最多游客数">
+                    <label for="maxTourists">最多游客数</label>
+                    <input class="form-control" id="maxTourists" type="text" placeholder="输入最多游客数">
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-6">
-                    <label for="exampleInputPassword1">旅行社名称</label>
-                    <input class="form-control" id="exampleInputPassword1" type="password" placeholder="输入旅行社名称">
-                  </div>
-                  <div class="col-md-6">
-                    <label for="exampleConfirmPassword">旅行社地址</label>
-                    <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="输入旅行社地址">
+                    <label for="itemDetail">商品描述信息</label>
+                    <!--<input class="form-control" id="itemDetail" type="text" placeholder="输入商品描述信息">-->
+                    <textarea class="form-control" id="itemDetail"></textarea>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <div class="form-row">
-                  <div class="col-md-6">
-                    <label for="exampleInputPassword1">旅行社电话</label>
-                    <input class="form-control" id="exampleInputPassword1" type="password" placeholder="输入旅行社电话">
-                  </div>
-                  <div class="col-md-6">
-                    <label for="exampleConfirmPassword">商品描述信息</label>
-                    <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="输入商品描述信息">
-                  </div>
+                <div>
+                  <img id="preview" width="100%" height="100%">
                 </div>
+                <form id="form" method="POST" enctype="multipart/form-data"
+                      action="value" onsubmit="return check();">
+
+                  <input type="file" onclick="readImage()" accept="image/*" name="file" id="file"/>
+                  <a class="btn btn-info " href="#"  onclick="Download()" >确认图片</a>
+
+                  <!--input class="form-control" id="agencyImageSource" type="text" value="输入邮箱"-->
+                  <input type="" hidden id="itemImageSources" />
+
+                </form>
               </div>
-              <div class="form-group">
-                <label for="itemPrice">商品图片</label>
-                <input class="form-control" id="itemPrice" type="email" aria-describedby="emailHelp" placeholder="image_src">
-              </div>
-              <a class="btn btn-primary " href="tables.html">提交商品</a>
-              <a class="btn btn-danger " href="tables.html">取消添加</a>
+              <a class="btn btn-primary " href="#" onclick="addItem()">添加商品</a>
+              <a class="btn btn-danger " href="items.html">取消添加</a>
             </form>
           </div>
         </div>
