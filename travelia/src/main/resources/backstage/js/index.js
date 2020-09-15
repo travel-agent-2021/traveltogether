@@ -1,3 +1,4 @@
+/*
 // Chart.js scripts
 // -- Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -23,7 +24,7 @@ function initDailyChart() {
             }
         },
         error: function(data) {
-           // alert("获取信息失败, " + data.responseText);
+            // alert("获取信息失败, " + data.responseText);
         }
     })
 }
@@ -205,3 +206,4 @@ function loadAgeChart(data) {
         },
     });
 }
+*/
