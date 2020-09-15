@@ -198,7 +198,7 @@ public class OrderServiceImpl implements OrderService {
         if (date == null) {
             return 0;
         }
-        return orderDOMapper.selectCountByCreateDate(date);
+        return orderDOMapper.selectCountByCreateDate("%" + date + "%");
     }
 
     /**

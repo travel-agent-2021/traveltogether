@@ -93,6 +93,17 @@ public class BaseController {
         return sdf.format(beforeDate);
     }
 
+    public String getBeforeMonth(int before) {
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.add(Calendar.MONTH, -(before));
+
+        Date beforeDate = calendar.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM");
+        return sdf.format(beforeDate);
+    }
+
 
     /**
      * 生成10位随机ID

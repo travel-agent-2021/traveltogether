@@ -1,7 +1,6 @@
 package com.travelia.controller;
 
 
-import ch.qos.logback.core.util.FileUtil;
 import com.travelia.error.BusinessError;
 import com.travelia.error.BusinessException;
 import com.travelia.response.CommonReturnType;
@@ -21,10 +20,7 @@ import java.nio.file.attribute.FileAttributeView;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping("/user")
@@ -170,6 +166,27 @@ public class UserController extends BaseController {
         }
         return CommonReturnType.create(userModelList, "success");
     }
+
+    /**
+     * 根据用户名查找用户
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getAgeData", method = {RequestMethod.GET})
+    @ResponseBody
+    public CommonReturnType getAgeCount() throws BusinessException {
+        Map<String, Integer> ageMap = new TreeMap<>();
+        int count = userService.getCountByAge(0, 18);
+        ageMap.put("under 18", count);
+        count = userService.getCountByAge(18, 35);
+        ageMap.put("18-35", count);
+        count = userService.getCountByAge(35, 60);
+        ageMap.put("35-60", count);
+        count = userService.getCountByAge(60, 1000);
+        ageMap.put("above 60", count);
+        return CommonReturnType.create(ageMap);
+    }
+
 
 
     /**

@@ -102,6 +102,21 @@ public class UserServiceImpl implements UserService {
         return userModelList;
     }
 
+    /**
+     * 查询年龄范围内用户个数
+     * @param minAge
+     * @param maxAge
+     * @return
+     */
+    @Override
+    public Integer getCountByAge(Integer minAge, Integer maxAge) {
+        if (minAge > maxAge) {
+            return 0;
+        }
+        Integer count = userDOMapper.selectCountByAge(minAge, maxAge);
+        return count;
+    }
+
 
     /**
      * 登录校验

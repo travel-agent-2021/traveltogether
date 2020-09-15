@@ -212,7 +212,7 @@
     select
       COUNT(*)
     from order_info
-    where order_create_date = #{date,jdbcType=VARCHAR}
+    where order_create_date like #{date,jdbcType=VARCHAR}
   </select>
 
 </mapper>

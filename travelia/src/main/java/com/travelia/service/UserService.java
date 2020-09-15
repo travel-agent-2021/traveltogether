@@ -23,5 +23,5 @@ public interface UserService {
 
     List<UserModel> getUsersLikeUsername(String username);
 
-
+    Integer getCountByAge(Integer minAge, Integer maxAge);
 }

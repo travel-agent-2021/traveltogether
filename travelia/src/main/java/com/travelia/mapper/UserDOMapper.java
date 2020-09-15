@@ -1,6 +1,7 @@
 package com.travelia.mapper;
 
 import com.travelia.entity.UserDO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -60,4 +61,6 @@ public interface UserDOMapper {
     List<UserDO> selectLikeUsername(String username);
 
     List<UserDO> selectLikeUserTelephone(String userTelephone);
+
+    int selectCountByAge(Integer minAge, Integer maxAge);
 }

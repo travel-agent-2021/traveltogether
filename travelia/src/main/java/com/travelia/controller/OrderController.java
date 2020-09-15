@@ -109,6 +109,23 @@ public class OrderController extends BaseController {
     }
 
     /**
+     * 获取近7天销量数据
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getMonthlyData", method = {RequestMethod.GET})
+    @ResponseBody
+    public CommonReturnType getMonthlyData() throws BusinessException {
+        Map<String, Integer> data = new TreeMap<>();
+        for (int i = 0; i < 5; i++) {
+            String date = getBeforeMonth(i);
+            Integer count = orderService.getOrderCountsByDate(date);
+            data.put(date, count);
+        }
+        return CommonReturnType.create(data);
+    }
+
+    /**
      * 添加订单信息
      * @param userId
      * @param itemId

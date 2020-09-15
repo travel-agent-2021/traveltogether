@@ -207,4 +207,11 @@
     where user_telephone like #{userTelephone,jdbcType=VARCHAR}
   </select>
 
+  <select id="selectCountByAge"  resultType="java.lang.Integer">
+    select
+        COUNT(*)
+    from user_info
+    where age BETWEEN #{minAge,jdbcType=INTEGER} AND #{maxAge,jdbcType=INTEGER}
+  </select>
+
 </mapper>
