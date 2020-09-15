@@ -62,7 +62,7 @@ function loadPersonalInfo(user) {
     $("#telephone").val(user.userTelephone);
     $("#email").val(user.userEmail);
     $("#userImageSource").val(user.userImageSource);
-    console.log("kong"+user.userImageSource);
+
         if (userImageSource == null || userImageSource === ""){
             $("#user_image").attr("src", "img/test.jpg");
         } else {
