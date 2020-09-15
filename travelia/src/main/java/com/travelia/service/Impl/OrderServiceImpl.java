@@ -194,6 +194,13 @@ public class OrderServiceImpl implements OrderService {
         return flag;
     }
 
+    public int getOrderCountsByDate(String date) {
+        if (date == null) {
+            return 0;
+        }
+        return orderDOMapper.selectCountByCreateDate(date);
+    }
+
     /**
      * OrderDO转化为OrderModel，包括商品、旅行社信息、城市、图片信息
      * @param orderDO
@@ -247,5 +254,6 @@ public class OrderServiceImpl implements OrderService {
         BeanUtils.copyProperties(cityModel, cityDO);
         return cityDO;
     }
+
 
 }

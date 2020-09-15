@@ -11,13 +11,13 @@ import com.travelia.service.OrderService;
 import com.travelia.service.model.CityModel;
 import com.travelia.service.model.ItemModel;
 import com.travelia.service.model.OrderModel;
+import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/order")
@@ -91,6 +91,22 @@ public class OrderController extends BaseController {
         return CommonReturnType.create(orderModelList);
     }
 
+    /**
+     * 获取近7天销量数据
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getChartData", method = {RequestMethod.GET})
+    @ResponseBody
+    public CommonReturnType getChartData() throws BusinessException {
+        Map<String, Integer> data = new TreeMap<>();
+        for (int i = 0; i < 7; i++) {
+            String date = getBeforeDate(i);
+            Integer count = orderService.getOrderCountsByDate(date);
+            data.put(date.substring(5), count);
+        }
+        return CommonReturnType.create(data);
+    }
 
     /**
      * 添加订单信息

@@ -208,4 +208,11 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
 
+  <select id="selectCountByCreateDate" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+      COUNT(*)
+    from order_info
+    where order_create_date = #{date,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

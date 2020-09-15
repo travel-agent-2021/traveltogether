@@ -57,11 +57,11 @@ public interface OrderDOMapper {
 
     List<OrderDO> selectAllOrders();
 
-
     List<OrderDO> selectByAgencyId(Integer agencyId);
 
     List<OrderDO> selectByAgencyAccount(String agencyAccount);
 
-
     List<OrderDO> selectByUserId(Integer userId);
+
+    int selectCountByCreateDate(String date);
 }

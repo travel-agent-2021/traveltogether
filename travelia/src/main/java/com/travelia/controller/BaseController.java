@@ -15,16 +15,17 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 public class BaseController {
 
     public static final String CONTENT_TYPE_FORMED = "application/x-www-form-urlencoded";
+
+    public static final String DEFAULT_DATE_PATTERN = "yyyy-MM-dd";
 
     /**
      * 异常处理
@@ -75,6 +76,23 @@ public class BaseController {
         String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern));
         return now;
     }
+
+    /**
+     * 获取当前日期前N天
+     * @param before
+     * @return
+     */
+    public String getBeforeDate(int before) {
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.add(Calendar.DAY_OF_MONTH, -(before));
+
+        Date beforeDate = calendar.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat(DEFAULT_DATE_PATTERN);
+        return sdf.format(beforeDate);
+    }
+
 
     /**
      * 生成10位随机ID
