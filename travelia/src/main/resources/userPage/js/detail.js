@@ -63,9 +63,10 @@ function setItemInfo(item) {
                 previewDom.src="assets/img/tmp/property-large-1.jpg";
                 previewDom2.src="assets/img/tmp/property-large-1.jpg";
             }else{
-                       previewDom.src =item.itemImageSources[0];
-                       previewDom2.src =item.itemImageSources[0];
+                       previewDom.src =item.itemImageSources;
+                       previewDom2.src =item.itemImageSources;
                   }
+                  console.log(previewDom.src);
 
 }
 

@@ -62,7 +62,7 @@ function loadPersonalInfo(user) {
     $("#telephone").val(user.userTelephone);
     $("#email").val(user.userEmail);
     $("#userImageSource").val(user.userImageSource);
-    console.log("kong"+user.userImageSource);
+
         if (userImageSource == null || userImageSource === ""){
             $("#user_image").attr("src", "img/test.jpg");
         } else {
@@ -274,10 +274,10 @@ function Download(){
         var d=document.getElementById("preview");
 
          var canvas = document.createElement("canvas");
-            canvas.width = d.width;
-            canvas.height = d.height;
-            // 坐标(0,0) 表示从此处开始绘制，相当于偏移。
-            canvas.getContext("2d").drawImage(d, 0, 0);
+                          var rate = (d.width < d.height ? d.width / d.height : d.height / d.width) / 2;
+                          canvas.width = d.width * rate;
+                          canvas.height = d.height * rate;
+                          canvas.getContext("2d").drawImage(d, 0, 0, d.width, d.height, 0, 0, d.width * rate, d.height * rate);
 
         var imgdata=canvas.toDataURL(type);
         //console.log(imgdata);
