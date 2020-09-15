@@ -34,10 +34,10 @@ function loadData(data) {
     $("#userImageSource").val(data.userImageSource);
 
      var previewDom = document.getElementById("preview");
-
-previewDom.src =$("#userImageSource").val().substring(47);
-
-previewDom.src = previewDom.src.substring(0,32)+$("#userImageSource").val().substring(47);
+previewDom.src =$("#userImageSource").val();
+//previewDom.src =$("#userImageSource").val().substring(47);
+//
+//previewDom.src = previewDom.src.substring(0,32)+$("#userImageSource").val().substring(47);
 console.log("final"+previewDom.src);
 
 }
@@ -194,6 +194,7 @@ function Download(){
         success:function (data)
         {
         //alert("data"+data.data);
+        alert("图片上传成功");
         $("#userImageSource").val(data.data);
 
            // alert('保存成功');

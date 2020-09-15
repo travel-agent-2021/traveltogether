@@ -34,10 +34,10 @@ function loadData(data) {
     $("#userImageSource").val(data.userImageSource);
 
      var previewDom = document.getElementById("preview");
-
-previewDom.src =$("#userImageSource").val().substring(47);
-
-previewDom.src = previewDom.src.substring(0,32)+$("#userImageSource").val().substring(47);
+previewDom.src =$("#userImageSource").val();
+//previewDom.src =$("#userImageSource").val().substring(47);
+//
+//previewDom.src = previewDom.src.substring(0,32)+$("#userImageSource").val().substring(47);
 console.log("final"+previewDom.src);
 
 }

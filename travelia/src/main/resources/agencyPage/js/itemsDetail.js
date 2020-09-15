@@ -41,10 +41,10 @@ function loadData(data) {
 
 var previewDom = document.getElementById("preview");
 
-
-previewDom.src =$("#itemImageSources").val().substring(47);
-
-previewDom.src = previewDom.src.substring(0,32)+$("#itemImageSources").val().substring(47);
+previewDom.src =$("#itemImageSources").val();
+//previewDom.src =$("#itemImageSources").val().substring(47);
+//
+//previewDom.src = previewDom.src.substring(0,32)+$("#itemImageSources").val().substring(47);
 console.log("final"+previewDom.src);
 }
 
@@ -207,7 +207,7 @@ console.log("filename"+filename);
         data: { "pp": b64},
         success:function (data)
         {
-        alert("data"+data.data);
+        alert("图片上传成功");
         $("#itemImageSources").val(data.data);
            // alert('保存成功');
         }

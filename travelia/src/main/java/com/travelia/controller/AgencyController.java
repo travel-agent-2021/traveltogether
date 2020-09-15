@@ -211,9 +211,10 @@ public class AgencyController extends BaseController {
         ByteArrayInputStream bais = new ByteArrayInputStream(b);
         BufferedImage bi1 = ImageIO.read(bais);
         String filename = UUID.randomUUID().toString();
-        String filePath="D://traveltogether/travelia/src/main/resources/image/"+filename+".png";
+        String fileStore="D://traveltogether/travelia/src/main/resources/image/"+filename+".png";
+        String filePath="../image/"+filename+".png";
         //String filePath="D://image/"+filename+".png";
-        File w2 = new File(filePath);
+        File w2 = new File(fileStore);
         ImageIO.write(bi1, "png", w2);
         System.out.println("fiilpath"+filePath);
         return CommonReturnType.create(filePath);
