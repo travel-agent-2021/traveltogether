@@ -27,7 +27,7 @@ function loadInfo(itemList) {
     if (itemList == null || itemList === "") {
         return;
     }
-console.log(itemList[4].itemImageSources[0].substring(57));
+
     for (var i = 0; i < itemList.length; i++) {
         var item = itemList[i];
         var itemId = item.itemId;
@@ -36,7 +36,6 @@ console.log(itemList[4].itemImageSources[0].substring(57));
         if (item.itemImageSources[0] == null) {
             imageSource = "image/default.png";
         } else {
-            imageSource = itemList[i].itemImageSources[0].substring(57);
         }
         var dom = '<tr>\n' +
             '                  <td>' + item.itemId + '</td>\n' +

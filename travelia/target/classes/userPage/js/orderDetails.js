@@ -60,7 +60,7 @@ function loadData(data) {
     $("#orderStatus").val(statusStr);
     $("#orderDetail").val(data.orderDetail);
     $("#orderTravelers").val(data.orderTravelers);
-    removeUserOrderId();
+    //removeUserOrderId();
 }
 
 
@@ -95,9 +95,10 @@ function deleteOrder() {
 }
 
 function showPersonalInfo() {
-    let orderId = $("#user_id").val();
+    let userId = $("#user_id").text();
     if (window.localStorage) {
-        localStorage.userOrderId = orderId;
+        localStorage.userId = userId;
+        // removeUserOrderId();
         window.location.href = 'personalInfo.html';
     } else {
         alert("Your browser does not support this technology.");
