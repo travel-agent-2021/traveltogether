@@ -40,7 +40,10 @@ function loadSearchItems(itemList) {
         let imageSource = "";
         if (item.itemImageSources == null || item.itemImageSources.length === 0) {
             imageSource = "assets/img/tmp/property-small-1.png";
-        }
+        }else{
+            imageSource = item.itemImageSources;
+              }
+
         let detail = "";
         if (item.itemDetail === "") {
             detail = "无描述信息";
@@ -54,7 +57,7 @@ function loadSearchItems(itemList) {
             '                                                <div class="image span3">\n' +
             '                                                    <div class="content">\n' +
             '                                                        <a onclick="getItemDetails(' + item.itemId + ')"></a>\n' +
-            '                                                        <img src="' + imageSource + '" alt="">\n' +
+            '                                                        <img src="' + imageSource + '" alt="" style="width:100%;height:208px">\n' +
             '                                                    </div>\n' +
             '                                                </div>\n' +
             '                                                <div class="body span6">\n' +
@@ -117,7 +120,10 @@ function loadLatest(itemsList) {
         var imageSource = "";
         if (item.itemImageSources == null || item.itemImageSources.length === 0) {
             imageSource = "assets/img/tmp/property-small-1.png";
-        }
+        }else{
+                     imageSource = item.itemImageSources;
+                       }
+
         var dom = '<div class="property">\n' +
             '                                                <div class="image">\n' +
             '                                                    <a href="#" onclick="getItemDetails(' + item.itemId + ')"></a>\n' +

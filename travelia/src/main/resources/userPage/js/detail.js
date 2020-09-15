@@ -56,6 +56,17 @@ function setItemInfo(item) {
     $("#item_price").text("￥" + item.itemPrice);
     // to do
     // set image
+    console.log("src"+item.itemImageSources[0]);
+    var previewDom = document.getElementById("big_image");
+    var previewDom2 = document.getElementById("little-1");
+     if (item.itemImageSources == null || item.itemImageSources.length === 0) {
+                previewDom.src="assets/img/tmp/property-large-1.jpg";
+                previewDom2.src="assets/img/tmp/property-large-1.jpg";
+            }else{
+                       previewDom.src =item.itemImageSources[0];
+                       previewDom2.src =item.itemImageSources[0];
+                  }
+
 }
 
 function initRelatedItems(itemId) {
