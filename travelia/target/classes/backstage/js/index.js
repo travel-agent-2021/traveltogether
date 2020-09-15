@@ -1,3 +1,4 @@
+/*
 // Chart.js scripts
 // -- Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -23,7 +24,7 @@ function initDailyChart() {
             }
         },
         error: function(data) {
-           // alert("获取信息失败, " + data.responseText);
+            // alert("获取信息失败, " + data.responseText);
         }
     })
 }
@@ -175,7 +176,7 @@ function initAgeChart() {
         success: function(data) {
             if (data.status === "success") {
                 let resultMap = data.data;
-                loadMonthlyChart(resultMap);
+                loadAgeChart(resultMap);
             }else {
                 alert("获取信息失败，" + data.data.errMsg);
             }
@@ -186,6 +187,23 @@ function initAgeChart() {
     });
 }
 
-function loadAgeChart() {
-
+function loadAgeChart(data) {
+    let dataKeys= [];
+    let dataValues= [];
+    for(let key in data) { //便历每一条数据
+        dataKeys.push(key);
+        dataValues.push(data[key]);
+    }
+    var ctx = document.getElementById("ageChart");
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: dataKeys,
+            datasets: [{
+                data: dataValues,
+                backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+            }],
+        },
+    });
 }
+*/
