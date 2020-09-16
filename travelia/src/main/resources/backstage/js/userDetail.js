@@ -23,7 +23,7 @@ $(document).ready(function () {
 
 
 function loadData(data) {
-    $("#userId").text("用户id : "+data.userId);
+    $("#userId").val(data.userId);
     $("#username").val(data.username);
     // $("#password").val(data.encryptPassword);
     $("#age").val(data.age);

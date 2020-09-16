@@ -28,7 +28,7 @@ function initData() {
 
 
 function loadData(data) {
-    $("#itemId").text("商品id : " + data.itemId);
+    $("#itemId").text(data.itemId);
     $("#itemName").val(data.itemName);
     $("#itemPrice").val(data.itemPrice);
     $("#duration").val(data.duration);
@@ -244,13 +244,27 @@ function Download() {
 
 }
 
-$("#checkBtn1").on("click", checkItem(1));
 
-$("#checkBtn2").on("click", checkItem(2));
-
-function checkItem() {
-    $("#itemId").val();
+function checkItem(status) {
+    let itemId = $("#itemId").text().substring(5);
     $.ajax({
-
+        type: "POST",
+        url: "http://localhost:8080/item/checkItem",
+        xhrFields: {withCredentials: true},
+        data: {
+            "itemId": itemId,
+            "checkStatus": status
+        },
+        success: function (data) {
+            if (data.status === "success") {
+                alert("审核成功");
+                window.location.href = "items.html";
+            } else {
+                alert("审核失败，" + data.data.errMsg);
+            }
+        },
+        error: function (data) {
+            //alert("添加失败, " + data.responseText);
+        }
     });
 }

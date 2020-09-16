@@ -24,7 +24,7 @@ $(document).ready(function () {
 
 function loadData(data) {
 
-    $("#agencyId").text("经销商id : "+data.agencyId);
+    $("#agencyId").val(data.agencyId);
     $("#agencyAccount").val(data.agencyAccount);
     $("#password").val(data.encryptPassword);
     $("#agencyTitle").val(data.agencyTitle);

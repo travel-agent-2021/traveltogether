@@ -193,7 +193,7 @@
                 <form>
                     <div class="form-group">
 <!--                        <label for="itemId">商品id</label>-->
-                        <label class="form-control" id="itemId" style="border:0px"></label>
+                        <label class="form-control" id="itemId" style="border:0px" hidden></label>
                     </div>
                     <div class="form-group">
                         <div class="form-row">
@@ -261,8 +261,8 @@
                     </div>
                     <a class="btn btn-primary " href="#" onclick="updateItem()">提交修改</a>
                     <a class="btn btn-info " href="items.html">取消修改</a>
-                    <a class="btn btn-warning " href="#" id="checkBtn1">审核通过</a>
-                    <a class="btn btn-danger " href="#" id="checkBtn2">审核未通过</a>
+                    <a class="btn btn-warning " href="#" id="checkBtn1" onclick="checkItem(1)">审核通过</a>
+                    <a class="btn btn-danger " href="#" id="checkBtn2" onclick="checkItem(2)">审核未通过</a>
                 </form>
             </div>
         </div>

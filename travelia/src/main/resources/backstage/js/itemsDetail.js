@@ -28,7 +28,7 @@ function initData() {
 
 
 function loadData(data) {
-    $("#itemId").text("商品id: " + data.itemId);
+    $("#itemId").val(data.itemId);
     $("#itemName").val(data.itemName);
     $("#itemPrice").val(data.itemPrice);
     $("#duration").val(data.duration);
@@ -72,7 +72,7 @@ function visibilityShowUI() {
 
 
 function updateItem() {
-    var itemId = $("#itemId").text().substring(5);
+    var itemId = $("#itemId").val();
     var itemName = $("#itemName").val();
     var itemPrice = $("#itemPrice").val();
     var duration = $("#duration").val();
