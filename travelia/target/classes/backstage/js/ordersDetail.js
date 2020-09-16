@@ -29,9 +29,13 @@ function initData() {
 function loadData(data) {
     $("#orderId").val(data.orderId);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     $("#userName").val(data.userName);
 =======
     $("#username").val(data.username);
+>>>>>>> Stashed changes
+=======
+    $("#userName").val(data.userName);
 >>>>>>> Stashed changes
     $("#agencyTitle").val(data.agencyTitle);
     $("#itemName").val(data.itemName);

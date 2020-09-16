@@ -1,7 +1,29 @@
 $(document).ready(function () {
     getOrders();
+    getAgency();
 });
+function getAgency() {
+    var agencyList = [];
+    $.ajax(
+        {
+            type: "GET",
+            url: "http://localhost:8080/agency/getAllAgencies",
+            xhrFields: { withCredentials: true },
+            success: function(data) {
+                if (data.status === "success") {
+                    agencyList = data.data;
+                    loadAgency(agencyList);
+                }else {
+                    alert("获取信息失败01，" + data.data.errMsg);
+                }
+            },
+            error: function(data) {
+                alert("获取信息失败02, " + data.responseText);
+            }
+        }
+    )
 
+}
 function getOrders() {
     var orderList = [];
     $.ajax({
@@ -21,7 +43,19 @@ function getOrders() {
         }
     });
 }
+function loadAgency(agencyList) {
+if(agencyList === ""||agencyList==null){
+    return;
+}
+for(var i = 0;i<agencyList.length;i++){
+    var agency=agencyList[i];
+    var agencyName = agency.agencyTitle;
+    var agencyID = agency.agencyId;
 
+    var dom = '<option value = "'+agencyID+ '">'+agencyName+'</option>';
+    $("#selectAgency").append($(dom));
+}
+}
 
 function loadInfo(orderList) {
     if (orderList === "" || orderList == null) {
