@@ -143,8 +143,7 @@ function loadAgencyOptions(agencyList) {
             });
 
             var formDom = document.getElementById("form");
-console.log("fd"+formDom);
-console.log("previewDom.src"+previewDom.src);
+
             function check() {
                 var file = fileDom.files[0];
                 // check if input contains a valid image file
@@ -200,7 +199,7 @@ function Download(){
         var filename=''+new Date().getSeconds()+'.'+type;
         //我想用当前秒是可以解决重名的问题了 不行你就换成毫秒
         //savaFile(imgdata,filename,"image");
-console.log("filename"+filename);
+
         $("#itemImageSources").val(filename);
 
         //var saveImage = canvas.toDataURL('image/png');

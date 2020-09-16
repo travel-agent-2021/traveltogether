@@ -42,7 +42,6 @@ function loadInfo(userList) {
         var dom = '<tr>\n' +
             '                  <td>' + user.userId + '</td>\n' +
             '                  <td>' + user.username + '</td>\n' +
-            '                  <td>' + user.encryptPassword + '</td>\n' +
             '                  <td>' + user.age + '</td>\n' +
             '                  <td>' + gender + '</td>\n' +
             '                  <td>' + user.userTelephone + '</td>\n' +

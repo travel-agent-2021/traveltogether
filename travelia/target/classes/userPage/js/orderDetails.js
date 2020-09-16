@@ -42,24 +42,25 @@ function initData(orderId) {
 
 
 function loadData(data) {
-    $("#orderId").val(data.orderId);
-    $("#agencyTitle").val(data.agencyTitle);
-    $("#itemName").val(data.itemName);
-    $("#orderCreateDate").val(data.orderCreateDate);
-    $("#orderPrice").val(data.orderPrice);
+    $("#orderId").text("订单id : "+data.orderId);
+    $("#agencyTitle").text("经销商名称 : "+data.agencyTitle);
+    $("#itemName").text("商品名称 : "+data.itemName);
+    $("#orderCreateDate").text("订单创建时间 : "+data.orderCreateDate);
+    $("#orderPrice").text("订单价格 : "+data.orderPrice);
     let statusStr = "";
     if (data.orderStatus === 0) {
-        statusStr = "未付款";
+        statusStr = "已付款";
     } else if (data.orderStatus === 1) {
-        statusStr = "未完成";
+        statusStr = "已付款进行中";
     } else if (data.orderStatus === 2) {
-        statusStr = "已完成";
+        statusStr = "已付款已完成";
     } else if (data.orderStatus === 3) {
-        statusStr = "已取消";
+        statusStr = "订单被取消";
     }
-    $("#orderStatus").val(statusStr);
-    $("#orderDetail").val(data.orderDetail);
-    $("#orderTravelers").val(data.orderTravelers);
+
+    $("#orderStatus").text("订单状态 : "+statusStr);
+    $("#orderDetail").text("订单详情 : "+data.orderDetail);
+    $("#orderTravelers").text("订单游客数 : "+data.orderTravelers);
     //removeUserOrderId();
 }
 

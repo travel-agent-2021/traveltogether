@@ -165,15 +165,15 @@ function loadUserOrders(orderList) {
     for (let i = 0; i < orderList.length; i++) {
         let order = orderList[i];
         let statusStr = "";
-        if (order.orderStatus === 0) {
-            statusStr = "已付款";
-        } else if (order.orderStatus === 1) {
-            statusStr = "未完成";
-        } else if (order.orderStatus === 2) {
-            statusStr = "已完成";
-        } else if (order.orderStatus === 3) {
-            statusStr = "已取消";
-        }
+            if (order.orderStatus === 0) {
+                statusStr = "已付款";
+            } else if (order.orderStatus === 1) {
+                statusStr = "已付款进行中";
+            } else if (order.orderStatus === 2) {
+                statusStr = "已付款已完成";
+            } else if (order.orderStatus === 3) {
+                statusStr = "订单被取消";
+            }
 
         let dom = '<tr><td>' + order.orderId + '</td>\n' +
             '                                <td>' + statusStr + '</td>\n' +

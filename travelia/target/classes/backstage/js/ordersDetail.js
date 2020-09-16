@@ -27,6 +27,7 @@ function initData() {
 
 
 function loadData(data) {
+<<<<<<< Updated upstream
     $("#orderId").val(data.orderId);
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -44,6 +45,29 @@ function loadData(data) {
     $("#orderStatus").val(data.orderStatus);
     $("#orderDetail").val(data.orderDetail);
     $("#orderTravelers").text(data.orderTravelers);
+=======
+var orderState ="";
+if(data.orderStatus == 0){
+    orderState ="已付款";
+}else if(data.orderStatus == 1){
+    orderState ="已付款进行中";
+}else if(data.orderStatus == 2){
+    orderState ="已付款已完成";
+}else if(data.orderStatus == 3){
+    orderState ="订单被取消";
+}
+
+    $("#orderId").text("用户id : "+data.orderId);
+    $("#username").text("用户名 : "+data.username);
+    $("#agencyTitle").text("经销商名称 : "+data.agencyTitle);
+    $("#itemName").text("商品名 : "+data.itemName);
+    $("#orderCreateDate").text("订单创建日期 : "+data.orderCreateDate);
+    $("#orderPrice").text("订单金额 : "+data.orderPrice);
+    $("#orderStatus").text("订单状态 : "+orderState);
+    $("#orderDetail").text("补充信息 : "+data.orderDetail);
+    $("#orderTravelers").text("旅客人数 : "+data.orderTravelers);
+
+>>>>>>> Stashed changes
 }
 
 function updateOrder() {
