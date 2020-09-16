@@ -28,9 +28,9 @@ function initData() {
 
 function loadData(data) {
     $("#orderId").val(data.orderId);
-    $("#userId").val(data.userId);
-    $("#agencyId").val(data.agencyId);
-    $("#itemId").val(data.itemId);
+    $("#userName").val(data.userName);
+    $("#agencyTitle").val(data.agencyTitle);
+    $("#itemName").val(data.itemName);
     $("#orderCreateDate").val(data.orderCreateDate);
     $("#orderPrice").val(data.orderPrice);
     $("#orderStatus").val(data.orderStatus);
