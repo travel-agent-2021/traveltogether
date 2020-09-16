@@ -1,6 +1,44 @@
 $(document).ready(function () {
     getItems();
+    getAgencies();
 });
+
+function getAgencies() {
+    var agencyList = [];
+    $.ajax(
+        {
+            type: "GET",
+            url: "http://localhost:8080/agency/getAllAgencies",
+            xhrFields: {withCredentials: true},
+            success: function (data) {
+                if (data.status === "success") {
+                    agencyList = data.data;
+                    loadAgencies(agencyList);
+                } else {
+                    alert("获取信息失败01，" + data.data.errMsg);
+                }
+            },
+            error: function (data) {
+                alert("获取信息失败02, " + data.responseText);
+            }
+        }
+    )
+
+}
+
+function loadAgencies(agencyList) {
+    if (agencyList === "" || agencyList == null) {
+        return;
+    }
+    for (var i = 0; i < agencyList.length; i++) {
+        var agency = agencyList[i];
+        var agencyName = agency.agencyTitle;
+        var agencyID = agency.agencyId;
+
+        var dom = '<option value = "' + agencyID + '">' + agencyName + '</option>';
+        $("#selectAgency").append($(dom));
+    }
+}
 
 
 function getItems() {
@@ -74,7 +112,29 @@ function deleteItem(itemId) {
         }
     });
 }
-
+function selectItems() {
+    let agencyId = $("#selectAgency").val();
+    let checkStatus = $("#selectItemStatus").val();
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/order/getOrdersByOptions",
+        xhrFields: {withCredentials: true},
+        data: {
+            "agencyId": agencyId,
+            "checkStatus": checkStatus
+        },
+        success: function (data) {
+            if (data.status === "success") {
+                loadInfo(data.data);
+            } else {
+                //
+            }
+        },
+        error: function (data) {
+            alert(data.responseText);
+        }
+    });
+}
 function setAndEdit(itemId) {
     if (window.localStorage) {
         localStorage.itemId = itemId;
