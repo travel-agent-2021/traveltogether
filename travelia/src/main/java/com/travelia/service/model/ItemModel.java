@@ -84,7 +84,7 @@ public class ItemModel {
     private Integer totalOrderTimes;
 
 
-    private Integer check;
+    private Integer checkStatus;
 
 
     private Integer totalClickTimes;
@@ -213,12 +213,12 @@ public class ItemModel {
     }
 
 
-    public Integer getCheck() {
-        return check;
+    public Integer getCheckStatus() {
+        return checkStatus;
     }
 
-    public void setCheck(Integer check) {
-        this.check = check;
+    public void setCheckStatus(Integer checkStatus) {
+        this.checkStatus = checkStatus;
     }
 
     public Integer getTotalClickTimes() {

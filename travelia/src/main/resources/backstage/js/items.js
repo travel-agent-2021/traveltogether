@@ -28,18 +28,18 @@ function loadInfo(itemList) {
         return;
     }
 
-    for (var i = 0; i < itemList.length; i++) {
-        var item = itemList[i];
-        var itemId = item.itemId;
-        var imageSource = "";
-        var rec = "";
-        if (item.itemImageSources[0] == null) {
-            imageSource = "image/default.png";
+    for (let i = 0; i < itemList.length; i++) {
+        let item = itemList[i];
+        let itemId = item.itemId;
+        let checkStatus = "";
+        if (item.checkStatus === 0) {
+            checkStatus = "未审核";
         } else {
+            checkStatus = "已审核";
         }
-        var dom = '<tr>\n' +
+        let dom = '<tr>\n' +
             '                  <td>' + item.itemId + '</td>\n' +
-            '                  <td>' + item.checkStatus + '</td>\n' +
+            '                  <td>' + checkStatus + '</td>\n' +
             '                  <td>' + item.itemName + '</td>\n' +
             '                  <td>' + item.itemCreateDate + '</td>\n' +
             '                  <td>' + item.itemPrice + '</td>\n' +
