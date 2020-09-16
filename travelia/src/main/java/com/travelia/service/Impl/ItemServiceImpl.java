@@ -172,6 +172,27 @@ public class ItemServiceImpl implements ItemService {
         }
     }
 
+    /**
+     * 筛选商品
+     * @param checkStatus
+     * @param agencyId
+     * @return
+     * @throws BusinessException
+     */
+    @Override
+    public List<ItemModel> getItemsByOptions(Integer checkStatus, Integer agencyId) throws BusinessException {
+        List<ItemDO> itemDOList = itemDOMapper.selectByOptions(checkStatus, agencyId);
+        /*if (itemDOList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }*/
+        List<ItemModel> itemModelList = new ArrayList<>();
+        for (ItemDO itemDO: itemDOList) {
+            AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(itemDO.getAgencyId());
+            itemModelList.add(convertFromItemDO2Model(itemDO, agencyDO));
+        }
+        return itemModelList;
+    }
+
 
     /**
      * 根据商品名搜索商品

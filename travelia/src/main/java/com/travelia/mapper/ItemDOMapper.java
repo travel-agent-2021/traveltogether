@@ -85,4 +85,12 @@ public interface ItemDOMapper {
      */
     List<ItemDO> selectLikeItemName(String itemName);
 
+    /**
+     *
+     * @param checkStatus
+     * @param agencyId
+     * @return
+     */
+    List<ItemDO> selectByOptions(Integer checkStatus, Integer agencyId);
+
 }

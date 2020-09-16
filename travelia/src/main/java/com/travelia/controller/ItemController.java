@@ -13,21 +13,11 @@ import com.travelia.service.model.ItemModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import sun.misc.BASE64Decoder;
 
-import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
+
 
 @Controller
 @RequestMapping("/item")
@@ -165,6 +155,14 @@ public class ItemController extends BaseController {
     }
 
 
+    @RequestMapping(value = "/getItemsByOptions", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType getItemsByOptions(@RequestParam(name = "checkStatus") Integer checkStatus,
+                                              @RequestParam(name = "agencyId") Integer agencyId) throws BusinessException {
+        List<ItemModel> itemModelList = itemService.getItemsByOptions(checkStatus, agencyId);
+        return CommonReturnType.create(itemModelList);
+    }
+
     /**
      * 添加商品信息
      * @param itemName
@@ -183,7 +181,7 @@ public class ItemController extends BaseController {
     public CommonReturnType addItem(@RequestParam(name = "itemName") String itemName,
                                     @RequestParam(name = "itemPrice") BigDecimal itemPrice,
                                     @RequestParam(name = "agencyId") Integer agencyId,
-                                    @RequestParam(name = "duration") Integer duration,
+                                     @RequestParam(name = "duration") Integer duration,
                                     @RequestParam(name = "minTourists") Integer minTourists,
                                     @RequestParam(name = "maxTourists") Integer maxTourists,
                                     @RequestParam(name = "itemDetail") String itemDetail,
