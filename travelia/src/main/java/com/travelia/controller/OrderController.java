@@ -91,6 +91,23 @@ public class OrderController extends BaseController {
         return CommonReturnType.create(orderModelList);
     }
 
+    @RequestMapping(value = "/getOrdersByOptions", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType getOrdersByUserId(@RequestParam(name = "agencyId") Integer agencyId,
+                                              @RequestParam(name = "orderStatus") Integer orderStatus) throws BusinessException {
+        if (agencyId == -1) {
+            agencyId = null;
+        }
+        if (orderStatus == -1) {
+            orderStatus = null;
+        }
+        List<OrderModel> orderModelList = orderService.getOrdersByOptions(agencyId, orderStatus);
+        if (orderModelList == null) {
+            return CommonReturnType.create();
+        }
+        return CommonReturnType.create(orderModelList);
+    }
+
     /**
      * 获取近7天销量数据
      * @return
@@ -109,7 +126,7 @@ public class OrderController extends BaseController {
     }
 
     /**
-     * 获取近7天销量数据
+     * 获取近5个月销量数据
      * @return
      * @throws BusinessException
      */

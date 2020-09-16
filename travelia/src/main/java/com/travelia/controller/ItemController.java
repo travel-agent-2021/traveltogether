@@ -56,9 +56,12 @@ public class ItemController extends BaseController {
     @ResponseBody
     public CommonReturnType getItemById(@RequestParam(name = "itemId") Integer itemId) throws BusinessException {
         ItemModel itemModel = itemService.getItemByItemId(itemId);
+
         if (itemModel == null) {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
         }
+        itemModel.setTotalClickTimes(itemModel.getTotalClickTimes() + 1);
+        itemService.updateItemById(itemModel);
         return CommonReturnType.create(itemModel);
     }
     /**
@@ -211,6 +214,7 @@ public class ItemController extends BaseController {
         itemModel.setAgencyId(agencyId);
         itemModel.setTotalOrderTimes(0);
         itemModel.setItemCreateDate(getNowDate("yyyy-MM-dd"));
+        itemModel.setTotalClickTimes(0);
         // 待修改
         //itemModel.setItemImageSources(null);
 
@@ -225,41 +229,8 @@ public class ItemController extends BaseController {
 
         return CommonReturnType.create();
     }
-//    /**
-//     * 添加商品图片信息
-//     * @param itemImageResources
-//     * @return
-//     * @throws BusinessException
-//     */
-//    @RequestMapping(value = "/addItemImageResources", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
-//    @ResponseBody
-//    public CommonReturnType addItem(@RequestParam(name = "itemImageResources") String itemImageResources) throws BusinessException {
-//
-////        if (itemName == null || itemName.equals("")) {
-////            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品名称");
-////        }
-////        if (itemPrice == null) {
-////            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品价格");
-////        }
-////        if (agencyId == null) {
-////            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入旅行社");
-////        }
-//
-//        List<String> imageRe = null;
-//        itemImageResources=imageRe.get(0);
-//        ItemModel itemModel = new ItemModel();
-//        itemModel.setItemImageSources(imageRe);
-//        //待修改啊啊啊
-//        itemService.insertItem(itemModel);
-//
-//        // 根据商品名设置城市信息
-//        Integer itemId = itemModel.getItemId();
-//        itemModel.setCityModels(setCityList(itemName));
-//        itemCityService.addItemCityDOKeys(itemId, itemModel.getCityModels());
-//
-//
-//        return CommonReturnType.create();
-//    }
+
+
     /**
      * 修改商品信息
      * @param itemId
@@ -345,6 +316,8 @@ public class ItemController extends BaseController {
         itemService.deleteItem(itemModel);
         return CommonReturnType.create();
     }
+
+
 
     /**
      * 根据item名称得到城市列表

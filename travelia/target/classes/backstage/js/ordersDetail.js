@@ -28,6 +28,7 @@ function initData() {
 
 function loadData(data) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     $("#orderId").val(data.orderId);
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -46,6 +47,8 @@ function loadData(data) {
     $("#orderDetail").val(data.orderDetail);
     $("#orderTravelers").text(data.orderTravelers);
 =======
+=======
+>>>>>>> Stashed changes
 var orderState ="";
 if(data.orderStatus == 0){
     orderState ="已付款";
@@ -67,6 +70,9 @@ if(data.orderStatus == 0){
     $("#orderDetail").text("补充信息 : "+data.orderDetail);
     $("#orderTravelers").text("旅客人数 : "+data.orderTravelers);
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 

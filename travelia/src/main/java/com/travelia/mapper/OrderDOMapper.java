@@ -53,6 +53,7 @@ public interface OrderDOMapper {
      */
     int updateByPrimaryKey(OrderDO record);
 
+
     List<OrderDO> selectAllOrders();
 
 
@@ -66,4 +67,7 @@ public interface OrderDOMapper {
 
 
     int selectCountByCreateDate(String date);
+
+
+    List<OrderDO> selectByOptions(Integer agencyId, Integer orderStatus);
 }

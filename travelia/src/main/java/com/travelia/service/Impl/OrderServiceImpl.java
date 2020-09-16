@@ -122,6 +122,20 @@ public class OrderServiceImpl implements OrderService {
         return orderModels;
     }
 
+    @Override
+    public List<OrderModel> getOrdersByOptions(Integer agencyId, Integer orderStatus) throws BusinessException {
+        List<OrderDO> orderDOList = orderDOMapper.selectByOptions(agencyId, orderStatus);
+        if (orderDOList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        List<OrderModel> orderModels = new ArrayList<>();
+        for (OrderDO orderDO: orderDOList) {
+            AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(orderDO.getAgencyId());
+            orderModels.add(convertFromOrderDO2Model(orderDO, agencyDO));
+        }
+        return orderModels;
+    }
+
 
     /**
      * 添加订单信息

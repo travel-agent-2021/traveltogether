@@ -215,4 +215,18 @@
     where order_create_date like #{date,jdbcType=VARCHAR}
   </select>
 
+  <select id="selectByOptions" resultMap="BaseResultMap">
+    select
+        <include refid="Base_Column_List" />
+    from order_info
+    <where>
+        <if test="agencyId != null">
+           AND agency_id = #{agencyId,jdbcType=INTEGER}
+        </if>
+        <if test="orderStatus != null">
+           AND order_status = #{orderStatus,jdbcType=INTEGER}
+        </if>
+    </where>
+  </select>
+
 </mapper>

@@ -17,6 +17,8 @@ public interface OrderService {
 
     List<OrderModel> getOrdersByUserId(Integer userId) throws BusinessException;
 
+    List<OrderModel> getOrdersByOptions(Integer agencyId, Integer orderStatus) throws BusinessException;
+
     int insertOrder(OrderModel orderModel) throws BusinessException;
 
     int deleteOrder(OrderModel orderModel) throws BusinessException;
