@@ -5,25 +5,22 @@ $(document).ready(function () {
 
 function getAgencies() {
     var agencyList = [];
-    $.ajax(
-        {
-            type: "GET",
-            url: "http://localhost:8080/agency/getAllAgencies",
-            xhrFields: {withCredentials: true},
-            success: function (data) {
-                if (data.status === "success") {
-                    agencyList = data.data;
-                    loadAgencies(agencyList);
-                } else {
-                    alert("获取信息失败01，" + data.data.errMsg);
-                }
-            },
-            error: function (data) {
-                alert("获取信息失败02, " + data.responseText);
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/agency/getAllAgencies",
+        xhrFields: {withCredentials: true},
+        success: function (data) {
+            if (data.status === "success") {
+                agencyList = data.data;
+                loadAgencies(agencyList);
+            } else {
+                alert("获取信息失败01，" + data.data.errMsg);
             }
+        },
+        error: function (data) {
+            alert("获取信息失败02, " + data.responseText);
         }
-    )
-
+    });
 }
 
 function loadAgencies(agencyList) {
@@ -46,16 +43,16 @@ function getItems() {
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/item/getAllItems",
-        xhrFields: { withCredentials: true },
-        success: function(data) {
+        xhrFields: {withCredentials: true},
+        success: function (data) {
             if (data.status === "success") {
                 itemList = data.data;
                 loadInfo(itemList);
-            }else {
+            } else {
                 alert("获取信息失败，" + data.data.errMsg);
             }
         },
-        error: function(data) {
+        error: function (data) {
             alert("获取信息失败, " + data.responseText);
         }
     });
@@ -65,7 +62,7 @@ function loadInfo(itemList) {
     if (itemList == null || itemList === "") {
         return;
     }
-
+    $("#dataTable tbody").empty();
     for (let i = 0; i < itemList.length; i++) {
         let item = itemList[i];
         let itemId = item.itemId;
@@ -85,8 +82,8 @@ function loadInfo(itemList) {
             '                  <td>' + item.itemPrice + '</td>\n' +
             '                  <td>' + item.duration + '</td>\n' +
             '                  <td>' + item.agencyTitle + '</td>\n' +
-            '                  <td><a class="btn btn-primary"  href="#" onclick="setAndEdit(' + itemId +')">修改</a>\n' +
-            '                      <a class="btn btn-warning"  href="#" onclick="deleteItem(' + itemId +')">删除</a></td>\n'+
+            '                  <td><a class="btn btn-primary"  href="#" onclick="setAndEdit(' + itemId + ')">修改</a>\n' +
+            '                      <a class="btn btn-warning"  href="#" onclick="deleteItem(' + itemId + ')">删除</a></td>\n' +
             '                </tr>';
         $("#dataTable tbody").append($(dom));
     }
@@ -97,29 +94,30 @@ function deleteItem(itemId) {
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/item/deleteItem",
-        xhrFields: { withCredentials: true },
-        data : {
+        xhrFields: {withCredentials: true},
+        data: {
             "itemId": itemId
         },
-        success: function(data) {
+        success: function (data) {
             if (data.status === "success") {
                 alert("删除成功！");
                 window.location.href = "items.html";
-            }else {
+            } else {
                 alert("删除失败，" + data.data.errMsg);
             }
         },
-        error: function(data) {
+        error: function (data) {
             alert("删除, " + data.responseText);
         }
     });
 }
+
 function selectItems() {
     let agencyId = $("#selectAgency").val();
     let checkStatus = $("#selectItemStatus").val();
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/order/getOrdersByOptions",
+        url: "http://localhost:8080/item/getItemsByOptions",
         xhrFields: {withCredentials: true},
         data: {
             "agencyId": agencyId,
@@ -133,10 +131,11 @@ function selectItems() {
             }
         },
         error: function (data) {
-            alert(data.responseText);
+            alert("请求失败");
         }
     });
 }
+
 function setAndEdit(itemId) {
     if (window.localStorage) {
         localStorage.itemId = itemId;

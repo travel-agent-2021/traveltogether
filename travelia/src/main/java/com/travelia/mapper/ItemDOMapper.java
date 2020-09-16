@@ -59,6 +59,13 @@ public interface ItemDOMapper {
      */
     List<ItemDO> selectAllItems();
 
+
+    /**
+     * 查询审核通过的商品
+     * @return
+     */
+    List<ItemDO> selectCheckedItems();
+
     /**
      * 根据AgencyId查询商品
      * @param agencyId

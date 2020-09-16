@@ -39,6 +39,18 @@ function loadData(data) {
     $("#detail").text(data.itemDetail);
     $("#itemImageSources").val(data.itemImageSources);
 
+if (data.checkStatus === 0) {
+        visibilityShowUI();
+        $("#itemHeader").text("商品详情 （未审核）");
+    } else if (data.checkStatus === 1) {
+        visibilityHideUI();
+        $("#itemHeader").text("商品详情 （已审核）");
+    } else if (data.checkStatus === 2) {
+         visibilityHideUI();
+         $("#itemHeader").text("商品详情 （未通过）");
+    }
+
+
 var previewDom = document.getElementById("preview");
 
 previewDom.src =$("#itemImageSources").val();

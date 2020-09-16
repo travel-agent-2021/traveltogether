@@ -59,14 +59,27 @@ public class ItemServiceImpl implements ItemService {
             AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(itemDO.getAgencyId());
             itemModels.add(convertFromItemDO2Model(itemDO, agencyDO));
         }
+        return itemModels;
+    }
 
-
+    /**
+     * 查询所有已审核的商品
+     * @return
+     */
+    @Override
+    public List<ItemModel> getCheckedItems() {
+        List<ItemDO> itemDOList = itemDOMapper.selectCheckedItems();
+        List<ItemModel> itemModels = new ArrayList<>();
+        for (ItemDO itemDO : itemDOList) {
+            AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(itemDO.getAgencyId());
+            itemModels.add(convertFromItemDO2Model(itemDO, agencyDO));
+        }
         return itemModels;
     }
 
 
     /**
-     * 根据旅行社Id查询旅行社所有商品
+     * 根据旅行社Id查询旅行社所有商品（后台）
      * @param agencyId
      * @return
      */
@@ -85,7 +98,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /**
-     * 得到商品列表按下单次数降序排列
+     * 得到商品列表按下单次数降序排列（前端）
      * @return
      * @throws BusinessException
      */
@@ -106,7 +119,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /**
-     * 商品按日期降序排列
+     * 商品按日期降序排列（前端）
      * @return
      * @throws BusinessException
      */
@@ -127,7 +140,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /**
-     * 获取某商品相关商品
+     * 获取某商品相关商品(前端)
      * @param itemModel
      * @return
      * @throws BusinessException
@@ -145,7 +158,7 @@ public class ItemServiceImpl implements ItemService {
         }
 
         // 获取所有商品
-        List<ItemModel> itemModelList = getAllItems();
+        List<ItemModel> itemModelList = getCheckedItems();
         if (itemModelList == null || itemModelList.size() == 0) {
             return null;
         }
@@ -173,7 +186,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /**
-     * 筛选商品
+     * 筛选商品(后台)
      * @param checkStatus
      * @param agencyId
      * @return
@@ -195,7 +208,7 @@ public class ItemServiceImpl implements ItemService {
 
 
     /**
-     * 根据商品名搜索商品
+     * 根据商品名搜索商品(前端)
      * @param keyword
      * @return
      * @throws BusinessException
@@ -203,7 +216,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<ItemModel> searchItemsByKeyword(String keyword) throws BusinessException {
         //List<ItemDO> itemDOList = itemDOMapper.selectLikeItemName("%" + itemName + "%");
-        List<ItemDO> itemDOList = itemDOMapper.selectAllItems();
+        List<ItemDO> itemDOList = itemDOMapper.selectCheckedItems();
         if (itemDOList == null) {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
         }

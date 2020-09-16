@@ -13,6 +13,8 @@ public interface ItemService {
 
     List<ItemModel> getAllItems();
 
+    List<ItemModel> getCheckedItems();
+
     List<ItemModel> getItemsByAgencyId(Integer agencyId) throws BusinessException;
 
     List<ItemModel> getItemsOrderByTotalOrderTimesDESC() throws BusinessException;

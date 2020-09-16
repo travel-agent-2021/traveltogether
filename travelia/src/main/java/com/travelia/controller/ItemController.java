@@ -54,6 +54,7 @@ public class ItemController extends BaseController {
         itemService.updateItemById(itemModel);
         return CommonReturnType.create(itemModel);
     }
+
     /**
      * 根据AgencyId获取商品信息
      * @param agencyId
@@ -69,6 +70,7 @@ public class ItemController extends BaseController {
         }
         return CommonReturnType.create(itemModel);
     }
+
     /**
      * 获取所有商品信息
      * @return
@@ -78,6 +80,16 @@ public class ItemController extends BaseController {
     @ResponseBody
     public CommonReturnType getAllItems() throws BusinessException {
         List<ItemModel> itemModelList = itemService.getAllItems();
+        if (itemModelList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        return CommonReturnType.create(itemModelList);
+    }
+
+    @RequestMapping(value = "/getCheckedItems", method = {RequestMethod.GET})
+    @ResponseBody
+    public CommonReturnType getCheckedItems() throws BusinessException {
+        List<ItemModel> itemModelList = itemService.getCheckedItems();
         if (itemModelList == null) {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
         }
@@ -144,7 +156,7 @@ public class ItemController extends BaseController {
     public CommonReturnType searchItemsByItemName(@RequestParam(name = "itemName") String itemName) throws BusinessException {
         List<ItemModel> itemModelList;
         if (itemName == null || itemName.equals("")) {
-            itemModelList = itemService.getAllItems();
+            itemModelList = itemService.getCheckedItems();
         } else {
             itemModelList = itemService.searchItemsByKeyword(itemName);
         }
@@ -154,11 +166,23 @@ public class ItemController extends BaseController {
         return CommonReturnType.create(itemModelList);
     }
 
-
+    /**
+     * 筛选商品
+     * @param checkStatus
+     * @param agencyId
+     * @return
+     * @throws BusinessException
+     */
     @RequestMapping(value = "/getItemsByOptions", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType getItemsByOptions(@RequestParam(name = "checkStatus") Integer checkStatus,
                                               @RequestParam(name = "agencyId") Integer agencyId) throws BusinessException {
+        if (checkStatus == -1) {
+            checkStatus = null;
+        }
+        if (agencyId == -1) {
+            agencyId = null;
+        }
         List<ItemModel> itemModelList = itemService.getItemsByOptions(checkStatus, agencyId);
         return CommonReturnType.create(itemModelList);
     }
@@ -181,11 +205,11 @@ public class ItemController extends BaseController {
     public CommonReturnType addItem(@RequestParam(name = "itemName") String itemName,
                                     @RequestParam(name = "itemPrice") BigDecimal itemPrice,
                                     @RequestParam(name = "agencyId") Integer agencyId,
-                                     @RequestParam(name = "duration") Integer duration,
-                                    @RequestParam(name = "minTourists") Integer minTourists,
-                                    @RequestParam(name = "maxTourists") Integer maxTourists,
-                                    @RequestParam(name = "itemDetail") String itemDetail,
-                                    @RequestParam(name = "itemImageSources") String itemImageSources) throws BusinessException {
+                                     @RequestParam(name = "duration", required = false) Integer duration,
+                                    @RequestParam(name = "minTourists", required = false) Integer minTourists,
+                                    @RequestParam(name = "maxTourists", required = false) Integer maxTourists,
+                                    @RequestParam(name = "itemDetail", required = false) String itemDetail,
+                                    @RequestParam(name = "itemImageSources", required = false) String itemImageSources) throws BusinessException {
 
         if (itemName == null || itemName.equals("")) {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品名称");
@@ -249,11 +273,11 @@ public class ItemController extends BaseController {
                                        @RequestParam(name = "itemName") String itemName,
                                        @RequestParam(name = "itemPrice") BigDecimal itemPrice,
                                        @RequestParam(name = "agencyId") Integer agencyId,
-                                       @RequestParam(name = "duration") Integer duration,
-                                       @RequestParam(name = "minTourists") Integer minTourists,
-                                       @RequestParam(name = "maxTourists") Integer maxTourists,
-                                       @RequestParam(name = "itemDetail") String itemDetail,
-                                       @RequestParam(name = "itemImageSources") String itemImageSources) throws BusinessException {
+                                       @RequestParam(name = "duration", required = false) Integer duration,
+                                       @RequestParam(name = "minTourists", required = false) Integer minTourists,
+                                       @RequestParam(name = "maxTourists", required = false) Integer maxTourists,
+                                       @RequestParam(name = "itemDetail", required = false) String itemDetail,
+                                       @RequestParam(name = "itemImageSources", required = false) String itemImageSources) throws BusinessException {
 
         if (itemId == null) {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
