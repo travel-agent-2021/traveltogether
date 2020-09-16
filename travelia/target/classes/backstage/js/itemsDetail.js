@@ -38,10 +38,12 @@ function loadData(data) {
     $("#agencyTitle").val(data.agencyTitle);
     $("#detail").text(data.itemDetail);
     $("#itemImageSources").val(data.itemImageSources);
-    if(checkStatus === 0){
+    if (data.checkStatus === 0) {
         visibilityShowUI();
-    }else if(checkStatus === 1){
+        $("#itemHeader").text("商品详情 （未审核）");
+    } else if (data.checkStatus === 1) {
         visibilityHideUI();
+        $("#itemHeader").text("商品详情 （已审核）");
     }
 
 var previewDom = document.getElementById("preview");
