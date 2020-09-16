@@ -37,11 +37,21 @@ function loadInfo(orderList) {
     for (var i = 0; i < orderList.length; i++) {
         var order = orderList[i];
         var orderId = order.orderId;
+        var orderStatus = "";
+        if (order.orderStatus === 0) {
+            orderStatus = "已付款";
+        } else if (order.orderStatus === 1) {
+            orderStatus = "进行中";
+        } else if (order.orderStatus === 2) {
+            orderStatus = "已完成";
+        } else if (order.orderStatus === 3) {
+            orderStatus = "已取消";
+        }
         var dom = '<tr>\n' +
             '                  <td>' + order.orderId + '</td>\n' +
             '                  <td>' + order.orderCreateDate + '</td>\n' +
             '                  <td>' + order.orderPrice + '</td>\n' +
-            '                  <td>' + order.orderStatus + '</td>\n' +
+            '                  <td>' + orderStatus + '</td>\n' +
             '                  <td>' + order.username + '</td>\n' +
             '                  <td>' + order.agencyTitle + '</td>\n' +
             '                  <td>' + order.orderTravelers + '</td>\n' +

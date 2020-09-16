@@ -194,28 +194,14 @@ public class OrderController extends BaseController {
     /**
      * 修改订单信息
      * @param orderId
-     * @param userId
-     * @param agencyId
-     * @param itemId
-     * @param orderCreateDate
-     * @param orderPrice
      * @param orderStatus
-     * @param orderDetail
-     * @param orderTravelers
      * @return
      * @throws BusinessException
      */
     @RequestMapping(value = "/updateOrder", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType updateOrder(@RequestParam(name = "orderId") Integer orderId,
-                                       @RequestParam(name = "userId") Integer userId,
-                                       @RequestParam(name = "agencyId") Integer agencyId,
-                                       @RequestParam(name = "itemId") Integer itemId,
-                                       @RequestParam(name = "orderCreateDate") String orderCreateDate,
-                                       @RequestParam(name = "orderPrice") BigDecimal orderPrice,
-                                       @RequestParam(name = "orderStatus") Integer orderStatus,
-                                       @RequestParam(name = "orderDetail") String orderDetail,
-                                       @RequestParam(name = "orderTravelers") Integer orderTravelers) throws BusinessException {
+                                       @RequestParam(name = "orderStatus") Integer orderStatus) throws BusinessException {
 
         if (orderId == null) {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
@@ -223,12 +209,7 @@ public class OrderController extends BaseController {
 //        if (itemName == null || itemName.equals("")) {
 //            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入商品名称");
 //        }
-        if (orderPrice == null) {
-            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入订单价格");
-        }
-        if (agencyId == null) {
-            throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "请输入旅行社ID");
-        }
+
 
         OrderModel orderModel = orderService.getOrderByOrderId(orderId);
         if (orderModel == null) {
@@ -236,15 +217,8 @@ public class OrderController extends BaseController {
         }
 
         // 修改基本信息
-        orderModel.setOrderId(generateOrderId());
-        orderModel.setUserId(userId);
-        orderModel.setAgencyId(agencyId);
-        orderModel.setItemId(itemId);
-        orderModel.setOrderCreateDate(orderCreateDate);
-        orderModel.setOrderPrice(orderPrice);
+
         orderModel.setOrderStatus(orderStatus);
-        orderModel.setOrderDetail(orderDetail);
-        orderModel.setOrderTravelers(orderTravelers);
 
         // to do 修改图片信息
 

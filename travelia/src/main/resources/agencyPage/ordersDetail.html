@@ -188,9 +188,10 @@
                 <form>
                     <div class="form-group">
                         <div class="form-row">
+
                             <div class="col-md-6">
-<!--                                <label for="orderId">订单id</label>-->
-                                <label class="form-control" id="orderId" style="border:0px"></label>
+                                <!--                                <label for="orderTravelers">旅客人数</label>-->
+                                <label class="form-control" id="orderTravelers" style="border:0px"></label>
                             </div>
                             <div class="col-md-6">
 <!--                                <label for="username">用户名</label>-->
@@ -226,12 +227,16 @@
                         <div class="form-row">
                             <div class="col-md-6">
 <!--                                <label for="orderStatus">订单状态</label>-->
-                                <label class="form-control" id="orderStatus" style="border:0px"></label>
+                                <label for="orderStatus">订单状态</label>
+                                <select class="form-control" id="orderStatus" type="text">
+                                    <option value ="-1">请选择</option>
+                                    <option value ="3">订单被取消</option>
+                                    <option value ="2">已付款已完成</option>
+                                    <option value ="1">已付款进行中</option>
+                                    <option value ="0">已付款</option>
+                                </select>
                             </div>
-                            <div class="col-md-6">
-<!--                                <label for="orderTravelers">旅客人数</label>-->
-                                <label class="form-control" id="orderTravelers" style="border:0px"></label>
-                            </div>
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -241,9 +246,13 @@
 <!--                                <label for="orderDetail">补充</label>-->
                                 <p class="form-control" id="orderDetail" style="border:0px"></p>
                             </div>
-
+                            <div class="col-md-6">
+                                <!--                                <label for="orderId">订单id</label>-->
+                                <input class="form-control" id="orderId" style="border:0px" hidden>
+                            </div>
                         </div>
                     </div>
+                    <a class="btn btn-primary " href="#" onclick="updateOrder()">提交修改</a>
                     <a class="btn btn-info " href="orders.html">返 回</a>
                 </form>
             </div>

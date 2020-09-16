@@ -37,28 +37,21 @@ if(data.orderStatus == 0){
 }else if(data.orderStatus == 3){
     orderState ="订单被取消";
 }
-
-        $("#orderId").text("用户id : "+data.orderId);
+        $("#orderId").val(data.orderId);
         $("#username").text("用户名 : "+data.username);
         $("#agencyTitle").text("经销商名称 : "+data.agencyTitle);
         $("#itemName").text("商品名 : "+data.itemName);
         $("#orderCreateDate").text("订单创建日期 : "+data.orderCreateDate);
         $("#orderPrice").text("订单金额 : "+data.orderPrice);
-        $("#orderStatus").text("订单状态 : "+orderState);
+        $("#orderStatus").val(data.orderStatus);
         $("#orderDetail").text("补充信息 : "+data.orderDetail);
         $("#orderTravelers").text("旅客人数 : "+data.orderTravelers);
+
 }
 
 function updateOrder() {
     var orderId = $("#orderId").val();
-    var userId = $("#userId").val();
-    var agencyId = $("#agencyId").val();
-    var itemId = $("#itemId").val();
-    var orderCreateDate = $("#orderCreateDate").val();
-    var orderPrice = $("#orderPrice").val();
     var orderStatus =  $("#orderStatus").val();
-    var orderDetail = $("#orderDetail").val();
-    var orderTravelers =  $("#orderTravelers").val();
 
     $.ajax({
         type: "POST",
@@ -66,14 +59,7 @@ function updateOrder() {
         xhrFields: { withCredentials: true },
         data: {
             "orderId": orderId,
-            "userId": userId,
-            "agencyId": agencyId,
-            "itemId": itemId,
-            "orderCreateDate": orderCreateDate,
-            "orderPrice": orderPrice,
             "orderStatus": orderStatus,
-            "orderDetail": orderDetail,
-            "orderTravelers": orderTravelers
         },
         success: function(data) {
             if (data.status === "success") {
