@@ -136,7 +136,7 @@
           </executions>
           <configuration>
             <verbose>true</verbose>
-            <overwrite>false</overwrite>
+            <overwrite>true</overwrite>
             <configurationFile>
               src/main/resources/mybatis-generator.xml
             </configurationFile>
