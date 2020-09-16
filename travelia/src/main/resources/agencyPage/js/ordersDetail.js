@@ -27,15 +27,15 @@ function initData() {
 
 
 function loadData(data) {
-    $("#orderId").val(data.orderId);
-    $("#userId").val(data.userId);
-    $("#agencyId").val(data.agencyId);
-    $("#itemId").val(data.itemId);
-    $("#orderCreateDate").val(data.orderCreateDate);
-    $("#orderPrice").val(data.orderPrice);
-    $("#orderStatus").val(data.orderStatus);
-    $("#orderDetail").val(data.orderDetail);
-    $("#orderTravelers").text(data.orderTravelers);
+        $("#orderId").text("用户id : "+data.orderId);
+        $("#username").text("用户名 : "+data.username);
+        $("#agencyTitle").text("经销商名称 : "+data.agencyTitle);
+        $("#itemName").text("商品名 : "+data.itemName);
+        $("#orderCreateDate").text("订单创建日期 : "+data.orderCreateDate);
+        $("#orderPrice").text("订单金额 : "+data.orderPrice);
+        $("#orderStatus").text("订单状态 : "+data.orderStatus);
+        $("#orderDetail").text("补充信息 : "+data.orderDetail);
+        $("#orderTravelers").text("旅客人数 : "+data.orderTravelers);
 }
 
 function updateOrder() {

@@ -43,8 +43,8 @@ function loadInfo(orderList) {
             '                  <td>' + order.orderCreateDate + '</td>\n' +
             '                  <td>' + order.orderPrice + '</td>\n' +
             '                  <td>' + order.orderStatus + '</td>\n' +
-            '                  <td>' + order.userId + '</td>\n' +
-            '                  <td>' + order.agencyId + '</td>\n' +
+            '                  <td>' + order.username + '</td>\n' +
+            '                  <td>' + order.agencyTitle + '</td>\n' +
             '                  <td>' + order.orderTravelers + '</td>\n' +
             '                  <td>' + order.orderDetail + '</td>\n' +
             '                  <td><a class="btn btn-primary"  href="#" onclick="setAndEdit(' + orderId +')">查看</a>\n' +

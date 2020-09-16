@@ -27,14 +27,14 @@ function initData() {
 
 
 function loadData(data) {
-    $("#orderId").val(data.orderId);
-    $("#userId").val(data.userId);
-    $("#agencyId").val(data.agencyId);
-    $("#itemId").val(data.itemId);
-    $("#orderCreateDate").val(data.orderCreateDate);
-    $("#orderPrice").val(data.orderPrice);
-    $("#orderStatus").val(data.orderStatus);
-    $("#orderDetail").val(data.orderDetail);
+    $("#orderId").text(data.orderId);
+    $("#username").text(data.username);
+    $("#agencyTitle").text(data.agencyTitle);
+    $("#itemName").text(data.itemName);
+    $("#orderCreateDate").text(data.orderCreateDate);
+    $("#orderPrice").text(data.orderPrice);
+    $("#orderStatus").text(data.orderStatus);
+    $("#orderDetail").text(data.orderDetail);
     $("#orderTravelers").text(data.orderTravelers);
 }
 
