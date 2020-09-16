@@ -72,9 +72,11 @@ function loadInfo(itemList) {
         let checkStatus = "";
         if (item.checkStatus === 0) {
             checkStatus = "未审核";
-        } else {
+        } else if(item.checkStatus === 1){
             checkStatus = "已审核";
-        }
+        }else if(item.checkStatus === 2){
+             checkStatus = "未通过";
+         }
         let dom = '<tr>\n' +
             '                  <td>' + item.itemId + '</td>\n' +
             '                  <td>' + checkStatus + '</td>\n' +

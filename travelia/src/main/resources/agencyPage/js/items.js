@@ -41,8 +41,16 @@ function loadInfo(itemList) {
         } else {
             imageSource = itemList[i].itemImageSources[0].substring(57);
         }
+        if (item.checkStatus === 0) {
+                    checkStatus = "未审核";
+                } else if(item.checkStatus === 1){
+                    checkStatus = "已审核";
+                }else if(item.checkStatus === 2){
+                     checkStatus = "未通过";
+                 }
         var dom = '<tr>\n' +
             '                  <td>' + item.itemId + '</td>\n' +
+            '                  <td>' + checkStatus + '</td>\n' +
             '                  <td>' + item.itemName + '</td>\n' +
             '                  <td>' + item.itemCreateDate + '</td>\n' +
             '                  <td>' + item.itemPrice + '</td>\n' +
