@@ -39,6 +39,7 @@ function loadInfo(itemList) {
         }
         var dom = '<tr>\n' +
             '                  <td>' + item.itemId + '</td>\n' +
+            '                  <td>' + item.checkStatus + '</td>\n' +
             '                  <td>' + item.itemName + '</td>\n' +
             '                  <td>' + item.itemCreateDate + '</td>\n' +
             '                  <td>' + item.itemPrice + '</td>\n' +

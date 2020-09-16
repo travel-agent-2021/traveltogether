@@ -38,6 +38,11 @@ function loadData(data) {
     $("#agencyTitle").val(data.agencyTitle);
     $("#detail").text(data.itemDetail);
     $("#itemImageSources").val(data.itemImageSources);
+    if(checkStatus === 0){
+        visibilityShowUI();
+    }else if(checkStatus === 1){
+        visibilityHideUI();
+    }
 
 var previewDom = document.getElementById("preview");
 
@@ -47,6 +52,18 @@ previewDom.src =$("#itemImageSources").val();
 //previewDom.src = previewDom.src.substring(0,32)+$("#itemImageSources").val().substring(47);
 console.log("final"+previewDom.src);
 }
+
+function visibilityHideUI()
+{
+var ui =document.getElementById("checkBtn");
+ui.style.visibility="hidden";
+}
+function visibilityShowUI()
+{
+var ui =document.getElementById("checkBtn");
+ui.style.visibility="visible";
+}
+
 
 function updateItem() {
     var itemId =  $("#itemId").val();
