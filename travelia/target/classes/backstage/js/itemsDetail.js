@@ -44,6 +44,9 @@ function loadData(data) {
     } else if (data.checkStatus === 1) {
         visibilityHideUI();
         $("#itemHeader").text("商品详情 （已审核）");
+    } else if (data.checkStatus === 2) {
+         visibilityHideUI();
+         $("#itemHeader").text("商品详情 （未通过）");
     }
 
 var previewDom = document.getElementById("preview");
@@ -57,13 +60,17 @@ console.log("final"+previewDom.src);
 
 function visibilityHideUI()
 {
-var ui =document.getElementById("checkBtn");
+var ui =document.getElementById("checkBtn1");
 ui.style.visibility="hidden";
+var ui2 =document.getElementById("checkBtn2");
+ui2.style.visibility="hidden";
 }
 function visibilityShowUI()
 {
-var ui =document.getElementById("checkBtn");
+var ui =document.getElementById("checkBtn1");
 ui.style.visibility="visible";
+var ui2 =document.getElementById("checkBtn2");
+ui2.style.visibility="visible";
 }
 
 
