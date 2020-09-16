@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var fetchAgencyId = localStorage["storeAgencyId"];
     console.log(fetchAgencyId);
+    $("#agency_id").val(fetchAgencyId);
     getOrders(fetchAgencyId);
 });
 
@@ -8,7 +9,6 @@ $(document).ready(function () {
 
 function getOrders(fetchAgencyId) {
     var orderList = [];
-
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/order/getOrdersByAgencyAccount",
@@ -33,11 +33,10 @@ function loadInfo(orderList) {
     if (orderList === "" || orderList == null) {
         return;
     }
+    $("#dataTable tbody").empty();
     for (var i = 0; i < orderList.length; i++) {
         var order = orderList[i];
         var orderId = order.orderId;
-        //alert(orderId);
-
         var dom = '<tr>\n' +
             '                  <td>' + order.orderId + '</td>\n' +
             '                  <td>' + order.orderCreateDate + '</td>\n' +
@@ -76,6 +75,31 @@ function deleteOrder(orderId) {
         }
     });
 }
+
+function selectOrders() {
+    let agencyId = $("#agency_id").val();
+    let orderStatus = $("#selectOrderStatus").val();
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/order/getOrdersByOptions",
+        xhrFields: {withCredentials: true},
+        data: {
+            "agencyId": agencyId,
+            "orderStatus": orderStatus
+        },
+        success: function (data) {
+            if (data.status === "success") {
+                loadInfo(data.data);
+            } else {
+                //
+            }
+        },
+        error: function (data) {
+            alert(data.responseText);
+        }
+    });
+}
+
 
 function setAndEdit(orderId) {
     if (window.localStorage) {

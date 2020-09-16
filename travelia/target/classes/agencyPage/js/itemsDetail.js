@@ -28,7 +28,7 @@ function initData() {
 
 
 function loadData(data) {
-    $("#itemId").val(data.itemId);
+    $("#itemId").text("商品id : "+data.itemId);
     $("#itemName").val(data.itemName);
     $("#itemPrice").val(data.itemPrice);
     $("#duration").val(data.duration);
