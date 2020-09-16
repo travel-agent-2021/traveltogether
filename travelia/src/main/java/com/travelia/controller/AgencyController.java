@@ -230,9 +230,9 @@ public class AgencyController extends BaseController {
     @RequestMapping(value = "/login", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType login(@RequestParam(name = "account") String account,
-                                  @RequestParam(name = "password") String password) throws BusinessException {
+                                  @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
 
-        AgencyModel agencyModel = agencyService.validateLogin(account, password);
+        AgencyModel agencyModel = agencyService.validateLogin(account, encodeByMD5(password));
         if (agencyModel == null) {
             throw new BusinessException(BusinessError.USER_LOGIN_FAIL);
         }

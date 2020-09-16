@@ -19,7 +19,6 @@ function getAgencyOptions() {
         error: function (data) {
             alert("添加失败, " + data.responseText);
         }
-
     });
 }
 

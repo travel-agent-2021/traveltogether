@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 @Controller
 @RequestMapping("/admin")
@@ -33,9 +35,9 @@ public class AdminController extends BaseController {
     @RequestMapping(value = "/login", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType login(@RequestParam(name = "account") String account,
-                                  @RequestParam(name = "password") String password) throws BusinessException {
+                                  @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
 
-        AdminModel adminModel = adminService.validateLogin(account, password);
+        AdminModel adminModel = adminService.validateLogin(account, encodeByMD5(password));
         if (adminModel == null) {
             throw new BusinessException(BusinessError.USER_LOGIN_FAIL);
         }

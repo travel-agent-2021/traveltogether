@@ -28,11 +28,7 @@ function initData() {
 
 
 function loadData(data) {
-<<<<<<< Updated upstream
-    $("#itemId").text(data.itemId);
-=======
-    $("#itemId").text("商品id: " + data.itemId);
->>>>>>> Stashed changes
+    $("#itemId").val(data.itemId);
     $("#itemName").val(data.itemName);
     $("#itemPrice").val(data.itemPrice);
     $("#duration").val(data.duration);
@@ -76,7 +72,8 @@ function visibilityShowUI() {
 
 
 function updateItem() {
-    var itemId = $("#itemId").text().substring(5);
+    var itemId = $("#itemId").val();
+    alert(itemId);
     var itemName = $("#itemName").val();
     var itemPrice = $("#itemPrice").val();
     var duration = $("#duration").val();
@@ -97,6 +94,7 @@ function updateItem() {
             "duration": duration,
             "minTourists": minTourists,
             "maxTourists": maxTourists,
+            "checkStatus": 1,
             "agencyId": agencyId,
             "itemDetail": detail,
             "itemImageSources": itemImageSources
@@ -250,7 +248,7 @@ function Download() {
 
 
 function checkItem(status) {
-    let itemId = $("#itemId").text().substring(5);
+    let itemId = $("#itemId").val();
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/item/checkItem",

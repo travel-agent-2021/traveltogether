@@ -73,6 +73,7 @@ function visibilityShowUI() {
 
 function updateItem() {
     var itemId = $("#itemId").val();
+    alert(itemId);
     var itemName = $("#itemName").val();
     var itemPrice = $("#itemPrice").val();
     var duration = $("#duration").val();
@@ -93,6 +94,7 @@ function updateItem() {
             "duration": duration,
             "minTourists": minTourists,
             "maxTourists": maxTourists,
+            "checkStatus": 1,
             "agencyId": agencyId,
             "itemDetail": detail,
             "itemImageSources": itemImageSources
@@ -246,7 +248,7 @@ function Download() {
 
 
 function checkItem(status) {
-    let itemId = $("#itemId").text().substring(5);
+    let itemId = $("#itemId").val();
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/item/checkItem",

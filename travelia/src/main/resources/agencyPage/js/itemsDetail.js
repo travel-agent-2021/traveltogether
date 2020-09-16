@@ -67,7 +67,7 @@ function updateItem() {
     var duration = $("#duration").val();
     var minTourists = $("#minTourists").val();
     var maxTourists = $("#maxTourists").val();
-    var agencyId =  $("#agencyId").val();
+    var agencyId =  $("#agency_id").val();
     var detail = $("#detail").val();
     var itemImageSources = $("#itemImageSources").val();
 

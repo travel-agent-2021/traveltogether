@@ -67,7 +67,7 @@ function updateItem() {
     var duration = $("#duration").val();
     var minTourists = $("#minTourists").val();
     var maxTourists = $("#maxTourists").val();
-    var agencyId =  $("#agencyId").val();
+    var agencyId =  $("#agency_id").val();
     var detail = $("#detail").val();
     var itemImageSources = $("#itemImageSources").val();
 
@@ -84,11 +84,12 @@ function updateItem() {
             "maxTourists": maxTourists,
             "agencyId": agencyId,
             "itemDetail": detail,
+            "checkStatus": 0,
             "itemImageSources": itemImageSources
         },
         success: function(data) {
             if (data.status === "success") {
-                alert("修改成功！");
+                alert("提交修改成功！");
                 window.location.href = "items.html";
             }else {
                 alert("修改失败，" + data.data.errMsg);
