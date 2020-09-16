@@ -38,9 +38,9 @@ function loadData(data) {
     $("#agencyTitle").val(data.agencyTitle);
     $("#detail").text(data.itemDetail);
     $("#itemImageSources").val(data.itemImageSources);
-    if(checkStatus === 0){
+    if (data.checkStatus === 0) {
         visibilityShowUI();
-    }else if(checkStatus === 1){
+    } else if (data.checkStatus === 1) {
         visibilityHideUI();
     }
 
