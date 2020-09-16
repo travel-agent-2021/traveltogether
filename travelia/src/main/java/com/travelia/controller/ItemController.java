@@ -339,7 +339,24 @@ public class ItemController extends BaseController {
         return CommonReturnType.create();
     }
 
-
+    /**
+     * 审核商品信息
+     * @param itemId
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/checkItem", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType checkItem(@RequestParam(name = "itemId") Integer itemId,
+                                      @RequestParam(name = "checkStatus") Integer checkStatus) throws BusinessException {
+        ItemModel itemModel = itemService.getItemByItemId(itemId);
+        if (itemModel == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        itemModel.setCheckStatus(checkStatus);
+        itemService.updateItemById(itemModel);
+        return CommonReturnType.create();
+    }
 
     /**
      * 根据item名称得到城市列表

@@ -8,19 +8,19 @@ function initData() {
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/item/getItemById",
-        xhrFields: { withCredentials: true },
-        data : {
+        xhrFields: {withCredentials: true},
+        data: {
             "itemId": itemId
         },
-        success: function(data) {
+        success: function (data) {
             if (data.status === "success") {
-            console.log("itemImageSources"+data.data.itemImageSources);
+                console.log("itemImageSources" + data.data.itemImageSources);
                 loadData(data.data);
-            }else {
+            } else {
                 alert("获取信息失败，" + data.data.errMsg);
             }
         },
-        error: function(data) {
+        error: function (data) {
             alert("获取信息失败, " + data.responseText);
         }
     });
@@ -28,7 +28,7 @@ function initData() {
 
 
 function loadData(data) {
-    $("#itemId").text("商品id : "+data.itemId);
+    $("#itemId").text("商品id : " + data.itemId);
     $("#itemName").val(data.itemName);
     $("#itemPrice").val(data.itemPrice);
     $("#duration").val(data.duration);
@@ -45,50 +45,47 @@ function loadData(data) {
         visibilityHideUI();
         $("#itemHeader").text("商品详情 （已审核）");
     } else if (data.checkStatus === 2) {
-         visibilityHideUI();
-         $("#itemHeader").text("商品详情 （未通过）");
+        visibilityHideUI();
+        $("#itemHeader").text("商品详情 （未通过）");
     }
 
-var previewDom = document.getElementById("preview");
+    var previewDom = document.getElementById("preview");
 
-previewDom.src =$("#itemImageSources").val();
-//previewDom.src =$("#itemImageSources").val().substring(47);
-
-//previewDom.src = previewDom.src.substring(0,32)+$("#itemImageSources").val().substring(47);
-console.log("final"+previewDom.src);
+    previewDom.src = $("#itemImageSources").val();
+    console.log("final" + previewDom.src);
 }
 
-function visibilityHideUI()
-{
-var ui =document.getElementById("checkBtn1");
-ui.style.visibility="hidden";
-var ui2 =document.getElementById("checkBtn2");
-ui2.style.visibility="hidden";
+function visibilityHideUI() {
+    var ui = document.getElementById("checkBtn1");
+    ui.style.visibility = "hidden";
+    var ui2 = document.getElementById("checkBtn2");
+    ui2.style.visibility = "hidden";
 }
-function visibilityShowUI()
-{
-var ui =document.getElementById("checkBtn1");
-ui.style.visibility="visible";
-var ui2 =document.getElementById("checkBtn2");
-ui2.style.visibility="visible";
+
+
+function visibilityShowUI() {
+    var ui = document.getElementById("checkBtn1");
+    ui.style.visibility = "visible";
+    var ui2 = document.getElementById("checkBtn2");
+    ui2.style.visibility = "visible";
 }
 
 
 function updateItem() {
-    var itemId =  $("#itemId").val();
+    var itemId = $("#itemId").val();
     var itemName = $("#itemName").val();
     var itemPrice = $("#itemPrice").val();
     var duration = $("#duration").val();
     var minTourists = $("#minTourists").val();
     var maxTourists = $("#maxTourists").val();
-    var agencyId =  $("#agencyId").val();
+    var agencyId = $("#agencyId").val();
     var detail = $("#detail").val();
     var itemImageSources = $("#itemImageSources").val();
 
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/item/updateItem",
-        xhrFields: { withCredentials: true },
+        xhrFields: {withCredentials: true},
         data: {
             "itemId": itemId,
             "itemName": itemName,
@@ -100,15 +97,15 @@ function updateItem() {
             "itemDetail": detail,
             "itemImageSources": itemImageSources
         },
-        success: function(data) {
+        success: function (data) {
             if (data.status === "success") {
                 alert("修改成功！");
                 window.location.href = "items.html";
-            }else {
+            } else {
                 alert("修改失败，" + data.data.errMsg);
             }
         },
-        error: function(data) {
+        error: function (data) {
             alert("修改失败, " + data.responseText);
         }
     });
@@ -120,16 +117,16 @@ function initAgencyOptions() {
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/agency/getAllAgencies",
-        xhrFields: { withCredentials: true },
-        success: function(data) {
+        xhrFields: {withCredentials: true},
+        success: function (data) {
             if (data.status === "success") {
                 agencyList = data.data;
                 loadAgencyOptions(agencyList);
-            }else {
+            } else {
                 alert("添加失败，" + data.data.errMsg);
             }
         },
-        error: function(data) {
+        error: function (data) {
             alert("添加失败, " + data.responseText);
         }
 
@@ -148,104 +145,112 @@ function loadAgencyOptions(agencyList) {
 }
 
 
- function readImage(){
+function readImage() {
     var fileDom = document.getElementById("file");
-            var previewDom = document.getElementById("preview");
-            fileDom.addEventListener("change", e=>{
-                var file = fileDom.files[0];
-                // check if input contains a valid image file
-                if (!file || file.type.indexOf("image/") < 0) {
-                    fileDom.value = "";
-                    previewDom.src = "";
-                    return;
-                }
+    var previewDom = document.getElementById("preview");
+    fileDom.addEventListener("change", e => {
+        var file = fileDom.files[0];
+        // check if input contains a valid image file
+        if (!file || file.type.indexOf("image/") < 0) {
+            fileDom.value = "";
+            previewDom.src = "";
+            return;
+        }
 
-                // use FileReader to load image and show preview of the image
-                var fileReader = new FileReader();
-                fileReader.onload = e=>{
-                    previewDom.src = e.target.result;
-                };
-                fileReader.readAsDataURL(file);
-            });
+        // use FileReader to load image and show preview of the image
+        var fileReader = new FileReader();
+        fileReader.onload = e => {
+            previewDom.src = e.target.result;
+        };
+        fileReader.readAsDataURL(file);
+    });
 
-            var formDom = document.getElementById("form");
+    var formDom = document.getElementById("form");
 
-            function check() {
-                var file = fileDom.files[0];
-                // check if input contains a valid image file
-                if (!file || file.type.indexOf("image/") < 0) {
-                    return false;
-                }
+    function check() {
+        var file = fileDom.files[0];
+        // check if input contains a valid image file
+        if (!file || file.type.indexOf("image/") < 0) {
+            return false;
+        }
 
-                return true;
-            }
+        return true;
+    }
 
+}
+
+
+function Download() {
+    //cavas 保存图片到本地  js 实现
+    //------------------------------------------------------------------------
+    //1.确定图片的类型  获取到的图片格式 data:image/Png;base64,......
+    var type = 'png';
+    //var d=convertImageToCanvas("preview");
+    var d = document.getElementById("preview");
+
+
+    var canvas = document.createElement("canvas");
+    if (d.width >= 598 || d.height >= 598) {
+        //var rate = (d.width < d.height ? d.width / d.height : d.height / d.width) / 2;
+        var rate = (590 / d.width);
+        canvas.width = d.width * rate;
+        canvas.height = d.height * rate;
+        canvas.getContext("2d").drawImage(d, 0, 0, d.width, d.height, 0, 0, d.width * rate, d.height * rate);
+    } else {
+        canvas.width = d.width;
+        canvas.height = d.height;
+        canvas.getContext("2d").drawImage(d, 0, 0);
     }
 
 
-function Download(){
-        //cavas 保存图片到本地  js 实现
-        //------------------------------------------------------------------------
-        //1.确定图片的类型  获取到的图片格式 data:image/Png;base64,......
-        var type ='png';//你想要什么图片格式 就选什么吧
-        //var d=convertImageToCanvas("preview");
-        var d=document.getElementById("preview");
+    var imgdata = canvas.toDataURL(type);
+    //console.log(imgdata);
+    //2.0 将mime-type改为image/octet-stream,强制让浏览器下载
+    var fixtype = function (type) {
+        type = type.toLocaleLowerCase().replace(/jpg/i, 'jpeg');
+        var r = type.match(/png|jpeg|bmp|gif/)[0];
+        return 'image/' + r;
+    };
+    //imgdata=imgdata.replace(fixtype(type),'image/octet-stream');
+    //3.0 将图片保存到本地
+    var savaFile = function (data, filename) {
+        var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+        save_link.href = data;
+        save_link.download = filename;
+        var event = document.createEvent('MouseEvents');
+        event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+        save_link.dispatchEvent(event);
+    };
+    var filename = '' + new Date().getSeconds() + '.' + type;
+    //savaFile(imgdata,filename,"image");
+    console.log("filename" + filename);
+    $("#itemImageSources").val(filename);
+
+    //var saveImage = canvas.toDataURL('image/png');
+    var b64 = imgdata.substring(22);
 
 
-         var canvas = document.createElement("canvas");
-         if(d.width >=598 || d.height >= 598){
-         //var rate = (d.width < d.height ? d.width / d.height : d.height / d.width) / 2;
-         var rate = (590/d.width);
-                 canvas.width = d.width * rate;
-                 canvas.height = d.height * rate;
-                 canvas.getContext("2d").drawImage(d, 0, 0, d.width, d.height, 0, 0, d.width * rate, d.height * rate);
-         }else{
-                 canvas.width = d.width;
-                 canvas.height = d.height;
-                 canvas.getContext("2d").drawImage(d, 0, 0);
-         }
-
-
-        var imgdata=canvas.toDataURL(type);
-        //console.log(imgdata);
-        //2.0 将mime-type改为image/octet-stream,强制让浏览器下载
-        var fixtype=function(type){
-            type=type.toLocaleLowerCase().replace(/jpg/i,'jpeg');
-            var r=type.match(/png|jpeg|bmp|gif/)[0];
-            return 'image/'+r;
-        };
-        //imgdata=imgdata.replace(fixtype(type),'image/octet-stream');
-        //3.0 将图片保存到本地
-        var savaFile=function(data,filename)
-        {
-            var save_link=document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
-            save_link.href=data;
-            save_link.download=filename;
-            var event=document.createEvent('MouseEvents');
-            event.initMouseEvent('click',true,false,window,0,0,0,0,0,false,false,false,false,0,null);
-            save_link.dispatchEvent(event);
-        };
-        var filename=''+new Date().getSeconds()+'.'+type;
-        //我想用当前秒是可以解决重名的问题了 不行你就换成毫秒
-        //savaFile(imgdata,filename,"image");
-console.log("filename"+filename);
-        $("#itemImageSources").val(filename);
-
-        //var saveImage = canvas.toDataURL('image/png');
-        var b64 = imgdata.substring(22);
-
-
-        $.ajax({
+    $.ajax({
         url: "http://localhost:8080/agency/saveImg",
-        type:'post',
-        data: { "pp": b64},
-        success:function (data)
-        {
-        alert("图片上传成功");
-        $("#itemImageSources").val(data.data);
-           // alert('保存成功');
+        type: 'post',
+        data: {"pp": b64},
+        success: function (data) {
+            alert("图片上传成功");
+            $("#itemImageSources").val(data.data);
+            // alert('保存成功');
         }
 
-        });
+    });
 
-        };
+}
+
+$("#checkBtn1").on("click", checkItem(1));
+
+$("#checkBtn2").on("click", checkItem(2));
+
+function checkItem() {
+    $("#itemId").val();
+    $.ajax({
+
+    });
+}
