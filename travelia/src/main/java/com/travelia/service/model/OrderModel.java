@@ -72,7 +72,6 @@ public class OrderModel {
      */
     private String orderDetail;
 
-
     /**
      * getters and setters
      */

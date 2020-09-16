@@ -84,6 +84,11 @@ public class ItemModel {
     private Integer totalOrderTimes;
 
 
+    private Integer check;
+
+
+    private Integer totalClickTimes;
+
     /**
      * getters and setters
      */
@@ -205,6 +210,23 @@ public class ItemModel {
 
     public void setTotalOrderTimes(Integer totalOrderTimes) {
         this.totalOrderTimes = totalOrderTimes;
+    }
+
+
+    public Integer getCheck() {
+        return check;
+    }
+
+    public void setCheck(Integer check) {
+        this.check = check;
+    }
+
+    public Integer getTotalClickTimes() {
+        return totalClickTimes;
+    }
+
+    public void setTotalClickTimes(Integer totalClickTimes) {
+        this.totalClickTimes = totalClickTimes;
     }
 
     @Override

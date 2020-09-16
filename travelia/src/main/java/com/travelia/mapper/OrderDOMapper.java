@@ -53,11 +53,13 @@ public interface OrderDOMapper {
      */
     int updateByPrimaryKey(OrderDO record);
 
+    List<OrderDO> selectAllOrders();
+
 
     List<OrderDO> selectByAgencyId(Integer agencyId);
 
 
-    List<OrderDO> selectByAgencyAccount(Integer agencyAccount);
+    List<OrderDO> selectByAgencyAccount(String agencyAccount);
 
 
     List<OrderDO> selectByUserId(Integer userId);

@@ -31,14 +31,12 @@
         </javaClientGenerator>
 
 
-        <table schema="DB2ADMIN" tableName="order_info" domainObjectName="OrderDO"
+        <table schema="DB2ADMIN" tableName="item_info" domainObjectName="ItemDO"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableSelectByExample="false"
                enableDeleteByExample="false"
                selectByExampleQueryId="false"></table>
-
-
 
     </context>
 </generatorConfiguration>
