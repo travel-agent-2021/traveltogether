@@ -22,6 +22,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
   <a class="navbar-brand"  href="#" id="user-name">TRAVELIA（经销商）</a>
+  <input type="text" style="display: none" id="agency_id">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -186,7 +187,7 @@
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> 商品列表<a class="btn btn-info pull-right"   href="newItem.html">提交审核</a></div>
+          <i class="fa fa-table"></i> 商品列表<a class="btn btn-info pull-right"   href="newItem.html">添加商品</a></div>
         <div class="card-body">
           
           <div class="table-responsive">
@@ -201,6 +202,7 @@
               <thead>
                 <tr>
                   <th>商品ID</th>
+                  <th>商品状态</th>
                   <th>商品名</th>
                   <th>商品创建(修改)日期</th>
                   <th>价格</th>
@@ -212,6 +214,7 @@
               <tfoot>
                 <tr>
                   <th>商品ID</th>
+                  <th>商品状态</th>
                   <th>商品名</th>
                   <th>商品创建(修改)日期</th>
                   <th>价格</th>
@@ -221,17 +224,7 @@
                 </tr>
               </tfoot>
               <tbody>
-                <!--<tr>
-                  <td>1681016</td>
-              <td><img class="img test" src="img/test.jpg" alt="" width="120px" height="60px"></td>
-              <td>北京-天津2日游</td>
-              <td>2020-9-8</td>
-              <td>1000</td>
-              <td>2</td>
-              <td>12</td>
-              <td><a class="btn btn-primary"   href="itemsDetail.html">修改</a>
-                <a class="btn btn-warning"   href="items.html">删除</a></td>
-                </tr>-->
+
               </tbody>
             </table>
           </div>

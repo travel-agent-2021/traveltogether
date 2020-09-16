@@ -205,6 +205,7 @@ public class ItemController extends BaseController {
     public CommonReturnType addItem(@RequestParam(name = "itemName") String itemName,
                                     @RequestParam(name = "itemPrice") BigDecimal itemPrice,
                                     @RequestParam(name = "agencyId") Integer agencyId,
+                                    @RequestParam(name = "checkStatus") Integer checkStatus,
                                     @RequestParam(name = "duration", required = false) Integer duration,
                                     @RequestParam(name = "minTourists", required = false) Integer minTourists,
                                     @RequestParam(name = "maxTourists", required = false) Integer maxTourists,
@@ -234,6 +235,7 @@ public class ItemController extends BaseController {
         itemModel.setItemPrice(itemPrice);
         itemModel.setItemDetail(itemDetail);
         itemModel.setAgencyId(agencyId);
+        itemModel.setCheckStatus(checkStatus);
         itemModel.setTotalOrderTimes(0);
         itemModel.setItemCreateDate(getNowDate("yyyy-MM-dd"));
         itemModel.setTotalClickTimes(0);
@@ -271,6 +273,7 @@ public class ItemController extends BaseController {
     @ResponseBody
     public CommonReturnType updateItem(@RequestParam(name = "itemId") Integer itemId,
                                        @RequestParam(name = "itemName") String itemName,
+                                       @RequestParam(name = "checkStatus") Integer checkStatus,
                                        @RequestParam(name = "itemPrice") BigDecimal itemPrice,
                                        @RequestParam(name = "agencyId") Integer agencyId,
                                        @RequestParam(name = "duration", required = false) Integer duration,
@@ -312,6 +315,7 @@ public class ItemController extends BaseController {
         itemModel.setMinTourists(minTourists);
         itemModel.setAgencyId(agencyId);
         itemModel.setItemPrice(itemPrice);
+        itemModel.setCheckStatus(checkStatus);
         itemModel.setItemDetail(itemDetail);
         itemModel.setItemImageSources(imageRe);
         itemModel.setItemCreateDate(getNowDate("yyyy-MM-dd"));

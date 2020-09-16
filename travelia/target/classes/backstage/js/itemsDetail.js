@@ -28,7 +28,11 @@ function initData() {
 
 
 function loadData(data) {
+<<<<<<< Updated upstream
     $("#itemId").text(data.itemId);
+=======
+    $("#itemId").text("商品id: " + data.itemId);
+>>>>>>> Stashed changes
     $("#itemName").val(data.itemName);
     $("#itemPrice").val(data.itemPrice);
     $("#duration").val(data.duration);
@@ -72,7 +76,7 @@ function visibilityShowUI() {
 
 
 function updateItem() {
-    var itemId = $("#itemId").val();
+    var itemId = $("#itemId").text().substring(5);
     var itemName = $("#itemName").val();
     var itemPrice = $("#itemPrice").val();
     var duration = $("#duration").val();
