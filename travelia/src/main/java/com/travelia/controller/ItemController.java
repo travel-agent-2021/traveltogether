@@ -205,7 +205,7 @@ public class ItemController extends BaseController {
     public CommonReturnType addItem(@RequestParam(name = "itemName") String itemName,
                                     @RequestParam(name = "itemPrice") BigDecimal itemPrice,
                                     @RequestParam(name = "agencyId") Integer agencyId,
-                                     @RequestParam(name = "duration", required = false) Integer duration,
+                                    @RequestParam(name = "duration", required = false) Integer duration,
                                     @RequestParam(name = "minTourists", required = false) Integer minTourists,
                                     @RequestParam(name = "maxTourists", required = false) Integer maxTourists,
                                     @RequestParam(name = "itemDetail", required = false) String itemDetail,

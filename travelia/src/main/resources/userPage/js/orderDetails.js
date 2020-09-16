@@ -42,11 +42,11 @@ function initData(orderId) {
 
 
 function loadData(data) {
-    $("#orderId").text("订单id : "+data.orderId);
-    $("#agencyTitle").text("经销商名称 : "+data.agencyTitle);
-    $("#itemName").text("商品名称 : "+data.itemName);
-    $("#orderCreateDate").text("订单创建时间 : "+data.orderCreateDate);
-    $("#orderPrice").text("订单价格 : "+data.orderPrice);
+    $("#orderId").text("订单id: " + data.orderId);
+    $("#agencyTitle").text("经销商名称: " + data.agencyTitle);
+    $("#itemName").text("商品名称: "+data.itemName);
+    $("#orderCreateDate").text("订单创建时间: " + data.orderCreateDate);
+    $("#orderPrice").text("订单价格: " + data.orderPrice);
     let statusStr = "";
     if (data.orderStatus === 0) {
         statusStr = "已付款";
@@ -58,9 +58,9 @@ function loadData(data) {
         statusStr = "订单被取消";
     }
 
-    $("#orderStatus").text("订单状态 : "+statusStr);
-    $("#orderDetail").text("订单详情 : "+data.orderDetail);
-    $("#orderTravelers").text("订单游客数 : "+data.orderTravelers);
+    $("#orderStatus").text("订单状态: " + statusStr);
+    $("#orderDetail").text("订单详情: " + data.orderDetail);
+    $("#orderTravelers").text("订单游客数: " + data.orderTravelers);
     //removeUserOrderId();
 }
 
@@ -73,7 +73,8 @@ function confirmDelete() {
 }
 
 function deleteOrder() {
-    let orderId = $("#orderId").val();
+    let orderId = $("#orderId").text().substring(5);
+    console.log(orderId);
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/order/deleteOrder",
