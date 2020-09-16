@@ -98,7 +98,7 @@ function loadLatest(itemsList) {
         var dom = '<div class="property">\n' +
             '                                                <div class="image">\n' +
             '                                                    <a href="#" onclick="getItemDetails(' + item.itemId + ')"></a>\n' +
-            '                                                    <img src="' + imageSource + '" alt="" style="width:100%;height:100px">\n' +
+            '                                                    <img src="' + imageSource + '" alt="" style="width:100%;height:80px">\n' +
             '                                                </div>\n' +
             '                                                <div class="wrapper">\n' +
             '                                                    <div class="title">\n' +

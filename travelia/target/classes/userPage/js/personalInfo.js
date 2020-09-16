@@ -274,10 +274,16 @@ function Download(){
         var d=document.getElementById("preview");
 
          var canvas = document.createElement("canvas");
-                          var rate = (d.width < d.height ? d.width / d.height : d.height / d.width) / 2;
-                          canvas.width = d.width * rate;
-                          canvas.height = d.height * rate;
-                          canvas.getContext("2d").drawImage(d, 0, 0, d.width, d.height, 0, 0, d.width * rate, d.height * rate);
+          if(d.width >=598 || d.height >= 598){
+                var rate = (590/d.width);
+                        canvas.width = d.width * rate;
+                        canvas.height = d.height * rate;
+                        canvas.getContext("2d").drawImage(d, 0, 0, d.width, d.height, 0, 0, d.width * rate, d.height * rate);
+                }else{
+                        canvas.width = d.width;
+                        canvas.height = d.height;
+                        canvas.getContext("2d").drawImage(d, 0, 0);
+                }
 
         var imgdata=canvas.toDataURL(type);
         //console.log(imgdata);
