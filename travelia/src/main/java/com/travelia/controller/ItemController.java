@@ -127,18 +127,7 @@ public class ItemController extends BaseController {
             chartData.put(itemModel.getItemName(), itemModel.getTotalClickTimes());
         }
 
-        Comparator<Map.Entry<String, Integer>> valueComparator = new Comparator<Map.Entry<String,Integer>>() {
-            @Override
-            public int compare(Map.Entry<String, Integer> o1,
-                               Map.Entry<String, Integer> o2) {
-                return o1.getValue()-o2.getValue();
-            }
-        };
-
-        List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String,Integer>>(chartData.entrySet());
-        Collections.sort(list,valueComparator);
-
-        return CommonReturnType.create(list);
+        return CommonReturnType.create(sortMap(chartData));
     }
 
     /**

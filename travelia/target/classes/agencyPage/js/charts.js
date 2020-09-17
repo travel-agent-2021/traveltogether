@@ -201,11 +201,13 @@ function loadBestsellers(data) {
     let max = 0;
     let dataKeys = [];//存放key
     let dataValues = [];//存放value
-    for (let key in data) { //便历每一条数据
-        dataKeys.push(key);
-        dataValues.push(data[key]);
-        if (data[key] > max) {
-            max = data[key];
+    for (let i = 0; i < data.length; i++) {
+        for (let key in data[i]) {
+            dataKeys.push(key);
+            dataValues.push(data[i][key]);
+            if (max < data[i][key]) {
+                max = data[i][key];
+            }
         }
     }
     max = Math.ceil(max * 1.2);
@@ -285,11 +287,13 @@ function loadMostClicked(data) {
     let max = 0;
     let dataKeys = [];
     let dataValues = [];
-    for (let key in data) { //便历每一条数据
-        dataKeys.push(key);
-        dataValues.push(data[key]);
-        if (data[key] > max) {
-            max = data[key];
+    for (let i = 0; i < data.length; i++) {
+        for (let key in data[i]) {
+            dataKeys.push(key);
+            dataValues.push(data[i][key]);
+            if (max < data[i][key]) {
+                max = data[i][key];
+            }
         }
     }
     max = Math.ceil(max * 1.2);
