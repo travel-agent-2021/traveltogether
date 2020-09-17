@@ -4,10 +4,49 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
 $(document).ready(function () {
+    getAgencies();
     initDailyChart();
     initMonthlyChart();
     initAgeChart();
+
 });
+
+
+function getAgencies() {
+    var agencyList = [];
+    $.ajax(
+        {
+            type: "GET",
+            url: "http://localhost:8080/agency/getAllAgencies",
+            xhrFields: {withCredentials: true},
+            success: function (data) {
+                if (data.status === "success") {
+                    agencyList = data.data;
+                    loadAgencies(agencyList);
+                } else {
+                    alert("获取信息失败01，" + data.data.errMsg);
+                }
+            },
+            error: function (data) {
+                alert("获取信息失败02, " + data.responseText);
+            }
+        }
+    )
+
+}
+function loadAgencies(agencyList) {
+    if (agencyList === "" || agencyList == null) {
+        return;
+    }
+    for (var i = 0; i < agencyList.length; i++) {
+        var agency = agencyList[i];
+        var agencyName = agency.agencyTitle;
+        var agencyID = agency.agencyId;
+
+        var dom = '<option value = "' + agencyID + '">' + agencyName + '</option>';
+        $("#selectAgency").append($(dom));
+    }
+}
 
 function initDailyChart() {
     $.ajax({
