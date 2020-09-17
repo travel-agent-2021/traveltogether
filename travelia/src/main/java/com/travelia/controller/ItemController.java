@@ -15,8 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -101,14 +100,84 @@ public class ItemController extends BaseController {
      * @return
      * @throws BusinessException
      */
-    @RequestMapping(value = "/getHottestItems", method = {RequestMethod.GET})
+    @RequestMapping(value = "/getHottestItems", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
-    public CommonReturnType getHottestItems() throws BusinessException {
-        List<ItemModel> itemModelList = itemService.getItemsOrderByTotalOrderTimesDESC();
+    public CommonReturnType getHottestItems(@RequestParam(name = "agencyId") Integer agencyId) throws BusinessException {
+        List<ItemModel> itemModelList = itemService.getItemsOrderByTotalOrderTimesDESC(agencyId);
         if (itemModelList == null) {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
         }
         return CommonReturnType.create(itemModelList);
+    }
+
+    /**
+     * 获取点击量
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getClickTimes", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType getClickTimes(@RequestParam(name = "agencyId") Integer agencyId) throws BusinessException {
+        List<ItemModel> itemModelList = itemService.getItemsByClickTimesDESC(agencyId);
+        if (itemModelList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        Map<String, Integer> chartData = new TreeMap<>();
+        for (ItemModel itemModel: itemModelList) {
+            chartData.put(itemModel.getItemName(), itemModel.getTotalClickTimes());
+        }
+
+        Comparator<Map.Entry<String, Integer>> valueComparator = new Comparator<Map.Entry<String,Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2) {
+                return o1.getValue()-o2.getValue();
+            }
+        };
+
+        List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String,Integer>>(chartData.entrySet());
+        Collections.sort(list,valueComparator);
+
+        return CommonReturnType.create(list);
+    }
+
+    /**
+     * 获取点击量
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/test", method = {RequestMethod.GET})
+    @ResponseBody
+    public CommonReturnType test() throws BusinessException {
+        List<ItemModel> itemModelList = itemService.getItemsByClickTimesDESC(2);
+        if (itemModelList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        Map<String, Integer> chartData = new TreeMap<>();
+        for (ItemModel itemModel: itemModelList) {
+            chartData.put(itemModel.getItemName(), itemModel.getTotalClickTimes());
+        }
+
+        return CommonReturnType.create(sortMap(chartData));
+    }
+
+    /**
+     * 获取点击量
+     * @return
+     * @throws BusinessException
+     */
+    @RequestMapping(value = "/getBestsellers", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType getBestsellers(@RequestParam(name = "agencyId") Integer agencyId) throws BusinessException {
+        List<ItemModel> itemModelList = itemService.getItemsOrderByTotalOrderTimesDESC(agencyId);
+        if (itemModelList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        Map<String, Integer> chartData = new TreeMap<>();
+        for (ItemModel itemModel: itemModelList) {
+            chartData.put(itemModel.getItemName(), itemModel.getTotalClickTimes());
+        }
+        return CommonReturnType.create(sortMap(chartData));
     }
 
     /**

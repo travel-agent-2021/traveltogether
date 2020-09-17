@@ -7,9 +7,12 @@ $(document).ready(function () {
 function getHottestItems() {
     var itemsList = [];
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "http://localhost:8080/item/getHottestItems",
         xhrFields: { withCredentials: true },
+        data: {
+            "agencyId": -1
+        },
         success: function(data) {
             if (data.status === "success") {
                 itemsList = data.data;

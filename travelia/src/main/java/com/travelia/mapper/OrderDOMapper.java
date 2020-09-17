@@ -66,7 +66,7 @@ public interface OrderDOMapper {
     List<OrderDO> selectByUserId(Integer userId);
 
 
-    int selectCountByCreateDate(String date);
+    int selectCountByCreateDate(String date,Integer agencyId);
 
 
     List<OrderDO> selectByOptions(Integer agencyId, Integer orderStatus);

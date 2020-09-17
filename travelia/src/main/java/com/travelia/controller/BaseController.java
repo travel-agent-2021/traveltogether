@@ -126,5 +126,17 @@ public class BaseController {
         return Integer.parseInt(id.toString());
     }
 
+    public List<Map.Entry<String, Integer>> sortMap(Map<String, Integer> map) {
+        Comparator<Map.Entry<String, Integer>> valueComparator = new Comparator<Map.Entry<String,Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2) {
+                return o1.getValue()-o2.getValue();
+            }
+        };
+        List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String,Integer>>(map.entrySet());
+        Collections.sort(list,valueComparator);
+        return list;
+    }
 
 }

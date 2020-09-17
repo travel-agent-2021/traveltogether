@@ -25,6 +25,7 @@ public interface OrderService {
 
     int updateOrderById(OrderModel orderModel) throws BusinessException;
 
-    int getOrderCountsByDate(String date);
+    int getOrderCountsByDate(String date,Integer agencyId);
+
 
 }

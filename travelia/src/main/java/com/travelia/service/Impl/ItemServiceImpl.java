@@ -103,8 +103,11 @@ public class ItemServiceImpl implements ItemService {
      * @throws BusinessException
      */
     @Override
-    public List<ItemModel> getItemsOrderByTotalOrderTimesDESC() throws BusinessException {
-        List<ItemDO> itemDOList = itemDOMapper.selectAllByOrderTimesDESC();
+    public List<ItemModel> getItemsOrderByTotalOrderTimesDESC(Integer agencyId) throws BusinessException {
+        if (agencyId == -1) {
+            agencyId = null;
+        }
+        List<ItemDO> itemDOList = itemDOMapper.selectAllByOrderTimesDESC(agencyId);
         if (itemDOList == null) {
             throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
         }
@@ -292,6 +295,25 @@ public class ItemServiceImpl implements ItemService {
         int flag = itemDOMapper.updateByPrimaryKeySelective(itemDO);
 
         return flag;
+    }
+
+    @Override
+    public List<ItemModel> getItemsByClickTimesDESC(Integer agencyId) throws BusinessException {
+        if (agencyId == -1) {
+            agencyId = null;
+        }
+        List<ItemDO> itemDOList = itemDOMapper.selectAllByClickTimesDESC(agencyId);
+        if (itemDOList == null) {
+            throw new BusinessException(BusinessError.ITEM_NOT_FOUND);
+        }
+        List<ItemModel> itemModels = new ArrayList<>();
+        int num = Math.min(itemDOList.size(), 5);
+        for (int i = 0; i < num; i++) {
+            ItemDO itemDO = itemDOList.get(i);
+            AgencyDO agencyDO = agencyDOMapper.selectByPrimaryKey(itemDO.getAgencyId());
+            itemModels.add(convertFromItemDO2Model(itemDO, agencyDO));
+        }
+        return itemModels;
     }
 
     /**

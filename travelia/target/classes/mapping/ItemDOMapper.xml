@@ -232,7 +232,13 @@
         select
         <include refid="Base_Column_List"/>
         from item_info
-        WHERE check_status = 1
+
+        <where>
+            check_status = 1
+            <if test="agencyId != null">
+              AND agency_id = #{agencyId,jdbcType=INTEGER}
+            </if>
+        </where>
         ORDER BY total_order_times DESC
     </select>
 
@@ -273,4 +279,16 @@
         where check_status = 1;
     </select>
 
+    <select id="selectAllByClickTimesDESC" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from item_info
+        <where>
+            check_status = 1
+            <if test="agencyId != null">
+                AND agency_id = #{agencyId,jdbcType=INTEGER}
+            </if>
+        </where>
+        ORDER BY total_click_times DESC
+    </select>
 </mapper>

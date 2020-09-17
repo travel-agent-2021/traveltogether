@@ -77,7 +77,7 @@ public interface ItemDOMapper {
      * 将商品按商品下单次数降序排列
      * @return
      */
-    List<ItemDO> selectAllByOrderTimesDESC();
+    List<ItemDO> selectAllByOrderTimesDESC(Integer agencyId);
 
     /**
      * 将商品按时间降序排列
@@ -100,4 +100,10 @@ public interface ItemDOMapper {
      */
     List<ItemDO> selectByOptions(Integer checkStatus, Integer agencyId);
 
+    /**
+     *
+     * @param agencyId
+     * @return
+     */
+    List<ItemDO> selectAllByClickTimesDESC(Integer agencyId);
 }

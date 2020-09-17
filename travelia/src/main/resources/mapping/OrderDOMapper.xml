@@ -212,7 +212,14 @@
     select
       COUNT(*)
     from order_info
-    where order_create_date like #{date,jdbcType=VARCHAR}
+    <where>
+      <if test="date != null">
+        AND order_create_date like #{date,jdbcType=VARCHAR}
+      </if>
+      <if test="agencyId != null">
+        AND agency_id = #{agencyId,jdbcType=INTEGER}
+      </if>
+    </where>
   </select>
 
   <select id="selectByOptions" resultMap="BaseResultMap">
@@ -228,5 +235,6 @@
         </if>
     </where>
   </select>
+
 
 </mapper>

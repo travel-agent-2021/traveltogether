@@ -113,13 +113,13 @@ public class OrderController extends BaseController {
      * @return
      * @throws BusinessException
      */
-    @RequestMapping(value = "/getChartData", method = {RequestMethod.GET})
+    @RequestMapping(value = "/getChartData", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
-    public CommonReturnType getChartData() throws BusinessException {
+    public CommonReturnType getChartData(@RequestParam(name = "agencyId") Integer agencyId) throws BusinessException {
         Map<String, Integer> data = new TreeMap<>();
         for (int i = 0; i < 7; i++) {
             String date = getBeforeDate(i);
-            Integer count = orderService.getOrderCountsByDate(date);
+            Integer count = orderService.getOrderCountsByDate(date,agencyId);
             data.put(date.substring(5), count);
         }
         return CommonReturnType.create(data);
@@ -130,13 +130,13 @@ public class OrderController extends BaseController {
      * @return
      * @throws BusinessException
      */
-    @RequestMapping(value = "/getMonthlyData", method = {RequestMethod.GET})
+    @RequestMapping(value = "/getMonthlyData", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
-    public CommonReturnType getMonthlyData() throws BusinessException {
+    public CommonReturnType getMonthlyData(@RequestParam(name = "agencyId") Integer agencyId) throws BusinessException {
         Map<String, Integer> data = new TreeMap<>();
         for (int i = 0; i < 5; i++) {
             String date = getBeforeMonth(i);
-            Integer count = orderService.getOrderCountsByDate(date);
+            Integer count = orderService.getOrderCountsByDate(date,agencyId);
             data.put(date, count);
         }
         return CommonReturnType.create(data);

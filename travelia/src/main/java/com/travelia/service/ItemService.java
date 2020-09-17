@@ -17,7 +17,7 @@ public interface ItemService {
 
     List<ItemModel> getItemsByAgencyId(Integer agencyId) throws BusinessException;
 
-    List<ItemModel> getItemsOrderByTotalOrderTimesDESC() throws BusinessException;
+    List<ItemModel> getItemsOrderByTotalOrderTimesDESC(Integer agencyId) throws BusinessException;
 
     List<ItemModel> getItemsOrderByCreateDateDESC() throws BusinessException;
 
@@ -32,5 +32,7 @@ public interface ItemService {
     int deleteItem(ItemModel itemModel) throws BusinessException;
 
     int updateItemById(ItemModel itemModel) throws BusinessException;
+
+    List<ItemModel> getItemsByClickTimesDESC(Integer agencyId) throws BusinessException;
 
 }

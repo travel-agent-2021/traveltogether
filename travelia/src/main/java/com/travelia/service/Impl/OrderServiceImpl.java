@@ -208,11 +208,17 @@ public class OrderServiceImpl implements OrderService {
         return flag;
     }
 
-    public int getOrderCountsByDate(String date) {
+    public int getOrderCountsByDate(String date,Integer agencyId) {
         if (date == null) {
             return 0;
         }
-        return orderDOMapper.selectCountByCreateDate("%" + date + "%");
+
+        if(agencyId == -1){
+            return orderDOMapper.selectCountByCreateDate("%" + date + "%",null);
+        }else{
+            return orderDOMapper.selectCountByCreateDate("%" + date + "%",agencyId);
+        }
+
     }
 
     /**

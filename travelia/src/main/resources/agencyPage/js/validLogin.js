@@ -50,6 +50,7 @@ function storeId(storeAgencyId) {
     if (window.localStorage) {
         localStorage.storeAgencyId = storeAgencyId;
         localStorage.storeItemAgencyId = storeAgencyId;
+        localStorage.chartAgencyId = storeAgencyId;
     } else {
         alert("Your browser do not support this technology.");
     }
