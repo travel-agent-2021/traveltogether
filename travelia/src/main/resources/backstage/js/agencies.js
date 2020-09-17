@@ -35,7 +35,6 @@ function loadInfo(agencyList) {
         var dom = '<tr>\n' +
             '                  <td>' + agency.agencyId + '</td>\n' +
             '                  <td>' + agency.agencyAccount + '</td>\n' +
-            '                  <td>' + agency.encryptPassword + '</td>\n' +
             '                  <td>' + agency.agencyTitle + '</td>\n' +
             '                  <td>' + agency.agencyTelephone + '</td>\n' +
             '                  <td>' + agency.agencyEmail + '</td>\n' +
