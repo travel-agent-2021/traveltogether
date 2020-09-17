@@ -27,5 +27,6 @@ public interface OrderService {
 
     int getOrderCountsByDate(String date,Integer agencyId);
 
+    Integer getOrderPriceSumByDate(String date,Integer agencyId);
 
 }

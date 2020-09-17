@@ -236,5 +236,17 @@
     </where>
   </select>
 
-
+  <select id="selectPriceSumByCreateDate" resultType="java.lang.Integer">
+    select
+    SUM(order_price)
+    from order_info
+    <where>
+      <if test="date != null">
+        AND order_create_date like #{date,jdbcType=VARCHAR}
+      </if>
+      <if test="agencyId != null">
+        AND agency_id = #{agencyId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
 </mapper>

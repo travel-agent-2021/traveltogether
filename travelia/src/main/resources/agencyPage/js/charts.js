@@ -13,6 +13,8 @@ $(document).ready(function () {
     initBestsellers(chartAgencyId);
     initMostClicked(chartAgencyId);
 
+    initDailyPriceSum(chartAgencyId);
+    initMonthlyPriceSum(chartAgencyId);
 });
 
 function initDailyChart(chartAgencyId) {
@@ -55,7 +57,7 @@ function loadDailyChart(data) {
         data: {
             labels: dataKeys,
             datasets: [{
-                label: "Sessions",
+                label: "件",
                 lineTension: 0.3,
                 backgroundColor: "rgba(2,117,216,0.2)",
                 borderColor: "rgba(2,117,216,1)",
@@ -138,7 +140,7 @@ function loadMonthlyChart(data) {
         data: {
             labels: dataKeys,
             datasets: [{
-                label: "Revenue",
+                label: "件",
                 backgroundColor: "rgba(2,117,216,1)",
                 borderColor: "rgba(2,117,216,1)",
                 data: dataValues
@@ -218,7 +220,7 @@ function loadBestsellers(data) {
         data: {
             labels: dataKeys,
             datasets: [{
-                label: "Sessions",
+                label: "件",
                 lineTension: 0.3,
                 backgroundColor: "rgba(2,117,216,0.2)",
                 borderColor: "rgba(2,117,216,1)",
@@ -303,7 +305,7 @@ function loadMostClicked(data) {
         data: {
             labels: dataKeys,
             datasets: [{
-                label: "Revenue",
+                label: "次数",
                 backgroundColor: "rgba(2,117,216,1)",
                 borderColor: "rgba(2,117,216,1)",
                 data: dataValues
@@ -339,5 +341,167 @@ function loadMostClicked(data) {
         }
     });
 }
+
+
+function initDailyPriceSum(chartAgencyId) {
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/order/getDailyPriceSum",
+        data: { "agencyId": chartAgencyId},
+        xhrFields: {withCredentials: true},
+        success: function (data) {
+            if (data.status === "success") {
+                let resultMap = data.data;
+                loadDailyPriceSum(resultMap);
+            } else {
+                alert("获取信息失败，" + data.data.errMsg);
+            }
+        },
+        error: function (data) {
+            // alert("获取信息失败, " + data.responseText);
+        }
+    })
+}
+
+function loadDailyPriceSum(data) {
+    //alert(data.length);
+    let max = 0;
+    let dataKeys = [];//存放key
+    let dataValues = [];//存放value
+    for (let key in data) { //便历每一条数据
+        dataKeys.push(key);
+        dataValues.push(data[key]);
+        if (data[key] > max) {
+            max = data[key];
+        }
+    }
+    max = Math.ceil(max * 1.2);
+
+    var ctx = document.getElementById("dailyPriceSum");
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dataKeys,
+            datasets: [{
+                label: "元",
+                lineTension: 0.3,
+                backgroundColor: "rgba(2,117,216,0.2)",
+                borderColor: "rgba(2,117,216,1)",
+                pointRadius: 5,
+                pointBackgroundColor: "rgba(2,117,216,1)",
+                pointBorderColor: "rgba(255,255,255,0.8)",
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                pointHitRadius: 20,
+                pointBorderWidth: 2,
+                data: dataValues,
+            }],
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'date'
+                    },
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 7
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: max,
+                        maxTicksLimit: 5
+                    },
+                    gridLines: {
+                        color: "rgba(0, 0, 0, .125)",
+                    }
+                }],
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+}
+
+function initMonthlyPriceSum(chartAgencyId) {
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/order/getMonthlyPriceSum",
+        data: { "agencyId": chartAgencyId},
+        xhrFields: {withCredentials: true},
+        success: function (data) {
+            if (data.status === "success") {
+                let resultMap = data.data;
+                loadMonthlyPriceSum(resultMap);
+            } else {
+                alert("获取信息失败，" + data.data.errMsg);
+            }
+        },
+        error: function (data) {
+            // alert("获取信息失败, " + data.responseText);
+        }
+    });
+}
+
+function loadMonthlyPriceSum(data) {
+    let max = 0;
+    let dataKeys = [];
+    let dataValues = [];
+    for (let key in data) { //便历每一条数据
+        dataKeys.push(key);
+        dataValues.push(data[key]);
+        if (data[key] > max) {
+            max = data[key];
+        }
+    }
+    max = Math.ceil(max * 1.2);
+    var ctx = document.getElementById("monthlyPriceSum");
+    var myLineChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: dataKeys,
+            datasets: [{
+                label: "元",
+                backgroundColor: "rgba(2,117,216,1)",
+                borderColor: "rgba(2,117,216,1)",
+                data: dataValues
+            }],
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'month'
+                    },
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 6
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: max,
+                        maxTicksLimit: 5
+                    },
+                    gridLines: {
+                        display: true
+                    }
+                }],
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+}
+
 
 

@@ -164,7 +164,7 @@ public class ItemController extends BaseController {
         }
         Map<String, Integer> chartData = new TreeMap<>();
         for (ItemModel itemModel: itemModelList) {
-            chartData.put(itemModel.getItemName(), itemModel.getTotalClickTimes());
+            chartData.put(itemModel.getItemName(), itemModel.getTotalOrderTimes());
         }
         return CommonReturnType.create(sortMap(chartData));
     }

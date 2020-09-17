@@ -1,4 +1,4 @@
-/*
+
 // Chart.js scripts
 // -- Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -12,8 +12,9 @@ $(document).ready(function () {
 
 function initDailyChart() {
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "http://localhost:8080/order/getChartData",
+        data: { "agencyId": -1},
         xhrFields: { withCredentials: true },
         success: function(data) {
             if (data.status === "success") {
@@ -49,7 +50,7 @@ function loadDailyChart(data) {
         data: {
             labels: dataKeys,
             datasets: [{
-                label: "Sessions",
+                label: "件",
                 lineTension: 0.3,
                 backgroundColor: "rgba(2,117,216,0.2)",
                 borderColor: "rgba(2,117,216,1)",
@@ -96,8 +97,9 @@ function loadDailyChart(data) {
 
 function initMonthlyChart() {
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "http://localhost:8080/order/getMonthlyData",
+        data: { "agencyId": -1},
         xhrFields: { withCredentials: true },
         success: function(data) {
             if (data.status === "success") {
@@ -131,7 +133,7 @@ function loadMonthlyChart(data) {
         data: {
             labels: dataKeys,
             datasets: [{
-                label: "Revenue",
+                label: "件",
                 backgroundColor: "rgba(2,117,216,1)",
                 borderColor: "rgba(2,117,216,1)",
                 data: dataValues
@@ -206,4 +208,4 @@ function loadAgeChart(data) {
         },
     });
 }
-*/
+

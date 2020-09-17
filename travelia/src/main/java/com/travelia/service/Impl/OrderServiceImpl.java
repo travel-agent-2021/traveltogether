@@ -221,6 +221,21 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
+    public Integer getOrderPriceSumByDate(String date,Integer agencyId) {
+        if (date == null) {
+            return 0;
+        }
+
+
+        if(agencyId == -1){
+           agencyId = null;
+        }
+        Integer sum =  orderDOMapper.selectPriceSumByCreateDate("%" + date + "%",agencyId);
+        return sum == null? 0: sum;
+
+
+    }
+
     /**
      * OrderDO转化为OrderModel，包括商品、旅行社信息、城市、图片信息
      * @param orderDO

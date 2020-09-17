@@ -142,6 +142,31 @@ public class OrderController extends BaseController {
         return CommonReturnType.create(data);
     }
 
+
+    @RequestMapping(value = "/getDailyPriceSum", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType getDailyPriceSum(@RequestParam(name = "agencyId") Integer agencyId) throws BusinessException {
+        Map<String, Integer> data = new TreeMap<>();
+        for (int i = 0; i < 7; i++) {
+            String date = getBeforeDate(i);
+            Integer count = orderService.getOrderPriceSumByDate(date,agencyId);
+            data.put(date.substring(5), count);
+        }
+        return CommonReturnType.create(data);
+    }
+
+    @RequestMapping(value = "/getMonthlyPriceSum", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType getMonthlyPriceSum(@RequestParam(name = "agencyId") Integer agencyId) throws BusinessException {
+        Map<String, Integer> data = new TreeMap<>();
+        for (int i = 0; i < 5; i++) {
+            String date = getBeforeMonth(i);
+            Integer count = orderService.getOrderPriceSumByDate(date,agencyId);
+            data.put(date, count);
+        }
+        return CommonReturnType.create(data);
+    }
+
     /**
      * 添加订单信息
      * @param userId

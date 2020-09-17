@@ -68,6 +68,8 @@ public interface OrderDOMapper {
 
     int selectCountByCreateDate(String date,Integer agencyId);
 
+    Integer selectPriceSumByCreateDate(String date,Integer agencyId);
+
 
     List<OrderDO> selectByOptions(Integer agencyId, Integer orderStatus);
 }
