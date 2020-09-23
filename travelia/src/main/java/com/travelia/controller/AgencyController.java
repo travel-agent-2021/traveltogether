@@ -162,15 +162,14 @@ public class AgencyController extends BaseController {
             throw new BusinessException(BusinessError.PARAMETER_VALIDATION_ERROR, "未找到经销商ID");
         }
 
-        if (password == null || ("").equals(password)) {
-            agencyModel.setEncryptPassword(agencyModel.getEncryptPassword());
+        if (password != null && !("").equals(password)) {
+            agencyModel.setEncryptPassword(encodeByMD5(password));
         }
 
         AgencyModel agency = new AgencyModel();
         agency.setAgencyId(agencyId);
         agency.setAgencyAccount(agencyAccount);
         agency.setAgencyTelephone(agencyTelephone);
-        agency.setEncryptPassword(encodeByMD5(password));
         agency.setAgencyTitle(agencyTitle);
         agency.setAgencyEmail(agencyEmail);
         agency.setAgencyAddress(agencyAddress);

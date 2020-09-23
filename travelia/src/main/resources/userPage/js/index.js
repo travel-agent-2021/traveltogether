@@ -126,3 +126,15 @@ function getItemDetails(itemId) {
     }
 }
 
+function searchItemsByName() {
+    let itemName = $("#search_item_name").val();
+    if (itemName == null) {
+        itemName = "";
+    }
+    if (window.localStorage) {
+        localStorage.searchItemName = itemName;
+        window.location.href = 'search.html';
+    } else {
+        alert("Your browser does not support this technology.");
+    }
+}

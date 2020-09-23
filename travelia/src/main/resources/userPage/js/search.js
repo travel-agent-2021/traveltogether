@@ -1,6 +1,6 @@
-
 $(document).ready(function () {
-    initSearchItems("");
+    let searchItemName = window.localStorage.getItem("searchItemName")
+    initSearchItems(searchItemName);
     getLatestItems();
 });
 
@@ -172,7 +172,6 @@ function initPagination(length) {
     function pageselectCallback(page_index, jq) {
         let max_elem = Math.min((page_index + 1) * 4, num_entries);
         let prev_content = document.getElementById("searchResult").getElementsByClassName("property span9");
-        // document.getElementById('searchResult').getElementsByTagName('tr');
         let hiddenresult = document.getElementById("hiddenResult");
         let length = prev_content.length;
         // console.log(prev_content);

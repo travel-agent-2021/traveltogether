@@ -26,7 +26,7 @@ function loadData(data) {
 
     $("#agencyId").val(data.agencyId);
     $("#agencyAccount").val(data.agencyAccount);
-    $("#password").val(data.encryptPassword);
+   // $("#password").val(data.encryptPassword);
     $("#agencyTitle").val(data.agencyTitle);
     $("#agencyTelephone").val(data.agencyTelephone);
     $("#agencyAddress").val(data.agencyAddress);

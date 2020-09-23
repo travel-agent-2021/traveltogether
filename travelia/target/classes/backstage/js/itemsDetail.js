@@ -73,7 +73,6 @@ function visibilityShowUI() {
 
 function updateItem() {
     var itemId = $("#itemId").val();
-    alert(itemId);
     var itemName = $("#itemName").val();
     var itemPrice = $("#itemPrice").val();
     var duration = $("#duration").val();
